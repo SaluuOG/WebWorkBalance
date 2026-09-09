@@ -12,3 +12,33 @@ test("build includes development preview metadata", async () => {
   const workerBundle = await readFile(new URL("../dist/server/index.js", import.meta.url), "utf8");
   assert.match(workerBundle, developmentPreviewMeta);
 });
+
+test("keeps the installed mobile app inside a stable device viewport", async () => {
+  const [layout, manifest, stylesheet, app] = await Promise.all([
+    readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/manifest.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+    readFile(new URL("../app/webworkbalance-app.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(layout, /maximumScale:\s*1/);
+  assert.match(layout, /userScalable:\s*false/);
+  assert.match(layout, /interactiveWidget:\s*"resizes-content"/);
+  assert.match(manifest, /orientation:\s*"any"/);
+  assert.match(stylesheet, /\.wwb-app-shell[\s\S]*?100dvh/);
+  assert.match(stylesheet, /\.wwb-bottom-nav[\s\S]*?safe-area-inset-left/);
+  assert.match(stylesheet, /font-size:\s*16px\s*!important/);
+  assert.match(app, /className="wwb-app-shell text-foreground"/);
+  assert.match(app, /className="wwb-bottom-nav fixed/);
+});
+
+test("surfaces unread team notes when the app starts", async () => {
+  const app = await readFile(new URL("../app/webworkbalance-app.tsx", import.meta.url), "utf8");
+
+  assert.match(app, /TEAM_NOTES_READ_STORAGE_KEY/);
+  assert.match(app, /syncTeamNotesState\(noteData\.notes\)/);
+  assert.match(app, /Neue Team-Notizen/);
+  assert.match(app, /Später erinnern/);
+  assert.match(app, /Team öffnen/);
+  assert.match(app, /rememberTeamNotes\(teamInboxPendingNotesRef\.current\)/);
+});
