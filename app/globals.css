@@ -87,9 +87,26 @@
 }
 
 * { border-color: var(--border); }
-html { background: var(--background); }
+html {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-x: clip;
+  background: var(--background);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  touch-action: manipulation;
+}
 body {
-  min-height: 100vh;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  min-height: 100%;
+  min-height: 100svh;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-x: clip;
   background:
     radial-gradient(circle at 84% -10%, rgba(215, 181, 109, 0.12), transparent 30rem),
     radial-gradient(circle at -12% 38%, rgba(80, 138, 255, 0.08), transparent 32rem),
@@ -99,6 +116,20 @@ body {
 }
 
 button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+body > main,
+[data-slot="tabs"],
+[data-slot="tabs-content"] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+}
+.wwb-app-shell {
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 .glass-panel {
   background: linear-gradient(145deg, rgba(19, 24, 31, 0.94), rgba(11, 14, 19, 0.9));
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -135,10 +166,44 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 .business-card.is-dragging { transition: none; cursor: grabbing; }
 .pulse-dot { box-shadow: 0 0 0 0 rgba(82, 214, 160, .45); animation: pulse-dot 2.2s infinite; }
 .wwb-splash {
+  width: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
   background:
     radial-gradient(circle at 50% 38%, rgba(215, 181, 109, .13), transparent 22rem),
     radial-gradient(circle at 50% 100%, rgba(58, 87, 125, .12), transparent 30rem),
     #080b0f;
+}
+.wwb-bottom-nav {
+  left: 50%;
+  right: auto;
+  bottom: calc(.75rem + env(safe-area-inset-bottom, 0px));
+  width: calc(100% - 1.5rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  max-width: 42rem;
+  transform: translateX(-50%);
+}
+.wwb-detail-sheet {
+  height: 100svh;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.wwb-command-dialog,
+.wwb-team-inbox-dialog {
+  background-image:
+    radial-gradient(circle at 92% 0%, rgba(215, 181, 109, .12), transparent 18rem),
+    linear-gradient(145deg, rgba(20, 25, 33, .98), rgba(8, 11, 15, .98));
+  border-color: rgba(215, 181, 109, .18);
+  box-shadow: 0 35px 120px rgba(0, 0, 0, .62), 0 0 0 1px rgba(255, 255, 255, .025) inset;
+}
+.wwb-team-inbox-dialog {
+  animation: inbox-arrive 360ms cubic-bezier(.2, .8, .2, 1);
+}
+[data-slot="dialog-overlay"],
+[data-slot="sheet-overlay"] {
+  background: rgba(3, 6, 10, .78);
+  backdrop-filter: blur(12px) saturate(125%);
 }
 .wwb-splash-icon { animation: splash-float 2.8s ease-in-out infinite; }
 .wwb-loading-bar { width: 42%; animation: loading-bar 1.2s cubic-bezier(.4, 0, .2, 1) infinite; }
@@ -148,6 +213,10 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 @keyframes loading-bar {
   0% { transform: translateX(-110%); }
   100% { transform: translateX(340%); }
+}
+@keyframes inbox-arrive {
+  from { opacity: 0; transform: translate(-50%, -46%) scale(.97); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 @keyframes pulse-dot {
   70% { box-shadow: 0 0 0 9px rgba(82,214,160,0); }
@@ -159,4 +228,20 @@ button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
 @supports (padding: max(0px)) {
   .safe-bottom { padding-bottom: max(0.75rem, env(safe-area-inset-bottom)); }
   .safe-top { padding-top: max(0.75rem, env(safe-area-inset-top)); }
+}
+@media (max-width: 767px) {
+  input,
+  textarea,
+  select,
+  [contenteditable="true"] {
+    font-size: 16px !important;
+  }
+
+  [data-slot="dialog-content"] {
+    width: calc(100% - 1rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+    max-width: none;
+    max-height: calc(100dvh - 1rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
