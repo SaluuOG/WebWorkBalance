@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../db";
-import { leads, teamNotes } from "../../../db/schema";
+import { leads, teamChatMessages, teamNotes } from "../../../db/schema";
 import { routeErrorMessage } from "../../../lib/route-error";
 import { getAuthenticatedSiteUser } from "../../../lib/site-user";
 
@@ -16,8 +16,9 @@ export async function PATCH(request: Request) {
     const db = getDb();
     const claimedLeads = await db.update(leads).set({ claimedByName: name }).where(eq(leads.claimedById, user.id)).returning({ id: leads.id });
     const authoredNotes = await db.update(teamNotes).set({ authorName: name }).where(eq(teamNotes.authorId, user.id)).returning({ id: teamNotes.id });
+    const authoredMessages = await db.update(teamChatMessages).set({ authorName: name }).where(eq(teamChatMessages.authorId, user.id)).returning({ id: teamChatMessages.id });
 
-    return Response.json({ user: { ...user, name }, updatedLeads: claimedLeads.length, updatedNotes: authoredNotes.length });
+    return Response.json({ user: { ...user, name }, updatedLeads: claimedLeads.length, updatedNotes: authoredNotes.length, updatedMessages: authoredMessages.length });
   } catch (error) {
     return Response.json({ error: routeErrorMessage(error) }, { status: 503 });
   }

@@ -72,6 +72,19 @@ export const teamNotes = sqliteTable(
   ],
 );
 
+export const teamChatMessages = sqliteTable(
+  "team_chat_messages",
+  {
+    id: text("id").primaryKey(),
+    authorId: text("author_id").notNull(),
+    authorName: text("author_name").notNull(),
+    body: text("body").notNull(),
+    createdAt: text("created_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [index("idx_team_chat_created_at").on(table.createdAt)],
+);
+
 export const radarCache = sqliteTable(
   "radar_cache",
   {

@@ -109,6 +109,15 @@ export interface TeamNote {
   updatedAt: string;
 }
 
+export interface TeamChatMessage {
+  id: string;
+  authorId: string;
+  authorName: string;
+  body: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export interface AppUser {
   id: string;
   name: string;

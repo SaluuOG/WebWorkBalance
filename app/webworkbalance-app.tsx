@@ -68,7 +68,7 @@ import { PricingStudio } from "@/components/wwb/pricing-studio";
 import { QuickMenu } from "@/components/wwb/quick-menu";
 import { RadarPanel } from "@/components/wwb/radar-panel";
 import { RegionalList } from "@/components/wwb/regional-list";
-import { TeamWorkspace } from "@/components/wwb/team-workspace";
+import { TeamWorkspace } from "@/components/wwb/team-workspace-v2";
 import { WorkflowCockpit } from "@/components/wwb/workflow-cockpit";
 import {
   RadarDirectError,
@@ -100,6 +100,7 @@ import {
   type PriceSettings,
   type SearchCenter,
   type StoredLead,
+  type TeamChatMessage,
   type TeamNote,
   type TeamNoteKind,
 } from "../lib/webworkbalance";
@@ -314,6 +315,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
   const [leads, setLeads] = useState<StoredLead[]>([]);
   const [tasks, setTasks] = useState<LeadTask[]>([]);
   const [teamNotes, setTeamNotes] = useState<TeamNote[]>([]);
+  const [teamChatMessages, setTeamChatMessages] = useState<TeamChatMessage[]>([]);
   const [teamSyncReady, setTeamSyncReady] = useState(false);
   const [teamInboxOpen, setTeamInboxOpen] = useState(false);
   const [teamInboxNotes, setTeamInboxNotes] = useState<TeamNote[]>([]);
@@ -388,6 +390,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
       if (nextUser.id.startsWith("device-")) window.localStorage.setItem(DEVICE_USER_STORAGE_KEY, JSON.stringify(nextUser));
       setLeads((current) => current.map((lead) => lead.claimedById === nextUser.id ? { ...lead, claimedByName: nextUser.name } : lead));
       setTeamNotes((current) => current.map((note) => note.authorId === nextUser.id ? { ...note, authorName: nextUser.name } : note));
+      setTeamChatMessages((current) => current.map((message) => message.authorId === nextUser.id ? { ...message, authorName: nextUser.name } : message));
       toast.success(`Du erscheinst im Team jetzt als ${nextUser.name}`);
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Der Team-Name konnte nicht gespeichert werden.");
@@ -458,16 +461,18 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
 
   async function loadPersistentState() {
     try {
-      const [leadData, interactionData, taskData, noteData] = await Promise.all([
+      const [leadData, interactionData, taskData, noteData, chatData] = await Promise.all([
         requestJson<{ leads: StoredLead[] }>("/api/leads"),
         requestJson<{ interactions: Interaction[] }>("/api/interactions"),
         requestJson<{ tasks: LeadTask[] }>("/api/tasks"),
         requestJson<{ notes: TeamNote[] }>("/api/notes"),
+        requestJson<{ messages: TeamChatMessage[] }>("/api/chat").catch(() => null),
       ]);
       setLeads(leadData.leads);
       setSkippedIds(new Set(interactionData.interactions.filter((item) => item.action === "skip").map((item) => item.businessId)));
       setTasks(taskData.tasks);
       syncTeamNotesState(noteData.notes);
+      if (chatData) setTeamChatMessages(chatData.messages);
       setStorageReady(true);
       if (!leadData.leads.length && !window.localStorage.getItem("wwb-starter-attempted")) {
         window.localStorage.setItem("wwb-starter-attempted", "1");
@@ -480,14 +485,16 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
 
   async function refreshSharedState() {
     try {
-      const [leadData, noteData, taskData] = await Promise.all([
+      const [leadData, noteData, taskData, chatData] = await Promise.all([
         requestJson<{ leads: StoredLead[] }>("/api/leads"),
         requestJson<{ notes: TeamNote[] }>("/api/notes"),
         requestJson<{ tasks: LeadTask[] }>("/api/tasks"),
+        requestJson<{ messages: TeamChatMessage[] }>("/api/chat").catch(() => null),
       ]);
       setLeads(leadData.leads);
       syncTeamNotesState(noteData.notes);
       setTasks(taskData.tasks);
+      if (chatData) setTeamChatMessages(chatData.messages);
       setStorageReady(true);
     } catch {
       setTeamSyncReady(false);
@@ -971,6 +978,32 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
     }
   }
 
+  async function createTeamChatMessage(body: string) {
+    try {
+      const data = await requestJson<{ message: TeamChatMessage }>("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ body }),
+      });
+      setTeamChatMessages((current) => [...current.filter((message) => message.id !== data.message.id), data.message].slice(-150));
+      setTeamSyncReady(true);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Nachricht konnte nicht gesendet werden");
+      throw error;
+    }
+  }
+
+  async function deleteTeamChatMessage(message: TeamChatMessage) {
+    const previous = teamChatMessages;
+    setTeamChatMessages((current) => current.filter((item) => item.id !== message.id));
+    try {
+      await requestJson(`/api/chat?id=${encodeURIComponent(message.id)}`, { method: "DELETE" });
+    } catch (error) {
+      setTeamChatMessages(previous);
+      toast.error(error instanceof Error ? error.message : "Nachricht konnte nicht gelöscht werden");
+    }
+  }
+
   function openTeamNote(business: Business) {
     setTeamNoteLeadId(business.id);
     setDetailOpen(false);
@@ -1204,14 +1237,17 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
           <TeamWorkspace
             currentUser={activeUser}
             notes={teamNotes}
+            messages={teamChatMessages}
             leads={leads}
             live={teamSyncReady}
             onUpdateName={updateTeamName}
             focusLeadId={teamNoteLeadId}
             onFocusLeadChange={setTeamNoteLeadId}
             onCreateNote={createTeamNote}
+            onCreateChatMessage={createTeamChatMessage}
             onTogglePin={toggleTeamNotePin}
             onDeleteNote={deleteTeamNote}
+            onDeleteChatMessage={deleteTeamChatMessage}
             onClaimLead={claimLead}
             onOpenLead={openDetails}
             onRefresh={refreshSharedState}

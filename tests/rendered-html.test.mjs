@@ -45,7 +45,7 @@ test("surfaces unread team notes when the app starts", async () => {
 
 test("shows live lead ownership and keeps team names recognizable", async () => {
   const [workspace, app, profileRoute] = await Promise.all([
-    readFile(new URL("../components/wwb/team-workspace.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/wwb/team-workspace-v2.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/webworkbalance-app.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/api/profile/route.ts", import.meta.url), "utf8"),
   ]);
@@ -58,6 +58,28 @@ test("shows live lead ownership and keeps team names recognizable", async () => 
   assert.match(app, /requestJson<\{ user: AppUser \}>\("\/api\/profile"/);
   assert.match(profileRoute, /claimedByName: name/);
   assert.match(profileRoute, /authorName: name/);
+});
+
+test("keeps important notes first and provides a separate durable team chat", async () => {
+  const [workspace, app, chatRoute, schema, migration] = await Promise.all([
+    readFile(new URL("../components/wwb/team-workspace-v2.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/webworkbalance-app.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/api/chat/route.ts", import.meta.url), "utf8"),
+    readFile(new URL("../db/schema.ts", import.meta.url), "utf8"),
+    readFile(new URL("../drizzle/0003_bent_princess_powerful.sql", import.meta.url), "utf8"),
+  ]);
+
+  assert.ok(workspace.indexOf("Team-Zentrale") < workspace.indexOf("Live-Arbeitsboard"));
+  assert.match(workspace, /Wichtige Notiz senden/);
+  assert.match(workspace, /Team-Chat/);
+  assert.match(workspace, /Chat-Nachricht/);
+  assert.match(app, /requestJson<\{ messages: TeamChatMessage\[\] \}>\("\/api\/chat"\)/);
+  assert.match(app, /createTeamChatMessage/);
+  assert.match(chatRoute, /limit\(150\)/);
+  assert.match(chatRoute, /eq\(teamChatMessages\.authorId, user\.id\)/);
+  assert.match(schema, /team_chat_messages/);
+  assert.match(migration, /CREATE TABLE `team_chat_messages`/);
+  assert.match(migration, /idx_team_chat_created_at/);
 });
 
 test("uses the new supplied logo on every active app-icon surface", async () => {
