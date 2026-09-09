@@ -52,8 +52,6 @@ import {
   leadStatuses,
   outreachTemplatesFor,
   packageForBusiness,
-  siteSectionsFor,
-  websitePromptFor,
   websiteAuditScore,
   websiteStatusLabel,
   type AuditKey,
@@ -69,6 +67,7 @@ import {
   type WebsiteStatus,
 } from "../../lib/webworkbalance";
 import { BusinessVisual } from "./business-visual";
+import { MasterPromptStudio } from "./masterprompt-studio";
 
 type CommonsImage = {
   id: string;
@@ -349,17 +348,14 @@ export function DetailSheet({
             </div>
           </section>
 
-          <section>
-            <h3 className="flex items-center gap-2 text-base font-semibold"><Sparkles className="size-4 text-[#d7b56d]" /> Website-Konzept</h3>
-            <div className="mt-3 grid gap-2 sm:grid-cols-2">
-              {siteSectionsFor({ ...business, websiteStatus }).map((section, index) => (
-                <div key={section} className="flex gap-3 rounded-xl border border-white/7 bg-white/[.025] p-3 text-sm"><span className="text-[#d7b56d]">0{index + 1}</span><span>{section}</span></div>
-              ))}
-            </div>
-            <Button type="button" variant="outline" className="mt-3 w-full border-white/10" onClick={() => copy(websitePromptFor({ ...business, websiteStatus }, prices), "Website-Prompt kopiert")}>
-              <Copy className="mr-2 size-4" /> Fertigen Website-Prompt kopieren
-            </Button>
-          </section>
+          <MasterPromptStudio
+            key={business.id}
+            business={{ ...(lead ?? business), websiteStatus, audit }}
+            lead={lead}
+            prices={prices}
+            currentUser={currentUser}
+            savingBlocked={claimedByOther}
+          />
 
           {lead && (business.website || ["exists", "outdated", "unreachable"].includes(websiteStatus)) && (
             <section className="rounded-2xl border border-white/[.08] bg-white/[.02] p-4">

@@ -29,6 +29,13 @@
       "when": 1788931074557,
       "tag": "0003_bent_princess_powerful",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1788986806767,
+      "tag": "0004_plain_albert_cleary",
+      "breakpoints": true
     }
   ]
 }

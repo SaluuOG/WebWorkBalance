@@ -82,6 +82,43 @@ test("keeps important notes first and provides a separate durable team chat", as
   assert.match(migration, /idx_team_chat_created_at/);
 });
 
+test("provides an editable company-specific masterprompt studio with durable history", async () => {
+  const [studio, detail, route, schema, migration, engine] = await Promise.all([
+    readFile(new URL("../components/wwb/masterprompt-studio.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/wwb/detail-sheet.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/api/master-prompts/route.ts", import.meta.url), "utf8"),
+    readFile(new URL("../db/schema.ts", import.meta.url), "utf8"),
+    readFile(new URL("../drizzle/0004_plain_albert_cleary.sql", import.meta.url), "utf8"),
+    readFile(new URL("../lib/masterprompt-engine.ts", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(detail, /<MasterPromptStudio/);
+  assert.match(studio, /Masterprompt Studio/);
+  assert.match(studio, /Einstellungen/);
+  assert.match(studio, /Kreative Richtung/);
+  assert.match(studio, /Bewegung & Erlebnis/);
+  assert.match(studio, /Bilder & Umsetzung/);
+  assert.match(studio, /copyPrompt\(true\)/);
+  assert.match(studio, /\/api\/master-prompts/);
+  assert.match(studio, /\/api\/images/);
+  assert.match(studio, /Bildrecherche für den Prompt/);
+  assert.match(studio, /Quelle & Lizenz prüfen/);
+  assert.match(studio, /max-w-full resize-y/);
+  assert.match(studio, /generateDistinctMasterPrompt/);
+  assert.match(studio, /Eigenständigkeit/);
+  assert.match(route, /limit\(30\)/);
+  assert.match(route, /eq\(masterPrompts\.authorId, user\.id\)/);
+  assert.match(route, /lead\.claimedById !== user\.id/);
+  assert.match(schema, /master_prompts/);
+  assert.match(migration, /CREATE TABLE `master_prompts`/);
+  assert.match(migration, /idx_master_prompts_lead_created/);
+  assert.match(engine, /createDesignFingerprint/);
+  assert.match(engine, /generateMasterPrompt/);
+  assert.match(engine, /## Animationsregie/);
+  assert.match(engine, /Reduced Motion:/);
+  assert.match(engine, /assessFingerprintOriginality/);
+});
+
 test("uses the new supplied logo on every active app-icon surface", async () => {
   const [layout, manifest, loading, app, icon512, icon192, icon180, icon64] = await Promise.all([
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),

@@ -85,6 +85,28 @@ export const teamChatMessages = sqliteTable(
   (table) => [index("idx_team_chat_created_at").on(table.createdAt)],
 );
 
+export const masterPrompts = sqliteTable(
+  "master_prompts",
+  {
+    id: text("id").primaryKey(),
+    leadId: text("lead_id").notNull(),
+    businessName: text("business_name").notNull(),
+    authorId: text("author_id").notNull(),
+    authorName: text("author_name").notNull(),
+    mode: text("mode").notNull(),
+    variant: integer("variant").notNull().default(0),
+    settings: text("settings").notNull(),
+    fingerprint: text("fingerprint").notNull(),
+    prompt: text("prompt").notNull(),
+    createdAt: text("created_at").notNull(),
+    updatedAt: text("updated_at").notNull(),
+  },
+  (table) => [
+    index("idx_master_prompts_lead_created").on(table.leadId, table.createdAt),
+    index("idx_master_prompts_author_id").on(table.authorId),
+  ],
+);
+
 export const radarCache = sqliteTable(
   "radar_cache",
   {
