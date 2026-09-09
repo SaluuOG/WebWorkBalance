@@ -70,7 +70,7 @@ export function QuickMenu({
       onOpenChange={onOpenChange}
       title="WebWorkBalance Menü"
       description="Funktionen und Leads schnell öffnen"
-      className="border-white/10 bg-[#10141a] sm:max-w-2xl"
+      className="wwb-command-dialog border-white/10 bg-[#10141a] sm:max-w-2xl"
     >
       <CommandInput placeholder="Funktion oder Firma suchen …" />
       <CommandList className="max-h-[70vh]">
