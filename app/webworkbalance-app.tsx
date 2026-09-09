@@ -371,6 +371,29 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
     navigate("team");
   }
 
+  async function updateTeamName(value: string) {
+    const name = value.replace(/[\u0000-\u001f\u007f]/g, "").trim().slice(0, 40);
+    if (name.length < 2) {
+      toast.error("Der Team-Name braucht mindestens 2 Zeichen.");
+      return;
+    }
+    try {
+      const data = await requestJson<{ user: AppUser }>("/api/profile", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name }),
+      });
+      const nextUser = { ...activeUser, name: data.user.name };
+      setActiveUser(nextUser);
+      if (nextUser.id.startsWith("device-")) window.localStorage.setItem(DEVICE_USER_STORAGE_KEY, JSON.stringify(nextUser));
+      setLeads((current) => current.map((lead) => lead.claimedById === nextUser.id ? { ...lead, claimedByName: nextUser.name } : lead));
+      setTeamNotes((current) => current.map((note) => note.authorId === nextUser.id ? { ...note, authorName: nextUser.name } : note));
+      toast.success(`Du erscheinst im Team jetzt als ${nextUser.name}`);
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Der Team-Name konnte nicht gespeichert werden.");
+    }
+  }
+
   useEffect(() => {
     const splashTimer = window.setTimeout(() => setBooting(false), 1250);
     if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => undefined);
@@ -1013,7 +1036,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
   if (booting) {
     return (
       <main className="wwb-splash flex flex-col items-center justify-center px-6 text-center text-foreground">
-        <div className="wwb-splash-icon relative"><div className="absolute inset-2 rounded-[2rem] bg-[#d7b56d]/20 blur-3xl" /><img src="/icon-512.png" alt="" className="relative size-32 rounded-[2.2rem] shadow-[0_25px_80px_rgba(215,181,109,.18)] sm:size-40" /></div>
+        <div className="wwb-splash-icon relative"><div className="absolute inset-2 rounded-[2rem] bg-[#d7b56d]/20 blur-3xl" /><img src="/wwb-icon-v10-512.png" alt="" className="relative size-32 rounded-[2.2rem] shadow-[0_25px_80px_rgba(215,181,109,.18)] sm:size-40" /></div>
         <h1 className="mt-7 text-3xl font-semibold tracking-tight sm:text-4xl"><span className="gold-text">WebWork</span>Balance</h1>
         <p className="mt-2 text-sm font-medium tracking-[.16em] text-[#d7b56d]">made by Salu &amp; Sula</p>
         <div className="mt-8 h-1 w-36 overflow-hidden rounded-full bg-white/[.07]"><span className="wwb-loading-bar block h-full rounded-full bg-gradient-to-r from-[#a77b32] via-[#fff1c8] to-[#d7b56d]" /></div>
@@ -1028,7 +1051,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
             <div className="relative size-11 shrink-0">
-              <img src="/icon-192.png" alt="" className="size-11 rounded-[.9rem] border border-[#d7b56d]/20 object-cover shadow-[0_8px_28px_rgba(215,181,109,.12)]" />
+              <img src="/wwb-icon-v10-192.png" alt="" className="size-11 rounded-[.9rem] border border-[#d7b56d]/20 object-cover shadow-[0_8px_28px_rgba(215,181,109,.12)]" />
               <span className="pulse-dot absolute right-0 top-0 size-2 rounded-full bg-[#52d6a0]" />
             </div>
             <div className="min-w-0">
@@ -1183,6 +1206,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
             notes={teamNotes}
             leads={leads}
             live={teamSyncReady}
+            onUpdateName={updateTeamName}
             focusLeadId={teamNoteLeadId}
             onFocusLeadChange={setTeamNoteLeadId}
             onCreateNote={createTeamNote}

@@ -16,11 +16,11 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.png", type: "image/png", sizes: "64x64" },
-      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { url: "/wwb-icon-v10-64.png", type: "image/png", sizes: "64x64" },
+      { url: "/wwb-icon-v10-192.png", type: "image/png", sizes: "192x192" },
     ],
-    shortcut: "/favicon.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: "/wwb-icon-v10-64.png",
+    apple: "/wwb-icon-v10-180.png",
   },
 };
 
