@@ -92,7 +92,7 @@ export function ManualLeadDialog({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[92vh] overflow-y-auto border-white/10 bg-[#10141a] sm:max-w-2xl">
+      <DialogContent className="max-h-[calc(100dvh-1rem)] overflow-x-hidden overflow-y-auto border-white/10 bg-[#10141a] sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2"><Plus className="size-5 text-[#d7b56d]" /> Lead manuell anlegen</DialogTitle>
           <DialogDescription>Ideal für Empfehlungen, Instagram-Funde, Visitenkarten oder Firmen, die der Radar nicht erfasst.</DialogDescription>
