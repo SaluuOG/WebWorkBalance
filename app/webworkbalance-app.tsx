@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element -- free direct image sources avoid an optimizer dependency. */
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
+  BellRing,
   Bot,
   BriefcaseBusiness,
   Building2,
@@ -143,6 +144,39 @@ type PhotonFeature = {
 const DEFAULT_CENTER: SearchCenter = { name: "Nürnberg", lat: 49.4521, lon: 11.0767, passport: true };
 const RADIUS_PRESETS = [2, 5, 13, 18, 25, 50];
 const DEVICE_USER_STORAGE_KEY = "wwb-device-user-v1";
+const TEAM_NOTES_READ_STORAGE_KEY = "wwb-team-notes-read-v1";
+const TEAM_NOTES_PREVIEW_LIMIT = 6;
+
+function readTeamNoteVersions(): Record<string, string> {
+  if (typeof window === "undefined") return {};
+  try {
+    const parsed = JSON.parse(window.localStorage.getItem(TEAM_NOTES_READ_STORAGE_KEY) ?? "{}") as unknown;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return {};
+    return Object.fromEntries(Object.entries(parsed).filter(([id, version]) => Boolean(id) && typeof version === "string"));
+  } catch {
+    return {};
+  }
+}
+
+function rememberTeamNotes(notes: TeamNote[]) {
+  if (typeof window === "undefined" || !notes.length) return;
+  try {
+    const versions = readTeamNoteVersions();
+    notes.forEach((note) => { versions[note.id] = note.updatedAt; });
+    const recentEntries = Object.entries(versions).slice(-300);
+    window.localStorage.setItem(TEAM_NOTES_READ_STORAGE_KEY, JSON.stringify(Object.fromEntries(recentEntries)));
+  } catch {
+    // A blocked localStorage must never interrupt the shared workspace.
+  }
+}
+
+function teamNotePromptKey(notes: TeamNote[]) {
+  return notes.map((note) => `${note.id}:${note.updatedAt}`).join("|");
+}
+
+function formatTeamNoteTime(value: string) {
+  return new Date(value).toLocaleString("de-DE", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
+}
 
 function getOrCreateDeviceUser(): AppUser | null {
   if (typeof window === "undefined") return null;
@@ -281,6 +315,12 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
   const [tasks, setTasks] = useState<LeadTask[]>([]);
   const [teamNotes, setTeamNotes] = useState<TeamNote[]>([]);
   const [teamSyncReady, setTeamSyncReady] = useState(false);
+  const [teamInboxOpen, setTeamInboxOpen] = useState(false);
+  const [teamInboxNotes, setTeamInboxNotes] = useState<TeamNote[]>([]);
+  const [teamInboxCount, setTeamInboxCount] = useState(0);
+  const teamInboxOpenRef = useRef(false);
+  const teamInboxPromptKeyRef = useRef("");
+  const teamInboxPendingNotesRef = useRef<TeamNote[]>([]);
   const [storageReady, setStorageReady] = useState<boolean | null>(null);
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -300,6 +340,36 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
   const [taskDate, setTaskDate] = useState(tomorrow());
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const displayName = activeUser.name;
+
+  function setTeamInboxVisibility(open: boolean) {
+    teamInboxOpenRef.current = open;
+    setTeamInboxOpen(open);
+  }
+
+  function syncTeamNotesState(nextNotes: TeamNote[]) {
+    setTeamNotes(nextNotes);
+    setTeamSyncReady(true);
+    const readVersions = readTeamNoteVersions();
+    const unread = nextNotes.filter((note) => readVersions[note.id] !== note.updatedAt);
+    const promptKey = teamNotePromptKey(unread);
+    if (!unread.length || promptKey === teamInboxPromptKeyRef.current) return;
+    teamInboxPromptKeyRef.current = promptKey;
+    teamInboxPendingNotesRef.current = unread;
+    setTeamInboxNotes(unread.slice(0, TEAM_NOTES_PREVIEW_LIMIT));
+    setTeamInboxCount(unread.length);
+    if (!teamInboxOpenRef.current) setTeamInboxVisibility(true);
+  }
+
+  function dismissTeamInbox(markAsRead: boolean) {
+    if (markAsRead) rememberTeamNotes(teamInboxPendingNotesRef.current);
+    if (markAsRead) teamInboxPendingNotesRef.current = [];
+    setTeamInboxVisibility(false);
+  }
+
+  function openTeamFromInbox() {
+    dismissTeamInbox(true);
+    navigate("team");
+  }
 
   useEffect(() => {
     const splashTimer = window.setTimeout(() => setBooting(false), 1250);
@@ -359,6 +429,8 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
       window.clearInterval(timer);
       document.removeEventListener("visibilitychange", onVisible);
     };
+    // The polling loop is intentionally mounted once; its callback reads the shared state endpoint.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function loadPersistentState() {
@@ -372,8 +444,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
       setLeads(leadData.leads);
       setSkippedIds(new Set(interactionData.interactions.filter((item) => item.action === "skip").map((item) => item.businessId)));
       setTasks(taskData.tasks);
-      setTeamNotes(noteData.notes);
-      setTeamSyncReady(true);
+      syncTeamNotesState(noteData.notes);
       setStorageReady(true);
       if (!leadData.leads.length && !window.localStorage.getItem("wwb-starter-attempted")) {
         window.localStorage.setItem("wwb-starter-attempted", "1");
@@ -392,9 +463,8 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
         requestJson<{ tasks: LeadTask[] }>("/api/tasks"),
       ]);
       setLeads(leadData.leads);
-      setTeamNotes(noteData.notes);
+      syncTeamNotesState(noteData.notes);
       setTasks(taskData.tasks);
-      setTeamSyncReady(true);
       setStorageReady(true);
     } catch {
       setTeamSyncReady(false);
@@ -840,6 +910,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
         body: JSON.stringify({ body, kind, leadId }),
       });
       setTeamNotes((current) => [data.note, ...current.filter((note) => note.id !== data.note.id)]);
+      rememberTeamNotes([data.note]);
       setTeamSyncReady(true);
       toast.success("Notiz wurde mit dem Team geteilt");
     } catch (error) {
@@ -858,6 +929,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
         body: JSON.stringify({ id: note.id, pinned: !note.pinned }),
       });
       setTeamNotes((current) => current.map((item) => item.id === note.id ? data.note : item));
+      rememberTeamNotes([data.note]);
     } catch (error) {
       setTeamNotes(previous);
       toast.error(error instanceof Error ? error.message : "Notiz konnte nicht aktualisiert werden");
@@ -940,7 +1012,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
 
   if (booting) {
     return (
-      <main className="wwb-splash flex min-h-screen flex-col items-center justify-center px-6 text-center text-foreground">
+      <main className="wwb-splash flex flex-col items-center justify-center px-6 text-center text-foreground">
         <div className="wwb-splash-icon relative"><div className="absolute inset-2 rounded-[2rem] bg-[#d7b56d]/20 blur-3xl" /><img src="/icon-512.png" alt="" className="relative size-32 rounded-[2.2rem] shadow-[0_25px_80px_rgba(215,181,109,.18)] sm:size-40" /></div>
         <h1 className="mt-7 text-3xl font-semibold tracking-tight sm:text-4xl"><span className="gold-text">WebWork</span>Balance</h1>
         <p className="mt-2 text-sm font-medium tracking-[.16em] text-[#d7b56d]">made by Salu &amp; Sula</p>
@@ -951,7 +1023,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
   }
 
   return (
-    <main className="min-h-screen pb-28 text-foreground">
+    <main className="wwb-app-shell text-foreground">
       <header className="safe-top sticky top-0 z-30 border-b border-white/[.07] bg-[#080b0f]/85 px-4 py-3 backdrop-blur-2xl sm:px-6">
         <div className="mx-auto flex max-w-[1500px] items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
@@ -1137,7 +1209,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
           </div>
         </TabsContent>
 
-        <TabsList className="safe-bottom fixed inset-x-3 bottom-3 z-40 mx-auto h-auto max-w-2xl justify-between rounded-[1.4rem] border border-white/10 bg-[#11151b]/95 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,.55)] backdrop-blur-2xl">
+        <TabsList className="wwb-bottom-nav fixed z-40 h-auto justify-between rounded-[1.4rem] border border-white/10 bg-[#11151b]/95 p-1.5 shadow-[0_24px_70px_rgba(0,0,0,.55)] backdrop-blur-2xl">
           <NavTab value="today" icon={<LayoutDashboard />} label="Heute" />
           <NavTab value="discover" icon={<Radar />} label="Entdecken" />
           <NavTab value="regional" icon={<List />} label="Region" />
@@ -1151,7 +1223,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
       <Dialog open={passportOpen} onOpenChange={setPassportOpen}>
         <DialogContent className="border-white/10 bg-[#10141a] sm:max-w-xl">
           <DialogHeader><DialogTitle className="flex items-center gap-2"><Plane className="size-5 text-[#d7b56d]" /> Passport-Modus</DialogTitle><DialogDescription>Springe in jede Stadt oder jedes Dorf in Deutschland und starte dort deinen Radar.</DialogDescription></DialogHeader>
-          <form onSubmit={searchPassport} className="flex gap-2"><label className="relative flex-1"><Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" /><input autoFocus value={passportQuery} onChange={(event) => setPassportQuery(event.target.value)} placeholder="Stadt, Dorf oder Postleitzahl" className="h-11 w-full rounded-xl border border-white/10 bg-black/15 pl-10 pr-3 outline-none focus:border-[#d7b56d]/50" /></label><Button type="submit" disabled={passportSearching}>{passportSearching ? "Sucht…" : "Suchen"}</Button></form>
+          <form onSubmit={searchPassport} className="flex flex-col gap-2 sm:flex-row"><label className="relative min-w-0 flex-1"><Search className="absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" /><input autoFocus value={passportQuery} onChange={(event) => setPassportQuery(event.target.value)} placeholder="Stadt, Dorf oder Postleitzahl" className="h-11 w-full rounded-xl border border-white/10 bg-black/15 pl-10 pr-3 outline-none focus:border-[#d7b56d]/50" /></label><Button type="submit" disabled={passportSearching}>{passportSearching ? "Sucht…" : "Suchen"}</Button></form>
           {!passportResults.length && <div className="flex flex-wrap gap-2">{[
             { name: "Nürnberg", lat: 49.4521, lon: 11.0767, passport: true },
             { name: "Fürth", lat: 49.4771, lon: 10.9887, passport: true },
@@ -1161,6 +1233,20 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
           {passportResults.length > 0 && <div className="max-h-72 space-y-2 overflow-y-auto scrollbar-thin">{passportResults.map((result) => <button key={result.id} type="button" onClick={() => choosePlace({ name: result.name.split(",").slice(0, 2).join(","), lat: result.lat, lon: result.lon, passport: true })} className="flex w-full items-center gap-3 rounded-xl border border-white/[.07] bg-white/[.025] p-3 text-left hover:bg-white/[.055]"><MapPin className="size-4 shrink-0 text-[#d7b56d]" /><span className="min-w-0 flex-1 truncate text-sm">{result.name}</span><ChevronRight className="size-4 text-muted-foreground" /></button>)}</div>}
           {recentPlaces.length > 0 && <div><p className="mb-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">Zuletzt verwendet</p><div className="flex flex-wrap gap-2">{recentPlaces.map((place) => <button type="button" key={`${place.lat}-${place.lon}`} onClick={() => choosePlace(place)} className="rounded-lg bg-white/[.04] px-3 py-2 text-xs hover:bg-white/[.07]">{place.name}</button>)}</div></div>}
           <p className="text-[11px] leading-4 text-muted-foreground">Ortssuche: OpenStreetMap Nominatim. Nur manuell ausgelöste Suchanfragen.</p>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={teamInboxOpen} onOpenChange={(open) => { if (!open) dismissTeamInbox(false); }}>
+        <DialogContent className="wwb-team-inbox-dialog border-[#d7b56d]/20 bg-[#10141a] sm:max-w-xl">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-3"><span className="flex size-10 items-center justify-center rounded-xl bg-[#d7b56d]/12 text-[#efd28e]"><BellRing className="size-5" /></span><span>Neue Team-Notizen</span></DialogTitle>
+            <DialogDescription>{teamInboxCount === 1 ? "Eine neue Notiz wartet auf dich." : `${teamInboxCount} neue Team-Notizen warten auf dich.`} Sie werden automatisch mit eurem gemeinsamen Arbeitsraum abgeglichen.</DialogDescription>
+          </DialogHeader>
+          <div className="max-h-[min(52vh,28rem)] space-y-2 overflow-y-auto pr-1 scrollbar-thin">
+            {teamInboxNotes.map((note) => <article key={note.id} className="rounded-2xl border border-white/[.08] bg-white/[.025] p-4"><div className="flex flex-wrap items-center gap-2"><strong className="text-sm">{note.authorName}</strong><Badge variant="outline" className="h-5 border-white/10 px-2 text-[11px] text-muted-foreground">{note.kind}</Badge>{note.pinned && <Badge className="h-5 bg-[#d7b56d]/15 px-2 text-[11px] text-[#efd28e]">Wichtig</Badge>}<span className="text-[11px] text-muted-foreground">{formatTeamNoteTime(note.updatedAt)}</span></div><p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-foreground/90">{note.body}</p>{note.leadId && <p className="mt-2 text-xs text-[#d7b56d]">Mit einem Lead verknüpft · im Team-Bereich öffnen</p>}</article>)}
+          </div>
+          {teamInboxCount > teamInboxNotes.length && <p className="text-xs text-muted-foreground">Weitere {teamInboxCount - teamInboxNotes.length} Einträge findest du im Team-Bereich.</p>}
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end"><Button type="button" variant="outline" className="border-white/10" onClick={() => dismissTeamInbox(false)}>Später erinnern</Button><Button type="button" onClick={openTeamFromInbox}><UsersRound className="mr-2 size-4" /> Team öffnen</Button></div>
         </DialogContent>
       </Dialog>
 
