@@ -273,7 +273,7 @@ export function DetailSheet({
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
-      <SheetContent side="right" className="w-full overflow-y-auto border-white/10 bg-[#0b0f14] p-0 sm:max-w-xl">
+      <SheetContent side="right" className="wwb-detail-sheet w-full max-w-full overflow-x-hidden overflow-y-auto border-white/10 bg-[#0b0f14] p-0 sm:max-w-xl">
         <SheetHeader className="sr-only">
           <SheetTitle>{business.name}</SheetTitle>
           <SheetDescription>Unternehmensdetails, Scout-Analyse und nächste Schritte</SheetDescription>
