@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1788883642189,
+      "tag": "0000_gorgeous_spyke",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1788889250932,
+      "tag": "0001_red_johnny_blaze",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1788890710957,
+      "tag": "0002_neat_firebrand",
+      "breakpoints": true
+    }
+  ]
+}
