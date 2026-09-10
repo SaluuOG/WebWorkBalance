@@ -30,7 +30,7 @@ export type RadarCacheEntry = {
   stale: boolean;
 };
 
-type OsmElement = {
+export type OsmElement = {
   id: number;
   type: "node" | "way" | "relation";
   lat?: number;
@@ -42,9 +42,9 @@ type OsmElement = {
 type StoredRadarCache = Record<string, Omit<RadarCacheEntry, "stale">>;
 
 const OVERPASS_ENDPOINTS = [
-  "https://overpass-api.de/api/interpreter",
   "https://overpass.private.coffee/api/interpreter",
   "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "https://overpass-api.de/api/interpreter",
 ] as const;
 
 const RADAR_CACHE_STORAGE_KEY = "wwb-radar-direct-cache-v2";
@@ -52,7 +52,7 @@ const REGIONAL_CACHE_STORAGE_KEY = "wwb-regional-direct-cache-v2";
 const PREFERRED_ENDPOINT_STORAGE_KEY = "wwb-overpass-preferred-endpoint-v1";
 const FRESH_CACHE_MS = 30 * 60 * 1000;
 const STALE_CACHE_MS = 7 * 24 * 60 * 60 * 1000;
-const REQUEST_TIMEOUT_MS = 5_500;
+const REQUEST_TIMEOUT_MS = 6_500;
 const MAX_RESULTS = 160;
 
 const categorySelectors: Record<string, string[]> = {
@@ -187,8 +187,11 @@ export function createRadarSearchFields(request: RadarSearchRequest): RadarSearc
 export function buildRadarOverpassQuery(field: RadarSearchField, category: string) {
   const selectors = categorySelectors[category] ?? categorySelectors.all;
   const around = `(around:${Math.round(field.radiusKm * 1000)},${field.lat.toFixed(5)},${field.lon.toFixed(5)})`;
-  const clauses = selectors.map((selector) => `node${around}${selector};`).join("");
-  return `[out:json][timeout:7];(${clauses});out body 140;`;
+  // nwr captures shops and businesses mapped as buildings/ways as well as nodes.
+  // The bounded result keeps the public Overpass instances responsive for a small
+  // lead-search tile; larger radii are split into several tiles above.
+  const clauses = selectors.map((selector) => `nwr${around}${selector};`).join("");
+  return `[out:json][timeout:7];(${clauses});out center 140;`;
 }
 
 export function mapOsmElements(elements: OsmElement[], request: RadarSearchRequest) {
@@ -246,22 +249,16 @@ export function mergeRadarBusinesses(...groups: Business[][]) {
   return [...merged.values()];
 }
 
-async function postOverpass(endpoint: string, query: string) {
-  const controller = new AbortController();
-  const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
-  try {
-    const response = await fetch(endpoint, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
-      body: new URLSearchParams({ data: query }).toString(),
-      signal: controller.signal,
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const data = (await response.json()) as { elements?: OsmElement[] };
-    return data.elements ?? [];
-  } finally {
-    window.clearTimeout(timer);
-  }
+async function postOverpass(endpoint: string, query: string, signal: AbortSignal) {
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8" },
+    body: new URLSearchParams({ data: query }).toString(),
+    signal,
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const data = (await response.json()) as { elements?: OsmElement[] };
+  return data.elements ?? [];
 }
 
 function errorLabel(error: unknown) {
@@ -289,6 +286,29 @@ function rememberEndpoint(endpoint: string) {
   }
 }
 
+async function raceOverpassEndpoints(endpoints: readonly string[], query: string, diagnostics: string[]) {
+  const controller = new AbortController();
+  const timer = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  let winnerFound = false;
+  try {
+    const winner = await Promise.any(endpoints.map(async (endpoint) => {
+      try {
+        return { endpoint, elements: await postOverpass(endpoint, query, controller.signal) };
+      } catch (error) {
+        if (!winnerFound) diagnostics.push(`${new URL(endpoint).hostname}: ${errorLabel(error)}`);
+        throw error;
+      }
+    }));
+    winnerFound = true;
+    return winner;
+  } catch {
+    return null;
+  } finally {
+    window.clearTimeout(timer);
+    controller.abort();
+  }
+}
+
 export async function searchOpenStreetMapDirect(
   request: RadarSearchRequest,
   onProgress?: (message: string) => void,
@@ -310,26 +330,18 @@ export async function searchOpenStreetMapDirect(
     onProgress?.(`Suchfeld ${fieldIndex + 1}/${fields.length}: ${field.label} wird direkt abgefragt …`);
     const query = buildRadarOverpassQuery(field, normalized.category);
     let fieldElements: OsmElement[] | null = null;
-    // Erst der zuletzt erfolgreiche Anbieter, dann alle Alternativen. Falls alle
-    // scheitern, bekommt der bevorzugte Anbieter nach einer kurzen Pause genau
-    // einen automatischen Wiederholungsversuch.
-    for (let endpointOffset = 0; endpointOffset <= OVERPASS_ENDPOINTS.length; endpointOffset += 1) {
-      const endpointIndex = (preferredIndex + (endpointOffset % OVERPASS_ENDPOINTS.length)) % OVERPASS_ENDPOINTS.length;
-      const endpoint = OVERPASS_ENDPOINTS[endpointIndex];
-      const hostname = new URL(endpoint).hostname;
-      if (endpointOffset === OVERPASS_ENDPOINTS.length) {
-        onProgress?.(`${field.label}: letzter automatischer Wiederholungsversuch über ${hostname} …`);
-        await new Promise((resolve) => window.setTimeout(resolve, 300));
-      }
-      try {
-        fieldElements = await postOverpass(endpoint, query);
-        preferredIndex = endpointIndex;
-        rememberEndpoint(endpoint);
-        provider = hostname;
-        break;
-      } catch (error) {
-        diagnostics.push(`${hostname}: ${errorLabel(error)}`);
-      }
+    // Der zuletzt erfolgreiche Anbieter startet zuerst. Alle drei freien
+    // Endpunkte laufen innerhalb desselben festen Zeitbudgets, damit ein
+    // Totalausfall nicht drei lange Wartezeiten hintereinander verursacht.
+    const orderedEndpoints = OVERPASS_ENDPOINTS.map((_, endpointOffset) => (
+      OVERPASS_ENDPOINTS[(preferredIndex + endpointOffset) % OVERPASS_ENDPOINTS.length]
+    ));
+    const winner = await raceOverpassEndpoints(orderedEndpoints, query, diagnostics);
+    if (winner) {
+      fieldElements = winner.elements;
+      preferredIndex = OVERPASS_ENDPOINTS.findIndex((endpoint) => endpoint === winner.endpoint);
+      rememberEndpoint(winner.endpoint);
+      provider = new URL(winner.endpoint).hostname;
     }
 
     if (!fieldElements) {
