@@ -99,8 +99,8 @@ test("splits large radar radii into bounded sequential search fields", async () 
   assert.ok(fields.every((field) => field.radiusKm <= 5));
   const query = buildRadarOverpassQuery(fields[0], "all");
   assert.match(query, /\[timeout:7\]/);
-  assert.match(query, /node\(around:5000/);
-  assert.doesNotMatch(query, /\bnwr\b/);
+  assert.match(query, /nwr\(around:5000/);
+  assert.match(query, /out center 140/);
 });
 
 test("maps direct OpenStreetMap results into usable leads", async () => {
@@ -129,4 +129,43 @@ test("maps direct OpenStreetMap results into usable leads", async () => {
   assert.equal(businesses[0].name, "Test Café");
   assert.equal(businesses[0].websiteStatus, "likely_missing");
   assert.equal(businesses[0].categoryKey, "gastro");
+});
+
+test("uses the first successful free radar provider without waiting for failed alternatives", async () => {
+  const originalWindow = globalThis.window;
+  const originalFetch = globalThis.fetch;
+  const memory = new Map();
+  globalThis.window = {
+    setTimeout,
+    clearTimeout,
+    localStorage: {
+      getItem: (key) => memory.get(key) ?? null,
+      setItem: (key, value) => memory.set(key, value),
+    },
+  };
+  globalThis.fetch = async (endpoint) => {
+    if (String(endpoint).includes("maps.mail.ru")) {
+      return new Response(JSON.stringify({ elements: [{
+        id: 991,
+        type: "node",
+        lat: 49.4522,
+        lon: 11.0768,
+        tags: { name: "Radar Testbetrieb", shop: "bakery" },
+      }] }), { status: 200, headers: { "Content-Type": "application/json" } });
+    }
+    throw new TypeError("provider unavailable");
+  };
+
+  try {
+    const { searchOpenStreetMapDirect } = await vite.ssrLoadModule("/lib/radar-client.ts");
+    const result = await searchOpenStreetMapDirect({ lat: 49.4521, lon: 11.0767, radiusKm: 2, category: "all" });
+    assert.equal(result.provider, "maps.mail.ru");
+    assert.equal(result.businesses.length, 1);
+    assert.equal(result.businesses[0].name, "Radar Testbetrieb");
+    assert.ok(result.diagnostics.length >= 1);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalWindow === undefined) delete globalThis.window;
+    else globalThis.window = originalWindow;
+  }
 });
