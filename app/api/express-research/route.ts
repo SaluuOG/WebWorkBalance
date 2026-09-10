@@ -27,9 +27,11 @@ async function fetchHtml(initialUrl:URL,expectedHost?:string){
 }
 async function commonsSearch(query:string){
  const params=new URLSearchParams({action:"query",generator:"search",gsrsearch:query,gsrnamespace:"6",gsrlimit:"8",prop:"imageinfo",iiprop:"url|extmetadata",iiurlwidth:"720",format:"json",origin:"*"});
- const response=await fetch(`https://commons.wikimedia.org/w/api.php?${params.toString()}`,{headers:{Accept:"application/json","User-Agent":"WebWorkBalance-ExpressResearch/1.0"}});if(!response.ok)return [];
- const payload=await response.json() as {query?:{pages?:Record<string,Parameters<typeof commonsImageCandidate>[0]>}};
- return Object.values(payload.query?.pages??{}).map(commonsImageCandidate).filter((item):item is NonNullable<typeof item>=>Boolean(item));
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),7_000);
+ try{const response=await fetch(`https://commons.wikimedia.org/w/api.php?${params.toString()}`,{signal:controller.signal,headers:{Accept:"application/json","User-Agent":"WebWorkBalance-ExpressResearch/1.0"}});if(!response.ok)return [];
+  const payload=await response.json() as {query?:{pages?:Record<string,Parameters<typeof commonsImageCandidate>[0]>}};
+  return Object.values(payload.query?.pages??{}).map(commonsImageCandidate).filter((item):item is NonNullable<typeof item>=>Boolean(item));
+ }finally{clearTimeout(timer);}
 }
 export async function POST(request:Request){
  try{const payload=await request.json() as {business?:unknown;depth?:unknown},business=sanitizeBusiness(payload.business);if(!business)return Response.json({error:"Die Firmendaten sind unvollständig."},{status:400});
