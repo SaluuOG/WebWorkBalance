@@ -1,6 +1,7 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { radarCache } from "../../../db/schema";
+import { buildRadarOverpassQuery, createRadarSearchFields, mapOsmElements, type RadarSearchRequest } from "../../../lib/radar-client";
 import { sanitizeOsmBusinesses } from "../../../lib/radar-cache-validation";
 import type { Business } from "../../../lib/webworkbalance";
 
@@ -15,6 +16,13 @@ type RadarPayload = {
 
 const VALID_CATEGORIES = new Set(["all", "retail", "gastro", "beauty", "craft", "health", "professional", "fitness", "auto", "hotel"]);
 const CACHE_TTL_MS = 45 * 60 * 1000;
+const SERVER_ENDPOINTS = [
+  "https://overpass.private.coffee/api/interpreter",
+  "https://maps.mail.ru/osm/tools/overpass/api/interpreter",
+  "https://overpass-api.de/api/interpreter",
+] as const;
+const SERVER_TIMEOUT_MS = 5_500;
+const MAX_SERVER_RESPONSE_BYTES = 2_500_000;
 
 function cacheKey(lat: number, lon: number, radiusKm: number, category: string) {
   return `${lat.toFixed(4)}:${lon.toFixed(4)}:${Math.round(radiusKm * 10) / 10}:${category}`;
@@ -59,12 +67,94 @@ async function writeCached(key: string, payload: RadarPayload) {
   });
 }
 
+async function readOverpassResponse(response: Response) {
+  const length = Number(response.headers.get("content-length") ?? 0);
+  if (length > MAX_SERVER_RESPONSE_BYTES) throw new Error("Antwort des Kartendienstes ist zu groß");
+  const text = await response.text();
+  if (text.length > MAX_SERVER_RESPONSE_BYTES) throw new Error("Antwort des Kartendienstes ist zu groß");
+  const payload = JSON.parse(text) as { elements?: unknown };
+  return Array.isArray(payload.elements) ? payload.elements : [];
+}
+
+function overpassErrorLabel(error: unknown) {
+  if (error instanceof DOMException && error.name === "AbortError") return "Zeitlimit";
+  if (error instanceof Error && error.name === "AbortError") return "Zeitlimit";
+  return error instanceof Error ? error.message.slice(0, 80) : "Netzwerkfehler";
+}
+
+async function requestOverpass(endpoint: string, query: string, signal: AbortSignal) {
+  const response = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+      "User-Agent": "WebWorkBalance/1.0 (OSM lead research; contact via app)",
+    },
+    body: new URLSearchParams({ data: query }).toString(),
+    signal,
+  });
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return readOverpassResponse(response);
+}
+
+async function fetchLiveTile(request: ReturnType<typeof normalizeRequest>) {
+  if (!request) return null;
+  const fields = createRadarSearchFields(request as RadarSearchRequest);
+  const field = fields[0];
+  const query = buildRadarOverpassQuery(field, request.category);
+  const diagnostics: string[] = [];
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), SERVER_TIMEOUT_MS);
+  let winnerFound = false;
+  try {
+    const winner = await Promise.any(SERVER_ENDPOINTS.map(async (endpoint) => {
+      try {
+        return { endpoint, elements: await requestOverpass(endpoint, query, controller.signal) };
+      } catch (error) {
+        if (!winnerFound) diagnostics.push(`${new URL(endpoint).hostname}: ${overpassErrorLabel(error)}`);
+        throw error;
+      }
+    }));
+    winnerFound = true;
+    const businesses = sanitizeOsmBusinesses(mapOsmElements(winner.elements as Parameters<typeof mapOsmElements>[0], request as RadarSearchRequest), 180);
+    return {
+      businesses,
+      provider: new URL(winner.endpoint).hostname,
+      segments: 1,
+      sampled: request.radiusKm > field.radiusKm,
+      diagnostics,
+    } satisfies Omit<RadarPayload, "limited" | "source"> & { diagnostics: string[] };
+  } catch {
+    return null;
+  } finally {
+    clearTimeout(timer);
+    controller.abort();
+  }
+}
+
 export async function POST(request: Request) {
   try {
     const normalized = normalizeRequest(await request.json());
     if (!normalized) return Response.json({ error: "Der Suchort ist ungültig.", code: "INVALID_LOCATION" }, { status: 400 });
     const cached = await readCached(cacheKey(normalized.lat, normalized.lon, normalized.radiusKm, normalized.category));
     if (cached?.fresh) return Response.json({ ...cached.payload, cached: true, cacheAge: "frisch", clientFallback: false });
+    const live = await fetchLiveTile(normalized);
+    if (live?.businesses.length) {
+      const payload: RadarPayload = {
+        businesses: live.businesses,
+        limited: live.businesses.length >= 160,
+        source: "OpenStreetMap",
+        segments: live.segments,
+        provider: live.provider,
+        sampled: live.sampled,
+      };
+      try {
+        await writeCached(cacheKey(normalized.lat, normalized.lon, normalized.radiusKm, normalized.category), payload);
+      } catch {
+        // Live-Ergebnisse bleiben nutzbar, auch wenn der gemeinsame Cache gerade nicht schreibt.
+      }
+      return Response.json({ ...payload, cached: false, stale: false, clientFallback: false, live: true, cacheAge: "live" }, { headers: { "Cache-Control": "private, no-store" } });
+    }
     return Response.json({
       ...(cached?.payload ?? { businesses: [], limited: false, source: "OpenStreetMap", segments: 0 }),
       cached: Boolean(cached),
