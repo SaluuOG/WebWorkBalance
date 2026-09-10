@@ -32,6 +32,21 @@ test("keeps the installed mobile app inside a stable device viewport", async () 
   assert.match(app, /className="wwb-bottom-nav fixed/);
 });
 
+test("opens the mobile quick menu without forcing the software keyboard or trapping scroll", async () => {
+  const [menu, stylesheet] = await Promise.all([
+    readFile(new URL("../components/wwb/quick-menu.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(menu, /onOpenAutoFocus/);
+  assert.match(menu, /event\.preventDefault\(\)/);
+  assert.match(menu, /pointer: coarse/);
+  assert.match(menu, /requestAnimationFrame\(\(\) => window\.requestAnimationFrame\(action\)\)/);
+  assert.match(menu, /touch-pan-y overscroll-contain/);
+  assert.match(stylesheet, /\.wwb-command-dialog[\s\S]*?overflow:\s*hidden\s*!important/);
+  assert.match(stylesheet, /overscroll-behavior:\s*contain/);
+});
+
 test("surfaces unread team notes when the app starts", async () => {
   const app = await readFile(new URL("../app/webworkbalance-app.tsx", import.meta.url), "utf8");
 
@@ -94,6 +109,10 @@ test("provides an editable company-specific masterprompt studio with durable his
 
   assert.match(detail, /<MasterPromptStudio/);
   assert.match(studio, /Masterprompt Studio/);
+  assert.match(studio, /Express Build/);
+  assert.match(studio, /Express-Zeitbox/);
+  assert.match(studio, /assessExpressReadiness/);
+  assert.match(studio, /1–3 Std\./);
   assert.match(studio, /Einstellungen/);
   assert.match(studio, /Kreative Richtung/);
   assert.match(studio, /Bewegung & Erlebnis/);
@@ -117,6 +136,39 @@ test("provides an editable company-specific masterprompt studio with durable his
   assert.match(engine, /## Animationsregie/);
   assert.match(engine, /Reduced Motion:/);
   assert.match(engine, /assessFingerprintOriginality/);
+  assert.match(engine, /expressTimebox/);
+  assert.match(engine, /WebWorkBalance Express Build/);
+});
+
+test("adds a verified official-site quality scan and richer research workflow", async () => {
+  const [detail, scanner, research, route, leadRoute, model] = await Promise.all([
+    readFile(new URL("../components/wwb/detail-sheet.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/wwb/website-quality-scanner.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/wwb/business-research-hub.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/api/website-quality/route.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/api/leads/route.ts", import.meta.url), "utf8"),
+    readFile(new URL("../lib/webworkbalance.ts", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(detail, /<WebsiteQualityScanner/);
+  assert.match(detail, /<BusinessResearchHub/);
+  assert.match(scanner, /Website Quality Scan/);
+  assert.match(scanner, /Offizielle Website verifiziert/);
+  assert.match(scanner, /Recherche-Dossier/);
+  assert.match(research, /Lokale Wettbewerber/);
+  assert.match(research, /Firmenbilder/);
+  assert.match(research, /Website-Historie/);
+  assert.match(route, /websiteHostSafety/);
+  assert.match(route, /redirect:\s*"manual"/);
+  assert.match(route, /MAX_HTML_BYTES/);
+  assert.match(leadRoute, /websiteReport/);
+  assert.match(model, /WebsiteQualityReport/);
+  const app = await readFile(new URL("../app/webworkbalance-app.tsx", import.meta.url), "utf8");
+  assert.match(app, /Website noch prüfen/);
+  assert.match(app, /Schwächste Website zuerst/);
+  assert.match(app, /scanSavedLeadWebsites/);
+  assert.match(app, /Websites prüfen ·/);
+  assert.match(app, /websiteScanQueue\.slice\(0, 8\)/);
 });
 
 test("uses the new supplied logo on every active app-icon surface", async () => {

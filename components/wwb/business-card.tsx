@@ -86,6 +86,7 @@ export function BusinessCard({
             <Globe2 className="mr-1 size-3.5" /> {websiteStatusLabel[business.websiteStatus]}
           </Badge>
           <Badge variant="outline" className="border-white/10 bg-white/[.04] text-foreground/80">{business.distanceKm.toLocaleString("de-DE")} km</Badge>
+          {business.websiteReport && <Badge variant="outline" className={business.websiteReport.overallScore >= 75 ? "border-[#52d6a0]/25 bg-[#52d6a0]/10 text-[#75e5b7]" : business.websiteReport.overallScore >= 55 ? "border-[#d7b56d]/25 bg-[#d7b56d]/10 text-[#efd28e]" : "border-[#ff6677]/25 bg-[#ff6677]/10 text-[#ff8290]"}><Globe2 className="mr-1 size-3.5" /> Website {business.websiteReport.overallScore}/100</Badge>}
           <Badge variant="outline" className="border-white/10 bg-white/[.04] text-foreground/80">{offer.name} · {offer.price.toLocaleString("de-DE")} €</Badge>
         </div>
 

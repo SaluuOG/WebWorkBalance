@@ -1,7 +1,7 @@
 import { and, desc, eq, isNull, lt, ne, or, sql } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { leads } from "../../../db/schema";
-import { calculateLeadScore, type Business, type LeadActivity, type LeadStatus, type WebsiteAudit } from "../../../lib/webworkbalance";
+import { calculateLeadScore, type Business, type LeadActivity, type LeadStatus, type WebsiteAudit, type WebsiteQualityReport } from "../../../lib/webworkbalance";
 import { routeErrorMessage } from "../../../lib/route-error";
 import { getAuthenticatedSiteUser } from "../../../lib/site-user";
 
@@ -97,10 +97,18 @@ export async function PATCH(request: Request) {
       followUpAt?: string | null;
       websiteStatus?: Business["websiteStatus"];
       audit?: WebsiteAudit;
+      websiteReport?: WebsiteQualityReport;
       activities?: LeadActivity[];
       claim?: "claim" | "release";
     };
     if (!payload.id) return Response.json({ error: "Lead-ID fehlt." }, { status: 400 });
+    if (payload.websiteReport) {
+      const reportSize = JSON.stringify(payload.websiteReport).length;
+      if (reportSize > 120_000) return Response.json({ error: "Der Website-Prüfbericht ist zu groß." }, { status: 413 });
+      if (payload.websiteReport.version !== 1 || !payload.websiteReport.official?.verified || !Number.isFinite(payload.websiteReport.overallScore) || payload.websiteReport.overallScore < 0 || payload.websiteReport.overallScore > 100) {
+        return Response.json({ error: "Der Website-Prüfbericht ist ungültig." }, { status: 400 });
+      }
+    }
 
     const db = getDb();
     const [existing] = await db.select().from(leads).where(eq(leads.id, payload.id)).limit(1);
@@ -140,17 +148,21 @@ export async function PATCH(request: Request) {
     }
 
     let snapshot = existing.snapshot;
-    if (payload.websiteStatus || payload.audit || payload.activities) {
+    let score = existing.score;
+    if (payload.websiteStatus || payload.audit || payload.websiteReport || payload.activities) {
       const business = JSON.parse(existing.snapshot) as Business;
       if (payload.websiteStatus) business.websiteStatus = payload.websiteStatus;
       if (payload.audit) business.audit = payload.audit;
+      if (payload.websiteReport) business.websiteReport = payload.websiteReport;
       if (payload.activities) business.activities = payload.activities.slice(0, 100);
       snapshot = JSON.stringify(business);
+      score = calculateLeadScore(business);
     }
 
     const update: Partial<typeof leads.$inferInsert> = {
       updatedAt: new Date().toISOString(),
       snapshot,
+      score,
     };
     if (payload.status) update.status = payload.status;
     if (typeof payload.priority === "boolean") update.priority = payload.priority;

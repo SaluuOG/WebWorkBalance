@@ -244,4 +244,10 @@ body > main,
     overflow-x: hidden;
     overflow-y: auto;
   }
+
+  .wwb-command-dialog {
+    overflow: hidden !important;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
 }

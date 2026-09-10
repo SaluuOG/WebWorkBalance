@@ -24,6 +24,9 @@ export type BusinessSource = "OpenStreetMap" | "Demo" | "Manuell";
 export type LeadActivityType = "Anruf" | "E-Mail" | "WhatsApp" | "Meeting" | "Notiz" | "Angebot";
 export type AuditStatus = "open" | "good" | "issue";
 export type AuditKey = "mobile" | "speed" | "cta" | "seo" | "trust" | "content" | "legal";
+export type WebsiteQualityCategoryKey = "technical" | "mobile" | "seo" | "content" | "conversion" | "trust" | "accessibility" | "legal";
+export type WebsiteQualityFindingStatus = "good" | "warning" | "critical";
+export type WebsiteQualityGrade = "Ausgezeichnet" | "Sehr gut" | "Gut" | "AusbaufÃ¤hig" | "Schwach";
 
 export interface LeadActivity {
   id: string;
@@ -38,404 +41,94 @@ export interface WebsiteAudit {
   updatedAt: string | null;
 }
 
-export interface SearchCenter {
-  name: string;
-  lat: number;
-  lon: number;
-  passport: boolean;
+export interface OfficialWebsiteVerification {
+  verified: boolean;
+  confidence: number;
+  domain: string;
+  finalUrl: string;
+  reason: string;
+  evidence: string[];
 }
 
-export interface Business {
+export interface WebsiteQualityFinding {
   id: string;
-  sourceId: string;
-  source: BusinessSource;
-  sourceUrl: string;
-  name: string;
-  category: string;
-  categoryKey: string;
-  lat: number;
-  lon: number;
-  address: string;
-  phone: string | null;
-  email: string | null;
-  website: string | null;
-  websiteStatus: WebsiteStatus;
-  openingHours: string | null;
-  socialUrl: string | null;
-  imageUrl: string | null;
-  imageAttribution: string | null;
-  distanceKm: number;
-  fetchedAt: string;
-  isDemo?: boolean;
-  audit?: WebsiteAudit;
-  activities?: LeadActivity[];
-  claimedById?: string | null;
-  claimedByName?: string | null;
-  claimedAt?: string | null;
-}
+  label: string;
+  ×¸ñÈZ®Ëkºwµçkz»§Â+a…æş
+Ş§ûZŠWè­û¥–‹­¦ëYHZYÙ[™HÙXœÚ]H™\šÛ°ïˆÂˆBˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH[œ™XXÚX›HŠHÂˆ™]\›ˆ‘\ˆ™\šÛ°ïHÙX˜]Yš]Ø\ˆ™ZH[œÙ\™\ˆ™XÚ\˜ÚH™Z]ÙZ\ÙHšXÚ]™\›0éÜÚYÈ\œ™ZXÚ˜\ÈY\˜Úğí››™[ˆ[\™\ÜÚY\H\œÛÛ™[ˆœ°ïXœÜš[™Ù[‹ˆÂˆBˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH›İ]]YŠHÂˆ™]\›ˆ‘\ˆ™\İZ[™HÙX˜]Yš]šY]]Z[™Hİ]HÜ[™YÙK0éÜİÚXÚX™\ˆ™ZH]™\™°ï[™ËÚ\šİ[™È[™[™œ˜YÙ]ÙYÈÙ^šY[ÙZ]\™[ÚXÚÙ[‹ˆÂˆBˆYˆ
+\Ú[™\ÜËÙXœÚ]T™\ÜË›Ù™šXÚX[™\šYšYY	‰ˆ\Ú[™\ÜËÙXœÚ]T™\Ü›İ™\˜[ØÛÜ™HHÍJHÂˆ™]\›ˆ‘\ˆ™\İZ[™HÙX˜]Yš]Ú\šİ™\™Z]ÈÛÛYKˆÙ\˜YH\Ú[ˆÙZ[ˆÚ\ˆİ[šX[ÙZ[™Hİ0éšÙ[ˆ›ØÚÛ\™\ˆ[ˆÛÛšÜ™]H[™œ˜YÙ[ˆH0ï™\œÙ]™[‹ˆÂˆBˆ™]\›ˆ™Z[H™\İZ[™[ˆYÚ][[ˆ]Yš]ÙZ[ˆÚ\ˆZ[™[ˆÛÛšÜ™][ˆ[œØ]‹Z\İ[™Ù[‹™\˜]Y[ˆ[™[ˆ°éÚİ[ˆØÚš]°ïˆ[\™\ÜÚY\HÛ\™\ˆH™\˜š[™[‹ˆÂŸB‚™^Ü[˜İ[Ûˆİ]™XXÚ[\]\Ñ›ÜŠ\Ú[™\ÜÎˆ\Ú[™\ÜËšXÙ\ÎˆšXÙTÙ][™ÜÈHQUSÔ’PÑTË]Y]ÎˆÙXœÚ]P]Y]
+Nˆİ]™XXÚ[\]\ÈÂˆÛÛœİÙ™™\ˆHXÚØYÙQ›Ü\Ú[™\ÜÊ\Ú[™\ÜËšXÙ\ÊNÂˆÛÛœİØœÙ\˜][ÛˆHİ]™XXÚØœÙ\˜][ÛŠ\Ú[™\ÜË]Y]
+NÂˆÛÛœİ™[™Yš]HĞUQÓÔ–WÓÕU‘PPÒĞ‘S‘Q’UÖØ\Ú[™\ÜË˜Ø]YÛÜRÙ^WBˆÏÈ’[\™\ÜÚY\HZˆ[™ÙX›İØÚ™[\ˆ™\œİZ[‹™\˜]Y[ˆ]Y˜˜]Y[ˆ[™Ú™H[]ÙYÙHZ[™H\ÜÙ[™H[™œ˜YÙHİ[[ˆÂˆÛÛœİØØ][ÛˆHİ]™XXÚØØ][ÛŠ\Ú[™\ÜË˜Y™\ÜÊNÂˆÛÛœİ™\ÙX\˜ÚÛÛ^H™ZH[œÙ\™\ˆÙ^šY[[ˆ™XÚ\˜ÚH˜XÚ	Ø\Ú[™\ÜË˜Ø]YÛÜH•[\›™ZY[ˆŸH[ˆ	ÛØØ][ÛŸHÚ[™Ú\ˆ]Yˆ	Ø\Ú[™\ÜË›˜[Y_H]Y›Y\šÜØ[HÙ]ÛÜ™[‹˜ÂˆÛÛœİ™[™Yš]İ][Y[H\ˆ›ÜZ[°ïˆÚYNˆ	Ø™[™Yš]K˜ÂˆÛÛœİ[XZ[Hİ][ˆYÈ[ˆ\ÈX[H›Ûˆ	Ø\Ú[™\ÜË›˜[Y_K—›YZ[ˆ˜[YH\İÕ›Ü‹H[™˜XÚ˜[YWKˆXÚY[HZXÚ[H˜[Y[ˆ\ÈÕĞˆX[\È
+ÙX•ÛÜšĞ˜[[˜ÙJKˆ\ˆÜ[™YZ[™\ˆ˜XÚšXÚˆ	Ü™\ÙX\˜ÚÛÛ^W—‰ÛØœÙ\˜][ÛŸW—‰Ø™[™Yš]İ][Y[W—•Ù[›ˆ\ÈÜ[™ğé›XÚ[\™\ÜØ[\İ™\™Z][ˆÚ\ˆZ™[ˆÙ\›ˆZ[™HÛÛ\ZİK[™\˜š[™XÚHËT[šİKQZ[œØÚ0é[™È›Ü‹ˆÚYHğí››™[ˆ[˜XÚ[ˆZH[ØÚZY[‹ØˆZ[ˆİ\™\ÈÙ\Ü°éÚÚ[››Û\İ——‘\™ˆXÚZ™[ˆY\ÙH™ZHÛÛšÜ™][ˆ[œğé™H\Ù[™[×—‰ÕÕĞ—ÓÕU‘PPÒÔÒQÓ—ÓÑ‘ŸW–Õ›Ü‹H[™˜XÚ˜[YWXÂˆ™]\›ˆÂˆİXš™Xİˆ\Ú[™\ÜËÙXœÚ]BˆÈÛÛšÜ™]HÙXœÚ]KRYYH°ïˆ	Ø\Ú[™\ÜË›˜[Y_XˆˆYYH\ˆYÚ][[ˆÚXÚ˜\šÙZ]›Ûˆ	Ø\Ú[™\ÜË›˜[Y_Xˆ[XZ[ˆÚ]Ø\ˆİ][ˆYÈ[ˆ\ÈX[H›Ûˆ	Ø\Ú[™\ÜË›˜[Y_K—šY\ˆ\İÕ›Ü‹H[™˜XÚ˜[YWH›ÛHÕĞˆX[H
+ÙX•ÛÜšĞ˜[[˜ÙJKˆšY[[ˆ[šË\ÜÈXÚZ™[ˆY\ˆØÚ™ZX™[ˆ\™‹ˆ	Ü™\ÙX\˜ÚÛÛ^W—‰ÛØœÙ\˜][ÛŸW—‰Ø™[™Yš]İ][Y[W—‘\™ˆXÚZ™[ˆ[œÙ\™H™ZHÛÛšÜ™][‹[™\˜š[™XÚ[ˆ[œğé™Hİ\ˆY\ˆ\Ù[™[×—‰ÕÕĞ—ÓÕU‘PPÒÔÒQÓ—ÓÑ‘ŸXˆØ[ˆÑTÔ°áÒÖ’QS
+šXÚ›Ü›\Ù[ŠW’[\™\ÜÙH[ˆZ[™\ˆÛÛ\Zİ[ˆËT[šİKQZ[œØÚ0é[™È[™Z[™[Hİ\™[ˆ›ÛÙ]\›Z[ˆÙXÚÙ[ˆ8 $ÈšXÚÛÙ›ÜYHÛÛ\]HÙXœÚ]H™\šØ]Y™[‹——‘RS”ÕQQ×¸ '‘İ][ˆYËÜ™XÚHXÚZ]\ˆ\İ0é™YÙ[ˆ\œÛÛˆ°ïˆ[ˆÙX˜]Yš]›Ûˆ	Ø\Ú[™\ÜË›˜[Y_OÈYZ[ˆ˜[YH\İÕ›Ü‹H[™˜XÚ˜[YWKXÚY™H›ÛHÕĞˆX[KÙX•ÛÜšĞ˜[[˜ÙK[‹ˆ\ˆÜ[™YZ[™\È[œYœÎˆ	Ü™\ÙX\˜ÚÛÛ^HXÚ˜\ÜÙHZXÚİ\‹¸ '—’ÓÓ’Ô‘UTˆS“TÔ×¸ '‰ÛØœÙ\˜][ÛŸx '—’ÕS‘S•“Ô•RS¸ '‰Ø™[™Yš]İ][Y[x '—”‘SUS–‘”QÑW¸ '•ğé™HY\Ù\È\™ÙX›š\È°ïˆZˆ[\›™ZY[ˆÜ[™ğé›XÚ[\™\ÜØ[ø '—“°áÒÕTˆĞÒ’U¸ '‘[›ˆ™\™Z][ˆÚ\ˆZ™[ˆÙ\›ˆ™ZHÛÛšÜ™]H[œğé™H›Ü‹ˆÚYHÙZ[ˆÛÙ›ÜØ\ÈÚ[››Ûğé™K[™[ØÚZY[ˆ[˜XÚÙ[œİØˆZ[ˆÙZ]\™\ˆ]\İ]\ØÚYZÙ\šY]]ˆ\Üİ°ïˆZ[™[ˆİ\™[ˆLSZ[][‹U\›Z[ˆZ\ˆÕYËÕZ™Z]WHÙ\ˆÕYËÕZ™Z]—Oø '—‘RS•ğá‘W¸ (ˆ8 '’ÙZ[™H™Z]8 '8¡¤ˆ8 '•™\œİ[™[‹ˆ[›ˆ[HXÚÚYH™]šXÚ]Y‹ˆÛÛXÚZ[™[ˆÛÛšÜ™][ˆLSZ[][‹U\›Z[ˆ°ïˆZ[™[ˆZYÙ\™[ˆ™Z][šİ›ÜœØÚYÙ[ˆÙ\ˆ\È[XHØÚYpçÙ[ø '¸ (ˆ8 '’ÙZ[ˆ[\™\ÜÙx '8¡¤ˆ8 '•™\œİ[™[‹[šÙH°ïˆYHÛ\™H°ïÚÛY[[™ËˆÚ\ˆØÚYpçÙ[ˆ\È[XH[™Y[[ˆ[œÈ^HšXÚ\›™]]¸ '¸ (ˆ8 '•Ú\ˆX™[ˆ™\™Z]È™[X[™[¸ '8¡¤ˆ8 '”ÙZˆİ][›ˆ\İ\ˆ]Yš]™]™]]ˆ[œÙ\™HZ[œØÚ0é[™ÈØ[›ˆ]Yˆİ[œØÚ\ˆ[È[˜Xš0é™ÚYÙ\ˆÙZ]›XÚÈY[™[ˆ8 $ÈÚ™H™[X[™[ˆ\œÙ]™[ˆHÛÛ[‹¸ '¸ (ˆ8 '•Ø\ÈÛÜİ]\Ïø '8¡¤ˆ8 '‘\È0é™İ›ÛH]ğéÚXÚ[ˆ[Y˜[™ÈX‹ˆY\œİ°ï™[ˆÚ\ˆÙ[YZ[œØ[KØˆ0ï™\š]\Z[ˆÚ[››Û\ˆYZÙ\™\İZÈ[˜XÚ\š[[ˆÚYHZ[™[ˆ˜[œÜ\™[[‹™\˜š[™XÚ[ˆ˜ZY[‹¸ '—•‘TP”ĞÒQQS‘×¸ '•šY[[ˆ[šÈ°ïˆZ™H™Z]8 $È™\İHÜ°ï0çÙH›ÛHÕĞˆX[H
+ÙX•ÛÜšĞ˜[[˜ÙJK¸ 'ˆ›ÛİÕ\ˆİ][ˆYÈ[ˆ\ÈX[H›Ûˆ	Ø\Ú[™\ÜË›˜[Y_K—šXÚY[HZXÚÚYH[™ÙZğï™Yİ›ØÚZ[›X[[H˜[Y[ˆ\ÈÕĞˆX[\È
+ÙX•ÛÜšĞ˜[[˜ÙJKˆH	Ø\Ú[™\ÜË›˜[Y_H][ˆÚ\ˆ›ÛÙ[™[ˆ[œØ]ˆ™\İÙZ[[ˆ	ÛØœÙ\˜][ÛŸW—‰Ø™[™Yš]İ][Y[W—•Ù[›ˆ\È[XH›ØÚ™[]˜[\İÙ[™[ˆÚ\ˆZ™[ˆÙ\›ˆ[œÙ\™HÛÛ\ZİHËT[šİKQZ[œØÚ0é[™ÈÙ\ˆ™\™Z[˜˜\™[ˆZ[™[ˆİ\™[ˆLSZ[][‹U\›Z[‹ˆ˜[ÈZİY[ÙZ[ˆ™Y\™ˆ™\İZÙ[°ïİZ[ˆİ\™\È™Z[ˆ8 $È[›ˆØÚYpçÙ[ˆÚ\ˆYHÚYY\›Ü›YÙK——‰ÕÕĞ—ÓÕU‘PPÒÔÒQÓ—ÓÑ‘ŸW–Õ›Ü‹H[™˜XÚ˜[YWXˆİ˜]YŞNˆÂˆÚYÛ˜[ˆØœÙ\˜][Û‹ˆ™[™Yš]ˆ™^İ\ˆ‘\œİ™ZHÛÛšÜ™]H[œğé™H[˜šY][‹[˜XÚ0í˜Úİ[œÈZ[™[ˆLSZ[][‹U\›Z[ˆ™\™Z[˜˜\™[‹ˆ‹ˆ[\›˜[Ù™™\ˆ	ÛÙ™™\‹›˜[Y_H0­È[\›™\ˆšXÚÙ\	ÛÙ™™\‹œšXÙKÓØØ[Tİš[™Ê™KQHŠ_H8 «™]Ëˆ[H\œİÛÛZİ\ˆ™[›™[‹Ù[›ˆ]\Ù°ïÚÛXÚ˜XÚ[H™Z\ÈÙYœ˜YİÚ\™˜ˆKˆÚ[›™[›İ\ÎˆÂˆ[XZ[ˆ“\ˆZ]›Üš\šYÙ\ˆ]\Ù°ïÚÛXÚ\ˆZ[Ú[Yİ[™ÈÙ\ˆZ[™\ˆ]ğéÚXÚZ[œØÚ0éÚYÙ[ˆÙ\Ù]›XÚ[ˆ]\Û˜ZYHÙ[™[‹ˆ‹ˆÚ]Ø\ˆ“\ˆ˜XÚ]\Ù°ïÚÛXÚ\ˆZ[Ú[Yİ[™ÈØÚ™ZX™[È\Ú[ˆ™\İ0éYİYH›Ü›YÙHYH\›]X›š\È[HÚ]Ğ\RÛÛZİˆ‹ˆØ[ˆ“\ˆ[œY™[‹Ù[›ˆ\ˆÛÛšÜ™]H™]šYX›XÚH™^YÈZ[™H]]XpçÛXÚHZ[Ú[Yİ[™È˜XÚ›ÛšYZ˜\ˆXXÚˆZ[ˆ™Z[ˆÛÙ›Ü™\ÜZİY\™[‹ˆ‹ˆ›ÛİÕ\ˆ“\ˆ˜XÚZ[™[H›Üš\šYÙ[ˆÛÛZİ[™Ú™HÚY\œÜXÚ™\Ù[™[‹ˆ˜XÚZ[™[H™Z[ˆÙZ[™HÙZ]\™HÚYY\›Ü›YÙHÙ]™[‹ˆ‹ˆKˆNÂŸB‚™^ÜÛÛœİXYİ]\Ù\ÎˆXYİ]\Ö×HHÂˆ“™]H‹ˆ’[\™\ÜØ[‹ˆ”™XÚ\˜ÚH0éY‹ˆ’ÛÛZİ›Ü˜™\™Z]]‹ˆ’ÛÛZİY\‹ˆ”°ïÚÛY[[™È\š[[ˆ‹ˆ‘[[ËUÙXœÚ]H\œİ[‹ˆ[™ÙX›İÙ\Ù[™]‹ˆ]Y˜YÈÙ]ÛÛ›™[ˆ‹ˆX™Ù[Z‹ˆ”Ü0é\ˆÛÛZİY\™[ˆ‹—NÂ‚™^ÜÛÛœİØ]YÛÜšY\ÈHÂˆÈ˜[YNˆ˜[‹X™[ˆ[Hœ˜[˜Ú[ˆˆKˆÈ˜[YNˆœ™]Z[‹X™[ˆ‘Z[™[[™[ˆKˆÈ˜[YNˆ™Ø\İ›È‹X™[ˆ‘Ø\İ›Û›ÛZYHˆKˆÈ˜[YNˆ˜™X]]H‹X™[ˆ™X]]H	ˆœš\Ù]\ˆˆKˆÈ˜[YNˆ˜Ü˜Y‹X™[ˆ’[™Ù\šÈˆKˆÈ˜[YNˆšX[‹X™[ˆ‘Ù\İ[™Z]ˆKˆÈ˜[YNˆœ›Ù™\ÜÚ[Û˜[‹X™[ˆ°ï›È	ˆ™\˜][™ÈˆKˆÈ˜[YNˆ™š]™\ÜÈ‹X™[ˆ‘š]™\ÜÈ	ˆÜÜˆKˆÈ˜[YNˆ˜]]È‹X™[ˆ]]È	ˆÙ\šÜİ]ˆKˆÈ˜[YNˆšİ[‹X™[ˆ’İ[	ˆ[\šİ[™ˆK—H\ÈÛÛœİÂ‚™^ÜÛÛœİÙXœÚ]Tİ]\ÓX™[ˆ™XÛÜ™ÙXœÚ]Tİ]\Ëİš[™ÏˆHÂˆ›İÙ›İ[™ˆ’ÙZ[™HÙXœÚ]HÙY[™[ˆ‹ˆZÙ[WÛZ\ÜÚ[™Îˆ•ØZœØÚZ[›XÚÚ™HÙXœÚ]H‹ˆ™YY×ØÚXÚÎˆ”°ï[™È\™›Ü™\›XÚ‹ˆ^\İÎˆ•ÙXœÚ]H›Üš[™[ˆ‹ˆ[œ™XXÚX›Nˆ•ÙXœÚ]HšXÚ\œ™ZXÚ˜\ˆ‹ˆİ]]Yˆ•ÙXœÚ]HÚ\šİ™\˜[]‹ŸNÂ‚™^Ü[˜İ[Ûˆ]™\œÚ[™RÛJ]Nˆ[X™\‹ÛŒNˆ[X™\‹]ˆ[X™\‹ÛŒˆ[X™\ŠHÂˆÛÛœİÔ˜YH
+˜[YNˆ[X™\ŠHOˆ
+˜[YH
+ˆX]”JHÈNÂˆÛÛœİ˜Y]\ÈHŒÍÌNÂˆÛÛœİ]HÔ˜Y
+]ˆH]JNÂˆÛÛœİÛˆHÔ˜Y
+ÛŒˆHÛŒJNÂˆÛÛœİHBˆX]œÚ[Š]ÈŠH
+Šˆˆ
+ÂˆX]˜ÛÜÊÔ˜Y
+]JJH
+ˆX]˜ÛÜÊÔ˜Y
+]ŠJH
+ˆX]œÚ[ŠÛˆÈŠH
+ŠˆÂˆ™]\›ˆ˜Y]\È
+ˆˆ
+ˆX]˜][ŒŠX]œÜ\
+JKX]œÜ\
+HHJJNÂŸB‚™^Ü[˜İ[ÛˆØ[İ[]SXYØÛÜ™J\Ú[™\ÜÎˆ\Ú[™\ÜÊHÂˆ]ØÛÜ™HHNÂˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH››İÙ›İ[™ŠHØÛÜ™H
+ÏHÂˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH›ZÙ[WÛZ\ÜÚ[™ÈŠHØÛÜ™H
+ÏHÂˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH›™YY×ØÚXÚÈŠHØÛÜ™H
+ÏHÂˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH[œ™XXÚX›HŠHØÛÜ™H
+ÏHÍNÂˆYˆ
+\Ú[™\ÜËÙXœÚ]Tİ]\ÈOOH›İ]]YŠHØÛÜ™H
+ÏHÌÂˆYˆ
+\Ú[™\ÜËœÛ™JHØÛÜ™H
+ÏHMÂˆYˆ
+\Ú[™\ÜË™[XZ[
+HØÛÜ™H
+ÏHLÂˆYˆ
+\Ú[™\ÜËœÛØÚX[\›
+HØÛÜ™H
+ÏHÂˆYˆ
+\Ú[™\ÜË›Ü[š[™Òİ\œÊHØÛÜ™H
+ÏHÎÂˆYˆ
+ÈšX[‹œ›Ù™\ÜÚ[Û˜[‹šİ[‹˜]]È—Kš[˜ÛY\Ê\Ú[™\ÜË˜Ø]YÛÜRÙ^JJHØÛÜ™H
+ÏHÂˆYˆ
+\Ú[™\ÜË™\İ[˜ÙRÛHHJHØÛÜ™H
+ÏHÂˆYˆ
+\Ú[™\ÜËÙXœÚ]T™\ÜË›İ™\˜[ØÛÜ™HOH[
+HÂˆYˆ
+\Ú[™\ÜËÙXœÚ]T™\Ü›İ™\˜[ØÛÜ™HJHØÛÜ™H
+ÏHÂˆ[ÙHYˆ
+\Ú[™\ÜËÙXœÚ]T™\Ü›İ™\˜[ØÛÜ™HŒ
+HØÛÜ™H
+ÏHŒÂˆ[ÙHYˆ
+\Ú[™\ÜËÙXœÚ]T™\Ü›İ™\˜[ØÛÜ™HÍJHØÛÜ™H
+ÏHLÂˆBˆ™]\›ˆX]›X^
+L‹X]›Z[ŠNØÛÜ™JJNÂŸB‚™^Ü[˜İ[ÛˆXÚØYÙQ›Ü\Ú[™\ÜÊ\Ú[™\ÜÎˆ\Ú[™\ÜËšXÙ\ÎˆšXÙTÙ][™ÜÈHQUSÔ’PÑTÊHÂˆÛÛœİ™[Z][SXYHÈšX[‹œ›Ù™\ÜÚ[Û˜[‹šİ[‹˜]]È—Kš[˜ÛY\Ê\Ú[™\ÜË˜Ø]YÛÜRÙ^JNÂˆÛÛœİ™Y\ÚYÛˆHÈ™^\İÈ‹›İ]]Y‹[œ™XXÚX›H—Kš[˜ÛY\Ê\Ú[™\ÜËÙXœÚ]Tİ]\ÊNÂˆYˆ
+™[Z][SXY
+HÂˆ™]\›ˆÂˆÙ^Nˆœ™[Z][Hˆ\ÈÛÛœİˆ˜[YNˆ™Y\ÚYÛˆÈ”™[Z][HÙXœÚ]KT™[][˜Úˆˆ”™[Z][H\Ú[™\ÜÈÙXœÚ]H‹ˆšXÙNˆšXÙ\Ëœ™[Z][KˆNÂˆBˆ™]\›ˆÂˆÙ^Nˆ˜\Ú[™\ÜÈˆ\ÈÛÛœİˆ˜[YNˆ™Y\ÚYÛˆÈ\Ú[™\ÜÈÙXœÚ]KT™[][˜Úˆˆ\Ú[™\ÜÈÙXœÚ]H‹ˆšXÙNˆšXÙ\Ë˜\Ú[™\ÜËˆNÂŸB‚™^Ü[˜İ[ÛˆÚ]TÙXİ[ÛœÑ›ÜŠ\Ú[™\ÜÎˆ\Ú[™\ÜÊHÂˆÛÛœİÛÛ[[ÛˆHÈ”İ\ÙZ]HZ]Û\™[H]™[ˆ‹“Z\İ[™Ù[ˆÙ\ˆ[™ÙX›İ‹°ç™\ˆ\È[\›™ZY[ˆ‹’ÛÛZİZ]Ø\H[™[œY‹P]Ûˆ—NÂˆÛÛœİY][ÛœÎˆ™XÛÜ™İš[™Ëİš[™Ö×OˆHÂˆØ\İ›ÎˆÈ”ÜZ\ÙZØ\H‹°å™™›[™ÜŞ™Z][ˆ	ˆ™\Ù\šY\[™È—Kˆ™X]]NˆÈ™Z[™[™Ù[ˆ	ˆ™Z\ÙH‹•\›Z[˜XÚ[™È‹‘Ø[\šYH—KˆÜ˜YˆÈ“Z\İ[™ÜÙÙXšY]H‹”™Y™\™[™[ˆ‹[™ÙX›İØ[™œ˜YÙH—KˆX[ˆÈ™Z[™[™Ù[ˆ‹•X[H‹•\›Z[™\™Z[˜˜\[™È—Kˆ›Ù™\ÜÚ[Û˜[ˆÈ‘^\\ÙH‹‘˜[™Z\ÜY[H‹‘\œİÙ\Ü°éÚ—Kˆš]™\ÜÎˆÈ’İ\œÙH	ˆZ]ÛYYØÚY[ˆ‹”›Ø™]˜Z[š[™È‹•˜Z[™\‹UX[H—Kˆ]]ÎˆÈ•Ù\šÜİ]Z\İ[™Ù[ˆ‹•\›Z[ˆ	ˆ°ïÚÜYˆ‹‘˜Z™]YØ[›˜ZYH—Kˆİ[ˆÈ–š[[Y\ˆ	ˆ™Z\ÙH‹]\Üİ][™È‹XÚ[™ÜØ[™œ˜YÙH—Kˆ™]Z[ˆÈ”ÛÜ[Y[‹“™]ZZ][ˆ‹[™˜Z	ˆ0å™™›[™ÜŞ™Z][ˆ—KˆNÂˆ™]\›ˆË‹‹˜ÛÛ[[Û‹œÛXÙJŠK‹‹ŠY][ÛœÖØ\Ú[™\ÜË˜Ø]YÛÜRÙ^WHÏÈ×JK‹‹˜ÛÛ[[Û‹œÛXÙJŠWKœÛXÙJÊNÂŸB‚™^Ü[˜İ[Ûˆ]Ú›ÜŠ\Ú[™\ÜÎˆ\Ú[™\ÜÊHÂˆÛÛœİÚ]U^H\Ú[™\ÜËÙXœÚ]BˆÈ’Z™[ˆZİY[[ˆ[\›™]]Yš][™Ù\ÙZ[ˆ[™X™ZHÛÛšÜ™]Hpí™ÛXÚÙZ][ˆ\ˆ™\˜™\ÜÙ\[™ÈÙY[™[ˆ‚ˆˆ˜™ZHYZ[™\ˆ™XÚ\˜ÚHÙ\ÙZ[‹\ÜÈZİY[ÙZ[™HZ[™]]YÙHZYÙ[™HÙXœÚ]HHš[™[ˆ\İÂˆ™]\›ˆİ][ˆYËXÚš[ˆÙX™\ÚYÛ™\ˆ]\È\ˆ™YÚ[Û‹ˆXÚX™H	Ø\Ú[™\ÜË›˜[Y_H[XÚİ[™	ÜÚ]U^KˆXÚğï™HZ™[ˆÙ\›ˆ[™\˜š[™XÚZ[™Hİ\™HYYH™ZYÙ[‹ÚYHZ[ˆ[Ù\›™\ˆ]Yš]°ïˆZˆ[\›™ZY[ˆ]\ÜÙZ[ˆğí››KˆÙ[›ˆZ™[ˆYHšXÚ[™ÈÙY°éğí››™[ˆÚ\ˆ0ï™\ˆYH[\Ù][™ÈÜ™XÚ[‹ˆğé™HZ[ˆİ\™\ˆ›XÚÈ°ïˆÚYH[\™\ÜØ[ØÂŸB‚™^Ü[˜İ[ÛˆÙXœÚ]T›Û\›ÜŠ\Ú[™\ÜÎˆ\Ú[™\ÜËšXÙ\ÎˆšXÙTÙ][™ÜÈHQUSÔ’PÑTÊHÂˆÛÛœİÙ™™\ˆHXÚØYÙQ›Ü\Ú[™\ÜÊ\Ú[™\ÜËšXÙ\ÊNÂˆ™]\›ˆ\œİ[HZ[™H[Ù\›™KØÚ™[H[™[Øš[Ü[ZY\HÙXœÚ]H°ïˆ8 '‰Ø\Ú[™\ÜË›˜[Y_x 'Z[ˆ[\›™ZY[ˆ]\È\ˆØ]YÛÜšYH8 '‰Ø\Ú[™\ÜË˜Ø]YÛÜ_x '[ˆ	Ø\Ú[™\ÜË˜Y™\ÜÈ™\ˆ™YÚ[ÛˆŸKˆYHÙXœÚ]HÛÛ™\˜]Y[œİğï™YËØÚÙ\YÈ[™ÚØ[Ú\šÙ[‹ˆ[\›Ú[™HİZİ\ˆ	ÜÚ]TÙXİ[ÛœÑ›ÜŠ\Ú[™\ÜÊKš›Ú[Š‹Š_Kˆ™\Ù[™HÛ\™H[™[™ÜØ]Y™›Ü™\[™Ù[ˆ°ïˆ[œYˆ[™ÛÛZİˆ\™š[™HÙZ[™H[\›™ZY[œÙ][‹™Z\ÙK™]Ù\[™Ù[ˆÙ\ˆ™Y™\™[™[‹ˆ™Z[™H[š[HpïÜÙ[ˆ[È]š[\ˆX\šÚY\Ù\™[‹ˆ\ÈÙ\[HZÙ]\İ8 '‰ÛÙ™™\‹›˜[Y_x '[H[™ÙX›İÜ™Z\È›Ûˆ	ÛÙ™™\‹œšXÙKÓØØ[Tİš[™Ê™KQHŠ_H8 «˜ÂŸB‚™^Ü[˜İ[ÛˆÛÛÙÛSX\Õ\›
+\Ú[™\ÜÎˆ\Ú[™\ÜÊHÂˆ™]\›ˆÎ‹ËİİİË™ÛÛÙÛK˜ÛÛKÛX\ËÜÙX\˜ÚÏØ\OLIœ]Y\OIÙ[˜ÛÙUT’PÛÛ\Û™[
+	Ø\Ú[™\ÜË›˜[Y_H	Ø\Ú[™\ÜË˜Y™\ÜßX
+_XÂŸB‚™^Ü[˜İ[Ûˆ\SX\Õ\›
+\Ú[™\ÜÎˆ\Ú[™\ÜÊHÂˆ™]\›ˆÎ‹ËÛX\Ë˜\K˜ÛÛKÏÜOIÙ[˜ÛÙUT’PÛÛ\Û™[
+\Ú[™\ÜË›˜[YJ_I›IØ\Ú[™\ÜË›]K	Ø\Ú[™\ÜË›ÛŸXÂŸB‚™^Ü[˜İ[Ûˆ[[Ğ\Ú[™\ÜÙ\ÊÙ[\ˆÙX\˜ÚÙ[\ŠNˆ\Ú[™\ÜÖ×HÂˆÛÛœİ›İÈH™]È]J
+KÒTÓÔİš[™Ê
+NÂˆÛÛœİ][\ÈHÂˆÈ˜[YNˆ“]\İ\ˆØY°êH‹Ø]YÛÜNˆØY°êH‹Ø]YÛÜRÙ^Nˆ™Ø\İ›È‹ˆŒNˆŒÛ™NˆŒLLH‹[XZ[ˆ[ÙXœÚ]Nˆ[KˆÈ˜[YNˆ™Z\ÜY[œš\Ù]\œİY[È‹Ø]YÛÜNˆ‘œš\Ù]\œØ[Ûˆ‹Ø]YÛÜRÙ^Nˆ˜™X]]H‹ˆLŒL‹NˆŒËÛ™Nˆ[[XZ[ˆ™[[Ğ™Z\ÜY[š[˜[Y‹ÙXœÚ]Nˆ[KˆÈ˜[YNˆ‘[[È[™Ù\šÜØ™]šYXˆ‹Ø]YÛÜNˆ’[™Ù\šÈ‹Ø]YÛÜRÙ^Nˆ˜Ü˜Y‹ˆŒ‹NˆLŒLKÛ™NˆŒLLHH‹[XZ[ˆ[ÙXœÚ]Nˆ[KˆÈ˜[YNˆ™Z\ÜY[™\˜][™È‹Ø]YÛÜNˆ•[\›™ZY[œØ™\˜][™È‹Ø]YÛÜRÙ^Nˆœ›Ù™\ÜÚ[Û˜[‹ˆLŒMËNˆLŒÛ™NˆŒLLHˆ‹[XZ[ˆ[ÙXœÚ]NˆšÎ‹ËÙ^[\K˜ÛÛHˆKˆNÂˆ™]\›ˆ][\Ë›X\
 
-export interface StoredLead extends Business {
-  score: number;
-  status: LeadStatus;
-  priority: boolean;
-  notes: string;
-  nextAction: string;
-  followUpAt: string | null;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface LeadTask {
-  id: number;
-  leadId: string | null;
-  title: string;
-  dueAt: string | null;
-  completed: boolean;
-  createdAt: string;
-  leadName?: string | null;
-}
-
-export type TeamNoteKind = "Notiz" | "Recherche" | "Idee" | "Blocker";
-
-export interface TeamNote {
-  id: string;
-  authorId: string;
-  authorName: string;
-  body: string;
-  kind: TeamNoteKind;
-  leadId: string | null;
-  pinned: boolean;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface TeamChatMessage {
-  id: string;
-  authorId: string;
-  authorName: string;
-  body: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface AppUser {
-  id: string;
-  name: string;
-  email: string | null;
-}
-
-export type AppView = "today" | "discover" | "regional" | "map" | "leads" | "tasks" | "team" | "pricing" | "settings";
-
-export interface GeocodeResult {
-  id: string;
-  name: string;
-  lat: number;
-  lon: number;
-  type: string;
-}
-
-export type ProjectPriceKey = "landing" | "business" | "premium" | "shop" | "portal" | "webapp";
-
-export interface PriceSettings {
-  landing: number;
-  business: number;
-  premium: number;
-  shop: number;
-  portal: number;
-  webapp: number;
-  hourly: number;
-  maintenance: number;
-}
-
-export interface MarketPriceItem {
-  key: ProjectPriceKey;
-  name: string;
-  shortName: string;
-  marketMin: number;
-  marketMax: number;
-  upperOpen?: boolean;
-  description: string;
-  typicalScope: string;
-}
-
-export const DEFAULT_PRICES: PriceSettings = {
-  landing: 1900,
-  business: 3900,
-  premium: 6900,
-  shop: 9900,
-  portal: 14900,
-  webapp: 24900,
-  hourly: 110,
-  maintenance: 199,
-};
-
-export const MARKET_PRICE_UPDATED_AT = "08.09.2026";
-
-export const MARKET_PRICE_ITEMS: MarketPriceItem[] = [
-  {
-    key: "landing",
-    name: "Landingpage / Onepager",
-    shortName: "Landingpage",
-    marketMin: 1500,
-    marketMax: 4000,
-    description: "Ein klares Ziel, starke NutzerfÃ¼hrung und ein hochwertiges individuelles Design.",
-    typicalScope: "1 Seite Â· Conversion-Konzept Â· responsive Â· SEO-Basis",
-  },
-  {
-    key: "business",
-    name: "Business Website",
-    shortName: "Business",
-    marketMin: 3500,
-    marketMax: 8000,
-    description: "Professioneller Firmenauftritt fÃ¼r lokale Betriebe, Dienstleister und KMU.",
-    typicalScope: "4â€“7 Seiten Â· individuelles Design Â· CMS Â· Local SEO",
-  },
-  {
-    key: "premium",
-    name: "Premium Corporate / Relaunch",
-    shortName: "Premium",
-    marketMin: 6000,
-    marketMax: 18000,
-    description: "Strategischer Markenauftritt mit anspruchsvoller UX, Inhalten und Integrationen.",
-    typicalScope: "8â€“15 Seiten Â· UX/UI Â· CMS Â· Animationen Â· Migration",
-  },
-  {
-    key: "shop",
-    name: "E-Commerce / Onlineshop",
-    shortName: "Onlineshop",
-    marketMin: 8000,
-    marketMax: 25000,
-    description: "Verkaufsstarker Shop mit sauberem Checkout und wichtigen GeschÃ¤ftsanbindungen.",
-    typicalScope: "Shop-System Â· Zahlung Â· Versand Â· Produkte Â· Tracking",
-  },
-  {
-    key: "portal",
-    name: "Portal / Buchung / Mitgliederbereich",
-    shortName: "Portal",
-    marketMin: 12000,
-    marketMax: 35000,
-    description: "Individuelle Prozesse, Logins, Buchungen oder geschÃ¼tzte Kundenbereiche.",
-    typicalScope: "Konten Â· Rollen Â· Buchung Â· E-Mail-Flows Â· Dashboard",
-  },
-  {
-    key: "webapp",
-    name: "Web-App / SaaS MVP",
-    shortName: "Web-App",
-    marketMin: 20000,
-    marketMax: 60000,
-    upperOpen: true,
-    description: "MaÃŸgeschneiderte digitale Produkte mit eigener Logik und Datenhaltung.",
-    typicalScope: "Produkt-UX Â· Frontend Â· Backend Â· Datenbank Â· Deployment",
-  },
-];
-
-export const AUDIT_ITEMS: Array<{ key: AuditKey; label: string; hint: string }> = [
-  { key: "mobile", label: "Mobile Darstellung", hint: "Lesbar, klickbar und ohne horizontales Scrollen" },
-  { key: "speed", label: "Geschwindigkeit", hint: "Schneller Seitenaufbau und optimierte Medien" },
-  { key: "cta", label: "Klarer nÃ¤chster Schritt", hint: "Anruf, Anfrage, Termin oder Kauf sofort erkennbar" },
-  { key: "seo", label: "Local SEO", hint: "Titel, Inhalte, Standort und Suchintention passen" },
-  { key: "trust", label: "Vertrauen", hint: "Referenzen, Team, Bewertungen oder Zertifikate" },
-  { key: "content", label: "Inhalte", hint: "Aktuell, verstÃ¤ndlich und verkaufsorientiert" },
-  { key: "legal", label: "Pflichtangaben", hint: "Impressum, Datenschutz und Consent vorhanden" },
-];
-
-export function emptyWebsiteAudit(): WebsiteAudit {
-  return {
-    checks: { mobile: "open", speed: "open", cta: "open", seo: "open", trust: "open", content: "open", legal: "open" },
-    notes: "",
-    updatedAt: null,
-  };
-}
-
-export function websiteAuditScore(audit?: WebsiteAudit) {
-  if (!audit) return null;
-  const checked = Object.values(audit.checks).filter((value) => value !== "open");
-  if (!checked.length) return null;
-  return Math.round((checked.filter((value) => value === "good").length / checked.length) * 100);
-}
-
-export function nextBestActionFor(lead: StoredLead) {
-  const today = new Date().toISOString().slice(0, 10);
-  if (lead.followUpAt && lead.followUpAt.slice(0, 10) <= today) {
-    return { label: "Jetzt nachfassen", reason: "Wiedervorlage ist heute oder Ã¼berfÃ¤llig", urgency: 100 };
-  }
-  if (lead.status === "Angebot gesendet") return { label: "Angebot nachfassen", reason: "Offenes Angebot aktiv weiterfÃ¼hren", urgency: 92 };
-  if (lead.status === "RÃ¼ckmeldung erhalten") return { label: "Antwort vorbereiten", reason: "Der Lead hat bereits reagiert", urgency: 90 };
-  if (lead.status === "Demo-Website erstellt") return { label: "Demo prÃ¤sentieren", reason: "Deine Vorleistung ist bereit", urgency: 88 };
-  if (["Neu", "Interessant", "Recherche lÃ¤uft"].includes(lead.status)) {
-    return { label: lead.phone ? "Erstkontakt anrufen" : lead.email ? "Erstkontakt schreiben" : "Kontaktdaten prÃ¼fen", reason: `Lead-Score ${lead.score}/100`, urgency: 55 + lead.score / 3 };
-  }
-  if (lead.status === "Kontaktiert") return { label: "Wiedervorlage setzen", reason: "Kontakt ohne nÃ¤chsten Termin", urgency: 65 };
-  return { label: lead.nextAction || "NÃ¤chsten Schritt festlegen", reason: lead.status, urgency: 40 };
-}
-
-export function outreachTemplatesFor(business: Business, prices: PriceSettings = DEFAULT_PRICES, audit?: WebsiteAudit) {
-  const offer = packageForBusiness(business, prices);
-  const issues = AUDIT_ITEMS.filter((item) => audit?.checks[item.key] === "issue").map((item) => item.label);
-  const observation = issues.length
-    ? `Dabei sind mir besonders ${issues.slice(0, 2).join(" und ")} als konkrete VerbesserungsmÃ¶glichkeiten aufgefallen.`
-    : business.website
-      ? "Dabei sind mir einige konkrete MÃ¶glichkeiten aufgefallen, den Auftritt moderner und anfrageorientierter zu gestalten."
-      : "Dabei habe ich gesehen, dass aktuell keine eindeutige eigene Website zu finden ist.";
-  const email = `Guten Tag,\n\nich bin professioneller Webentwickler aus der Region und bin bei meiner Recherche auf ${business.name} gestoÃŸen. ${observation}\n\nIch kann Ihnen unverbindlich eine kurze Konzeptidee zeigen, wie ein moderner Auftritt fÃ¼r Ihr Unternehmen aussehen kÃ¶nnte. Eine passende Umsetzung startet bei etwa ${offer.price.toLocaleString("de-DE")} â‚¬ netto â€“ abhÃ¤ngig vom gewÃ¼nschten Umfang.\n\nWÃ¤re ein kurzer, unverbindlicher Blick fÃ¼r Sie interessant?\n\nFreundliche GrÃ¼ÃŸe\nSalu & Sula`;
-  return {
-    subject: `Kurze Website-Idee fÃ¼r ${business.name}`,
-    email,
-    whatsapp: `Guten Tag, ich bin professioneller Webentwickler aus der Region und habe ${business.name} entdeckt. ${observation} Darf ich Ihnen unverbindlich eine kurze Website-Idee schicken? Viele GrÃ¼ÃŸe, Salu & Sula`,
-    call: `Guten Tag, mein Name ist [Name]. Ich bin professioneller Webentwickler aus der Region. Ich habe ${business.name} bei meiner Recherche entdeckt. ${observation} Ich wÃ¼rde Ihnen gern unverbindlich in zwei Minuten erklÃ¤ren, welche Idee ich fÃ¼r Ihren Internetauftritt habe. Passt es gerade kurz?`,
-    followUp: `Guten Tag, ich wollte mich kurz zu meiner Website-Idee fÃ¼r ${business.name} zurÃ¼ckmelden. Falls das Thema aktuell interessant ist, zeige ich Ihnen gern unverbindlich einen konkreten Vorschlag. Viele GrÃ¼ÃŸe, Salu & Sula`,
-  };
-}
-
-export const leadStatuses: LeadStatus[] = [
-  "Neu",
-  "Interessant",
-  "Recherche lÃ¤uft",
-  "Kontakt vorbereitet",
-  "Kontaktiert",
-  "RÃ¼ckmeldung erhalten",
-  "Demo-Website erstellt",
-  "Angebot gesendet",
-  "Auftrag gewonnen",
-  "Abgelehnt",
-  "SpÃ¤ter kontaktieren",
-];
-
-export const categories = [
-  { value: "all", label: "Alle Branchen" },
-  { value: "retail", label: "Einzelhandel" },
-  { value: "gastro", label: "Gastronomie" },
-  { value: "beauty", label: "Beauty & Friseur" },
-  { value: "craft", label: "Handwerk" },
-  { value: "health", label: "Gesundheit" },
-  { value: "professional", label: "BÃ¼ro & Beratung" },
-  { value: "fitness", label: "Fitness & Sport" },
-  { value: "auto", label: "Auto & Werkstatt" },
-  { value: "hotel", label: "Hotel & Unterkunft" },
-] as const;
-
-export const websiteStatusLabel: Record<WebsiteStatus, string> = {
-  not_found: "Keine Website gefunden",
-  likely_missing: "Wahrscheinlich ohne Website",
-  needs_check: "PrÃ¼fung erforderlich",
-  exists: "Website vorhanden",
-  unreachable: "Website nicht erreichbar",
-  outdated: "Website wirkt veraltet",
-};
-
-export function haversineKm(lat1: number, lon1: number, lat2: number, lon2: number) {
-  const toRad = (value: number) => (value * Math.PI) / 180;
-  const radius = 6371;
-  const dLat = toRad(lat2 - lat1);
-  const dLon = toRad(lon2 - lon1);
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
-  return radius * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
-
-export function calculateLeadScore(business: Business) {
-  let score = 18;
-  if (business.websiteStatus === "not_found") score += 48;
-  if (business.websiteStatus === "likely_missing") score += 42;
-  if (business.websiteStatus === "needs_check") score += 28;
-  if (business.websiteStatus === "unreachable") score += 35;
-  if (business.websiteStatus === "outdated") score += 30;
-  if (business.phone) score += 14;
-  if (business.email) score += 10;
-  if (business.socialUrl) score += 6;
-  if (business.openingHours) score += 3;
-  if (["health", "professional", "hotel", "auto"].includes(business.categoryKey)) score += 4;
-  if (business.distanceKm <= 5) score += 4;
-  return Math.max(12, Math.min(98, score));
-}
-
-export function packageForBusiness(business: Business, prices: PriceSettings = DEFAULT_PRICES) {
-  const premiumLead = ["health", "professional", "hotel", "auto"].includes(business.categoryKey);
-  const redesign = ["exists", "outdated", "unreachable"].includes(business.websiteStatus);
-  if (premiumLead) {
-    return {
-      key: "premium" as const,
-      name: redesign ? "Premium Website-Relaunch" : "Premium Business Website",
-      price: prices.premium,
-    };
-  }
-  return {
-    key: "business" as const,
-    name: redesign ? "Business Website-Relaunch" : "Business Website",
-    price: prices.business,
-  };
-}
-
-export function siteSectionsFor(business: Business) {
-  const common = ["Startseite mit klarem Nutzen", "Leistungen oder Angebot", "Ãœber das Unternehmen", "Kontakt mit Karte und Anruf-Button"];
-  const additions: Record<string, string[]> = {
-    gastro: ["Speisekarte", "Ã–ffnungszeiten & Reservierung"],
-    beauty: ["Behandlungen & Preise", "Terminbuchung", "Galerie"],
-    craft: ["Leistungsgebiete", "Referenzen", "Angebotsanfrage"],
-    health: ["Behandlungen", "Team", "Terminvereinbarung"],
-    professional: ["Expertise", "Fallbeispiele", "ErstgesprÃ¤ch"],
-    fitness: ["Kurse & Mitgliedschaften", "Probetraining", "Trainer-Team"],
-    auto: ["Werkstattleistungen", "Termin & RÃ¼ckruf", "Fahrzeugannahme"],
-    hotel: ["Zimmer & Preise", "Ausstattung", "Buchungsanfrage"],
-    retail: ["Sortiment", "Neuheiten", "Anfahrt & Ã–ffnungszeiten"],
-  };
-  return [...common.slice(0, 2), ...(additions[business.categoryKey] ?? []), ...common.slice(2)].slice(0, 7);
-}
-
-export function pitchFor(business: Business) {
-  const siteText = business.website
-    ? "Ihren aktuellen Internetauftritt angesehen und dabei konkrete MÃ¶glichkeiten zur Verbesserung gefunden"
-    : "bei meiner Recherche gesehen, dass aktuell keine eindeutige eigene Website zu finden ist";
-  return `Guten Tag, ich bin Webdesigner aus der Region. Ich habe ${business.name} entdeckt und ${siteText}. Ich wÃ¼rde Ihnen gern unverbindlich eine kurze Idee zeigen, wie ein moderner Auftritt fÃ¼r Ihr Unternehmen aussehen kÃ¶nnte. Wenn Ihnen die Richtung gefÃ¤llt, kÃ¶nnen wir Ã¼ber die Umsetzung sprechen. WÃ¤re ein kurzer Blick fÃ¼r Sie interessant?`;
-}
-
-export function websitePromptFor(business: Business, prices: PriceSettings = DEFAULT_PRICES) {
-  const offer = packageForBusiness(business, prices);
-  return `Erstelle eine moderne, schnelle und mobiloptimierte Website fÃ¼r â€${business.name}â€œ, ein Unternehmen aus der Kategorie â€${business.category}â€œ in ${business.address || "der Region"}. Die Website soll vertrauenswÃ¼rdig, hochwertig und lokal wirken. Empfohlene Struktur: ${siteSectionsFor(business).join(", ")}. Verwende klare Handlungsaufforderungen fÃ¼r Anruf und Kontakt. Erfinde keine Unternehmensdaten, Preise, Bewertungen oder Referenzen. Fehlende Inhalte mÃ¼ssen als Platzhalter markiert werden. Das geplante Paket ist â€${offer.name}â€œ zum Angebotspreis von ${offer.price.toLocaleString("de-DE")} â‚¬.`;
-}
-
-export function googleMapsUrl(business: Business) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${business.name} ${business.address}`)}`;
-}
-
-export function appleMapsUrl(business: Business) {
-  return `https://maps.apple.com/?q=${encodeURIComponent(business.name)}&ll=${business.lat},${business.lon}`;
-}
-
-export function demoBusinesses(center: SearchCenter): Business[] {
-  const now = new Date().toISOString();
-  const items = [
-    { name: "Muster CafÃ©", category: "CafÃ©", categoryKey: "gastro", dx: 0.008, dy: 0.004, phone: "0911 000000", email: null, website: null },
-    { name: "Beispiel Friseurstudio", category: "Friseursalon", categoryKey: "beauty", dx: -0.012, dy: 0.007, phone: null, email: "demo@beispiel.invalid", website: null },
-    { name: "Demo Handwerksbetrieb", category: "Handwerk", categoryKey: "craft", dx: 0.006, dy: -0.011, phone: "0911 000001", email: null, website: null },
-    { name: "Beispiel Beratung", category: "Unternehmensberatung", categoryKey: "professional", dx: -0.017, dy: -0.004, phone: "0911 000002", email: null, website: "https://example.com" },
-  ];
-  return items.map((item, index) => {
-    const lat = center.lat + item.dy;
-    const lon = center.lon + item.dx;
-    return {
-      id: `demo-${index + 1}`,
-      sourceId: `demo-${index + 1}`,
-      source: "Demo",
-      sourceUrl: "https://www.openstreetmap.org/copyright",
-      name: item.name,
-      category: item.category,
-      categoryKey: item.categoryKey,
-      lat,
-      lon,
-      address: `Demo-Datensatz Â· ${center.name}`,
-      phone: item.phone,
-      email: item.email,
-      website: item.website,
-      websiteStatus: item.website ? "exists" : "likely_missing",
-      openingHours: index % 2 === 0 ? "Moâ€“Fr 09:00â€“18:00" : null,
-      socialUrl: null,
-      imageUrl: null,
-      imageAttribution: null,
-      distanceKm: Number(haversineKm(center.lat, center.lon, lat, lon).toFixed(1)),
-      fetchedAt: now,
-      isDemo: true,
-    };
-  });
-}
+][K[™^
+HOˆÂˆÛÛœİ]HÙ[\‹›]
+È][K™NÂˆÛÛœİÛˆHÙ[\‹›Ûˆ
+È][K™Âˆ™]\›ˆÂˆYˆ[[ËIÚ[™^
+È_XˆÛİ\˜ÙRYˆ[[ËIÚ[™^
+È_XˆÛİ\˜ÙNˆ‘[[È‹ˆÛİ\˜ÙU\›ˆšÎ‹ËİİİË›Ü[œİ™Y]X\›Ü™ËØÛÜ\šYÚ‹ˆ˜[YNˆ][K›˜[YKˆØ]YÛÜNˆ][K˜Ø]YÛÜKˆØ]YÛÜRÙ^Nˆ][K˜Ø]YÛÜRÙ^Kˆ]ˆÛ‹ˆY™\ÜÎˆ[[ËQ][œØ]ˆ0­È	ØÙ[\‹›˜[Y_XˆÛ™Nˆ][KœÛ™Kˆ[XZ[ˆ][K™[XZ[ˆÙXœÚ]Nˆ][KÙXœÚ]KˆÙXœÚ]Tİ]\Îˆ][KÙXœÚ]HÈ™^\İÈˆˆ›ZÙ[WÛZ\ÜÚ[™È‹ˆÜ[š[™Òİ\œÎˆ[™^	HˆOOHÈ“[ø $ÑœˆNŒ8 $ÌNŒˆˆ[ˆÛØÚX[\›ˆ[ˆ[XYÙU\›ˆ[ˆ[XYÙP]šX][Ûˆ[ˆ\İ[˜ÙRÛNˆ[X™\Š]™\œÚ[™RÛJÙ[\‹›]Ù[\‹›Û‹]ÛŠKÑš^Y
+JJKˆ™]ÚY]ˆ›İËˆ\Ñ[[ÎˆYKˆNÂˆJNÂŸB
