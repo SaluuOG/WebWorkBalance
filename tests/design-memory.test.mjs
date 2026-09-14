@@ -18,9 +18,9 @@ function prepare(query) {
     async first() { return sqlite.prepare(query).get(...args) ?? null; },
     async all() { return { results: sqlite.prepare(query).all(...args) }; },
     async raw() {
-      const statement = sqlite.prepare(query);
-      statement.setReturnArrays(true);
-      return statement.all(...args);
+      // The project's Node 22.13 minimum predates setReturnArrays(). These
+      // Drizzle queries select unique column names in the required order.
+      return sqlite.prepare(query).all(...args).map((row) => Object.values(row));
     },
   };
 }
