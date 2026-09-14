@@ -19,6 +19,10 @@ Live-App: [webworkbalance.jj6ng7vwzq.chatgpt.site](https://webworkbalance.jj6ng7
 - Individuelles MasterPrompt-Studio mit Branchenlogik, Creative DNA, Bildregie, Animationen und Produktionsplan
 - Express-Build-Modus für fokussierte High-End-Websites in einer festen Zeitbox
 - Manuelle Regler für Komplexität, Animation, Scroll-Erlebnis, 3D, Bildstrategie, Tonalität und weitere Parameter
+- Sieben zusätzliche Video-Stilwelten mit eigenen Seitenfolgen und dokumentierter Referenzanalyse
+- Verbindliche Szenenpläne mit Triggern, Timelines, Asset-Bedarf, Mobilvarianten und Abnahmekriterien in Master- und Express-Prompts
+- Gemeinsames Designgedächtnis, das Firmenentwürfe anhand ihres Aufbaus vergleicht und identische Stil-Kombinationen für andere Firmen sperrt
+- Optionales individuelles Website-Spiel als Quiz, Memory oder kleine Challenge im Produktionsprompt
 - Professionelle Erstkontakt-Vorlagen für Telefon, E-Mail und WhatsApp mit WWB-Team-Abschluss
 - Team-Pinnwand, Start-Hinweis für ungelesene Notizen, separater Live-Chat und Arbeitsboard
 - Preisliste, Angebotskalkulator, Tagescockpit, Schnellmenü und installierbare mobile PWA
@@ -32,6 +36,12 @@ Der Radar nutzt ausschließlich öffentliche OpenStreetMap-Daten. Er prüft zuer
 - `overpass-api.de`
 
 Wenn der Server keine Verbindung erhält, übernimmt der Browser-Direktmodus. Als letzte Stufe bleiben ältere Cache-Ergebnisse oder echte, bereits im Team gespeicherte OSM-Leads verfügbar. Öffentliche Overpass-Instanzen geben keine Verfügbarkeitsgarantie; ein späterer Geoapify-Schlüssel kann als optionaler Anbieter ergänzt werden.
+
+## Masterprompt-Qualitätsstandard
+
+Im Firmenprofil das MasterPrompt-Studio öffnen, die recherchierten Fakten prüfen und unter **Kreative Richtung** eine Referenz-Stilwelt wählen. **Bewegung & Erlebnis** steuert Animationen, Scroll und 3D; unter **Bilder & Umsetzung** lässt sich ein Website-Spiel aktivieren. Die Presets **Cinematic & 3D** und **Editorial & Motion** setzen zusammenpassende Produktionsregler. Anschließend die Einstellungen anwenden und den Abschnitt **Seitenaufbau & verbindlicher Szenenplan** prüfen. Mit einer kreativen Alternative lässt sich eine andere Richtung erzeugen; der Text bleibt manuell bearbeitbar und im Lead speicherbar.
+
+Die Engine baut auf 27 vorhandenen Gestaltungsmethoden auf und ergänzt sieben jetzt visuell analysierte Videoreferenzen. Beobachtungen, vorgeschlagene Umsetzung und Grenzen sind in [den Videostudien](docs/references/video-studies-2026-09-14.md) getrennt dokumentiert. Den [Qualitätsstandard und die Funktionsgrenzen](docs/references/masterprompt-quality-standard.md) beschreibt die ergänzende Dokumentation. Die Videos wurden nicht zum Training eines Modells verwendet; ihre analysierten Prinzipien liegen versioniert im Quellcode und in den Referenznotizen.
 
 ## Technik
 

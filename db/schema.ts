@@ -117,3 +117,14 @@ export const radarCache = sqliteTable(
   },
   (table) => [index("idx_radar_cache_expires_at").on(table.expiresAt)],
 );
+
+export const designMemory = sqliteTable(
+  "design_memory",
+  {
+    styleKey: text("style_key").primaryKey(),
+    businessId: text("business_id").notNull(),
+    fingerprint: text("fingerprint").notNull(),
+    createdAt: text("created_at").notNull(),
+  },
+  (table) => [index("idx_design_memory_created").on(table.createdAt)],
+);

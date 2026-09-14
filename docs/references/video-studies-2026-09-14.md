@@ -1,0 +1,185 @@
+# Seven website-reference videos — visual analysis
+
+Local visual analysis of seven supplied MP4 files. Observed visual evidence is archived here for the prompt engine. Original video files and screenshots are not redistributed in the public repository.
+
+## Evidence limits
+
+- Times are approximate visible-content ranges from 20 evenly spaced frames per clip plus targeted original-resolution frames. Transitions can occur between samples.
+- All files are 720×1280 portrait videos of desktop screens or Figma; the outer video resolution is not the website viewport.
+- Audio was not analyzed. Creator captions claiming model/tool capabilities are promotional assertions, not verified provenance.
+- Observable visual output is separated from proposed implementation methods. No stack, original source code, live rendering method, mobile behavior, or backend is established.
+
+## Technical fashion dossier
+
+File: `0e8f1c933a044b998afe7e29367402f5.MP4` · 22.7 seconds
+
+
+### Observed in the recording
+
+- **0.0–4.8 s** — A dark full-viewport fashion scene shows a crowd of models in long coats; successive views isolate a prominent pale green coat near the center. Small corner copy leaves the garments dominant.
+- **5.9–9.5 s** — The page shifts into a black editorial chapter with a huge subdued 01, a MATERIAL label, small technical copy, and an enlarged fabric-detail image.
+- **10.7–13.1 s** — A narrow vertical typographic transition gives way to a model portrait with an oversized stacked identity statement on the left.
+- **14.2–17.8 s** — An isolated garment image sits to the left of SERIES 001 TECHNICAL SHELL 01, short specifications, and an ACQUIRE 001 link. Oversized low-contrast numerals remain behind the layout.
+- **approximately 19–22.7 s** — Social-media end-card overlay obscures the last page state; it is not a website section.
+
+### Implementable interpretation — proposed, not verified
+
+- A motion-led opening can establish the collection, then normal document sections can narrow from material to identity to a particular item.
+- Use recurring chapter numerals, controlled mint-on-charcoal type, and alternating macro/portrait/product image scales as the continuity system.
+- Image reveals and overlapping section transitions can be implemented with simple layered transforms; the recording does not establish whether its hero uses video, image sequences, or live 3D.
+
+**Distinct story structure:** Collection world → material evidence → wearer identity → one garment/specification → acquisition.
+
+**Quality emphasis:** Preserve the progression from atmosphere to evidence to a concrete product; do not replace every chapter with identical cards.
+
+## Surreal chapter journey
+
+File: `5e0118a1974a4890bc962c8fe578b8fd.MP4` · 22.1 seconds
+
+
+### Observed in the recording
+
+- **0.0–3.5 s** — A pale aqua water-like field and circular graphic transition into a centered decorative serif statement, You Believed.
+- **4.6–9.3 s** — A vivid green hand appears among floating pink elements, then the view opens to clouds, columns, landscape, and an approaching second hand. The composition changes from a minimal field to a broad staged world.
+- **10.4–13.9 s** — The palette cuts to saturated red/orange. Hands and translucent shard-like panels appear; some panels carry text. This is a distinct visual chapter rather than another copy of the first layout.
+- **15.0–17.4 s** — A large banknote-like image transitions to a Paper title, then a dark field with ribbon-like forms and see the Disconnect. A bottom-centered Join Beta pill remains visible across multiple chapters.
+- **18.5–22.1 s** — The recording ends with a social-media outro.
+
+### Implementable interpretation — proposed, not verified
+
+- A recurring hand motif can connect separate worlds while chapter palettes and visual metaphors provide progression.
+- Keep one stable action control while the scene behind it changes; this gives the viewer a consistent next step through an unconventional story.
+- A bounded scroll timeline or discrete chapter states could coordinate scene swaps and text reveals. The trackpad is visible, but exact scroll mapping and the rendering technology are unverified.
+
+**Distinct story structure:** Belief/premise → encounter → rupture/problem → reframe → invitation.
+
+**Quality emphasis:** Every scene should add meaning, with readable pauses for text and a persistent way to act; visual novelty alone is insufficient.
+
+## Monumental Aurum hero
+
+File: `5e27ca8d06e94a2eb7fa9f8a13f4a2e4.MP4` · 16.3 seconds
+
+
+### Observed in the recording
+
+- **0.0–0.9 s** — A small centered AU mark appears against a brown field, followed by a statue within a warm architectural interior.
+- **1.7–4.3 s** — A large serif AURUM title builds across the lower portion of the hero. Sparse navigation and small side copy frame the statue.
+- **4.3–11.1 s** — Successive views move around and closer to the statue while the title remains near the bottom. Warm light, architecture, and a central sculptural subject carry the composition.
+- **approximately 11.9–16.3 s** — The person filming turns away from the main laptop view, then a social outro appears.
+
+### Implementable interpretation — proposed, not verified
+
+- Treat the hero as a single staged subject with deliberate camera framing and a restrained text layer.
+- A short camera move can create an arrival moment; choose source media with clean focal space for title and navigation.
+- A rendered video, precomputed sequence, or live scene could produce similar output; no specific implementation is demonstrated.
+
+**Distinct story structure:** Emblem → spatial reveal → approach to a single subject → concise invitation. Any collection/history/detail sections would be an original extension, not observed evidence.
+
+**Quality emphasis:** The clip proves the value of one strong hero composition, not a complete page architecture or functioning product.
+
+## Villa arrival and editorial stay
+
+File: `9696926585cc494fb895cfdc86af7554.MP4` · 25.5 seconds
+
+
+### Observed in the recording
+
+- **0.0–2.7 s** — A red sports car occupies the foreground of a warm villa exterior; the opening carries The art of living slowly.
+- **4.0–9.4 s** — The visual viewpoint proceeds across a pool toward the interior, then closer to a dining table. A quieter kind of extraordinary appears over the interior imagery.
+- **10.7–14.7 s** — The page changes to a pale editorial surface with generous space, Designed around the way you feel, asymmetrically sized property images, then Gather beautifully above a larger interior image.
+- **16.0–18.7 s** — Material-detail imagery and smaller supporting pictures lead to an arrival/car image with An exceptional arrival.
+- **20.0–21.4 s** — A spacious closing block reads Stay a little longer with smaller supporting copy to the right.
+- **approximately 22.7–25.5 s** — The closing page is covered by the social outro.
+
+### Implementable interpretation — proposed, not verified
+
+- Use an arrival sequence to give a place emotional context before showing amenity and material evidence.
+- Transition from full-bleed immersion into quiet, varied editorial spreads so the pace can slow as the story becomes more specific.
+- Match imagery by architecture, palette, light direction, and implied location; consistency across shots makes the place feel continuous.
+
+**Distinct story structure:** Arrival → enter the space → design philosophy → gathering/amenities → tactile details → invitation to stay.
+
+**Quality emphasis:** Maintain continuity of place and warm light, while varying image scale and giving the closing invitation breathing room.
+
+## Selectable car showroom and reservation
+
+File: `cf9d4d523a34481c8b109e2a31912c4f.MP4` · 16.6 seconds
+
+
+### Observed in the recording
+
+- **0.0–1.7 s** — Creator footage and a brief blurred screen precede the website demonstration.
+- **2.6–4.3 s** — A dark modern showroom is presented with enormous lower-screen titles, first AURELIA then REVUELTO. Small navigation and a number/specification panel remain around the vehicle.
+- **5.2–10.4 s** — The displayed car changes through 765LT, CHIRON, AMG ONE, and PHANTOM. The garage setting, prominent model-name placement, and side information provide a consistent selection frame.
+- **11.3–12.5 s** — A centered dark reservation panel overlays a dimmed showroom. It includes a date calendar, Rolls-Royce Phantom reservation summary, line items, a total, and a confirmation button. No completed booking is shown.
+- **approximately 13.0–16.6 s** — Social outro obscures the reservation panel.
+
+### Implementable interpretation — proposed, not verified
+
+- Use a shared showroom stage for a sequence of selectable items, swapping the item, title, and metadata together.
+- Organize the journey around selection rather than long-form vertical sections; the natural next step is a detail or reservation panel.
+- A production version needs real keyboard-accessible previous/next controls and a functional date-selection state. A visible modal is not evidence of a backend or payment flow.
+
+**Distinct story structure:** Fleet overview → compare models in one stage → choose a model → choose dates → review reservation → confirmation.
+
+**Quality emphasis:** Model changes must update image, name, specifications, and reservation data as one coherent state; the primary action must survive the visual spectacle.
+
+## Ice-cream flavor slider prototype
+
+File: `d750f231f48345299f29076b928fd2b2.MP4` · 34.2 seconds
+
+
+### Observed in the recording
+
+- **0.0–7.2 s** — A desktop display previews several ice-cream flavor states. Each keeps a large cone near the center, flavor copy on the left, product thumbnails on the right, a Buy Now control, floating ingredient pieces, and a flavor-matched background color.
+- **9.0–16.1 s** — The recording explicitly switches to Figma and shows selection, opacity adjustment, grouped text, aligned ice-cream elements, frame selection, and adding a variant.
+- **17.9–26.9 s** — Ingredients are repositioned; multiple component states are arranged; the design is duplicated and elements are replaced for other flavors.
+- **28.7–29.5 s** — Prototype frames are connected. At 29.5 s the visible settings read On click, Navigate to, Smart animate, Gentle, and 2400ms.
+- **approximately 30.5–34.2 s** — Social outro overlays the Figma interface.
+
+### Implementable interpretation — proposed, not verified
+
+- Build flavor variants around stable semantic layer roles: cone, name, description, ingredients, background, thumbnails, and action.
+- Animate matching roles between states so the ingredients and cone feel connected across transitions; all flavor-dependent values should come from one selected-flavor state in a web implementation.
+- The visible Figma timing is a prototype choice, not a universal website animation recommendation. A production interface should permit interruption and immediate selection feedback.
+
+**Distinct story structure:** Choose a flavor → coordinated flavor reveal → inspect supporting ingredients/details → purchase action. This is a state-driven product selector, not a demonstrated long landing page.
+
+**Quality emphasis:** Flavor identity must change consistently across every layer; keep the product silhouette clear and navigation usable during transitions.
+
+## Summit outdoor-fashion campaign and shop
+
+File: `daa25dfdcd444b519fb918e585387609.MP4` · 21.5 seconds
+
+
+### Observed in the recording
+
+- **0.0–4.5 s** — An elevator opens to reveal a person in outdoor clothing; SUMMIT FLOOR 34 and DRESS FOR THE ASCENT sit over the scene. A compact navigation bar is visible above.
+- **5.6–9.0 s** — Scrolling leads to a dark brown composition with huge OUT OF OFFICE lettering and separated jacket, trousers, and backpack imagery. There is no indoors appears as supporting copy.
+- **10.1–12.4 s** — Everyday altitude introduces three product cards with large product images and compact labels/prices. This is a quieter shopping section after the campaign composition.
+- **13.5 s** — A split editorial section pairs a wearer portrait on the left with Built for somewhere else and supporting copy on the right.
+- **14.6–16.9 s** — Large typographic transition, a seated figure with Higher ground, then an oversized SUMMIT wordmark at the bottom complete the page sequence.
+- **approximately 18.0–21.5 s** — The social outro overlays the lower page.
+
+### Implementable interpretation — proposed, not verified
+
+- Use an opening scene with a clear event, then bridge to commerce through a related campaign composition.
+- Alternate campaign image, typographic product collage, usable product grid, editorial rationale, and closing image so each section has its own job.
+- Keep wardrobe, colors, location cues, and product assets consistent from opening campaign to shop; the recording does not verify the underlying asset-generation workflow.
+
+**Distinct story structure:** Campaign event → collection attitude → shoppable items → wearer story → closing campaign → brand signature.
+
+**Quality emphasis:** Editorial sections should support product understanding and desire; the product grid still needs clear names, prices, and working item actions.
+
+## Proposed quality standards
+
+1. Give each page a distinct narrative verb: inspect, explore, approach, arrive, select, taste, or wear. Derive the section order from that action rather than from a reusable marketing template.
+2. Choose one visual centerpiece per section and maintain a clear hierarchy among scene, headline, supporting copy, and action.
+3. Use asset continuity deliberately: the same garment, car, property, ingredient family, or recurring symbol should remain recognizable across relevant states.
+4. Vary pacing through full-bleed imagery, restrained text-only moments, asymmetric spreads, product grids, and closing invitations according to content needs.
+5. Choreograph scene changes with text and state. Product selection must update all related values together; scene transitions should reveal or explain something.
+6. Keep navigation and meaningful actions legible, reachable, and functional. Motion must allow keyboard access, interruption, and a reduced-motion alternative in an implementation.
+7. Prepare responsive art direction explicitly. These portrait recordings mostly show desktop screens; they provide no evidence that the demonstrated pages work well at mobile viewport sizes.
+8. Use a poster/initial visual and bounded asset loading for any rich scene. Optimize the chosen media method after measuring actual behavior; no universal video, canvas, or 3D stack is implied by these references.
+9. Exclude creator captions, Instagram branding, filming angles, and outros from the webpage design language.
+10. Test the full page and intended interaction rather than judging only the recorded hero. A polished demo does not verify commerce, data persistence, accessibility, or production performance.

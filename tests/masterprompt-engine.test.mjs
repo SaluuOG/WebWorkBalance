@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  MAX_MASTER_PROMPT_LENGTH,
+  VIDEO_STYLE_STANDARDS,
+  countStyleDifferences,
+  fingerprintStyleKey,
+  getReferenceMethodCatalog,
   assessExpressReadiness,
   assessFingerprintOriginality,
   compareDesignFingerprints,
@@ -71,7 +76,7 @@ test("creates a timeboxed express build brief with a focused high-end scope", ()
   assert.match(result.prompt, /Build ausführen/);
   assert.match(result.prompt, /offene Platzhalter/);
   assert.ok(result.prompt.length > 4_000);
-  assert.ok(result.prompt.length < 15_000);
+  assert.ok(result.prompt.length < MAX_MASTER_PROMPT_LENGTH);
   assert.ok(result.warnings.some((warning) => warning.includes("Express-Zeitbox")));
 });
 
@@ -127,7 +132,7 @@ test("creates scene-by-scene motion direction with mobile and reduced-motion fal
 
 test("translates the reference studies into an original company-specific creative blueprint", () => {
   const result = generateMasterPrompt({ business: business(), prices });
-  assert.equal(result.creativeBlueprint.referenceStudyCount, 21);
+  assert.equal(result.creativeBlueprint.referenceStudyCount, 28);
   assert.ok(result.creativeBlueprint.techniques.length >= 4);
   assert.match(result.creativeBlueprint.visualMetaphor, /(Linie|Blick|Grundriss)/);
   assert.match(result.prompt, /## Kreativ-DNA DNA-/);
@@ -197,4 +202,90 @@ test("measures similarity and searches for a meaningfully different creative alt
   assert.notEqual(distinct.result.fingerprint.id, first.fingerprint.id);
   assert.ok(distinct.originality.score >= 45);
   assert.ok(distinct.originality.distinctDimensions.length >= 1);
+});
+
+test("research facts shape the concept while research bookkeeping never becomes the subject", () => {
+  const plain = generateMasterPrompt({ business: business(), prices, research: { summary: "7 Recherchequellen eingebunden; Bildrechte prüfen." } });
+  assert.doesNotMatch(plain.implementationPlan.companyFocus, /Recherchequellen|Bildrechte/);
+  const timber = generateMasterPrompt({ business: business(), prices, research: { services: ["Holzbau"], differentiators: ["regionale Wiederverwendung"], targetAudiences: ["Bauherren"] } });
+  const museum = generateMasterPrompt({ business: business(), prices, research: { services: ["Museumsarchitektur"], differentiators: ["barrierefreie Ausstellungen"], targetAudiences: ["Museen"] } });
+  assert.notEqual(timber.fingerprint.id, museum.fingerprint.id);
+  assert.match(timber.implementationPlan.companyFocus, /Holzbau.*Wiederverwendung/);
+  assert.match(museum.implementationPlan.scenes[0].subject, /Museumsarchitektur/);
+});
+
+test("every chosen method has a concrete contract in master and express", () => {
+  for (const productionTrack of ["master", "express"]) {
+    const result = generateMasterPrompt({ business: business(), prices, settings: { productionTrack, expressTimebox: "60", websiteGame: "memory" } });
+    for (const method of result.creativeBlueprint.techniques) assert.ok(result.implementationPlan.scenes.some((scene) => scene.techniqueId === method.id));
+    for (const scene of result.implementationPlan.scenes) {
+      for (const field of ["timeline", "trigger", "implementation", "assets", "mobile", "reducedMotion", "acceptance"]) assert.ok(scene[field]?.length > 15, `${scene.id} ${field}`);
+      assert.match(result.prompt, new RegExp(scene.id));
+    }
+    assert.match(result.prompt, /CompanyMiniGame/);
+    assert.ok(result.prompt.length < MAX_MASTER_PROMPT_LENGTH);
+    assert.notEqual(result.creativeBlueprint.techniques[0].id, "motion-token-grammar");
+  }
+});
+
+test("motion, 3D, text and budget switches constrain actual scene contracts", () => {
+  for (const settings of [
+    { animation: "none", spatialEffects: "hero", typographyMotion: "still" },
+    { spatialEffects: "off", technology: "three", typographyMotion: "still" },
+    { spatialEffects: "hero", technology: "standard" },
+    { spatialEffects: "hero", complexity: "simple", budget: "small" },
+  ]) {
+    const result = generateMasterPrompt({ business: business(), prices, settings });
+    assert.ok(result.implementationPlan.scenes.every((scene) => scene.renderer !== "webgl"));
+    if (settings.animation === "none") assert.ok(result.implementationPlan.scenes.every((scene) => scene.renderer === "static"));
+    if (settings.typographyMotion === "still") assert.ok(result.creativeBlueprint.techniques.every((method) => method.family !== "Typography"));
+  }
+  const hero = generateMasterPrompt({ business: business(), prices, settings: { spatialEffects: "hero" } });
+  assert.equal(hero.implementationPlan.scenes.filter((scene) => scene.renderer === "webgl").length, 1);
+  assert.equal(hero.implementationPlan.scenes.find((scene) => scene.renderer === "webgl").component, "CompanyHeroScene");
+});
+
+test("user-controlled selections are never driven by scroll and subtle tracks stay subtle", () => {
+  for (let variant = 0; variant < 12; variant++) {
+    const result = generateMasterPrompt({ business: business(), prices, variant, settings: { referenceStyle: "showroom", scrollMotion: "immersive", animation: "subtle", spatialEffects: "off" } });
+    for (const scene of result.implementationPlan.scenes) {
+      if (["proof-comparison-wipe", "guided-focus-lens", "motion-catalog-counter", "material-world-variants", "product-runway-configurator"].includes(scene.techniqueId) && scene.renderer !== "static") assert.match(scene.trigger, /Ausschließlich durch direkte/);
+      if (scene.renderer === "dom" && scene.trigger.includes("IntersectionObserver")) assert.doesNotMatch(scene.timeline, /circle\(18%|Kamera von/);
+    }
+  }
+});
+
+test("all seven recorded style worlds produce their own section ordering and production method", () => {
+  const structures = new Set();
+  for (const style of VIDEO_STYLE_STANDARDS) {
+    const result = generateMasterPrompt({ business: business(), prices, settings: { referenceStyle: style.id } });
+    assert.equal(result.implementationPlan.pageStructure.name, style.name);
+    assert.ok(result.prompt.includes(style.file));
+    structures.add(result.implementationPlan.pageStructure.sections.join("|"));
+    assert.ok(result.implementationPlan.pageStructure.workflow[0].length > 40);
+  }
+  assert.equal(structures.size, 7);
+  assert.equal(getReferenceMethodCatalog().length, 27);
+});
+
+test("new companies differ in at least three visual dimensions across a small team portfolio", () => {
+  const portfolio = [];
+  for (let i = 0; i < 10; i++) {
+    const next = generateDistinctMasterPrompt({ business: business({ sourceId: `firm-${i}`, name: `Atelier ${i}` }), prices }, portfolio);
+    for (const previous of portfolio) assert.ok(countStyleDifferences(next.result.fingerprint, previous) >= 3);
+    portfolio.push(next.result.fingerprint);
+  }
+  const first = portfolio[0];
+  assert.equal(fingerprintStyleKey(first), fingerprintStyleKey({ ...first, id: "WWB-OTHER", concept: "Anderer Firmenname" }));
+});
+
+test("games are opt-in and retain company-specific playable rules in both tracks", () => {
+  assert.equal(generateMasterPrompt({ business: business(), prices }).implementationPlan.game, null);
+  for (const websiteGame of ["automatic", "quiz", "memory", "challenge"]) {
+    const result = generateMasterPrompt({ business: business(), prices, settings: { websiteGame, animation: "none" }, research: { services: ["Holzbau"] } });
+    assert.ok(result.implementationPlan.game);
+    assert.match(result.implementationPlan.game.brief, /Holzbau/);
+    assert.match(result.implementationPlan.game.implementation, /ready → playing → feedback → completed/);
+    assert.match(result.implementationPlan.game.acceptance, /Neustart/);
+  }
 });

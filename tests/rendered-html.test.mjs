@@ -124,7 +124,7 @@ test("provides an editable company-specific masterprompt studio with durable his
   assert.match(studio, /Quelle & Lizenz prüfen/);
   assert.match(studio, /max-w-full resize-y/);
   assert.match(studio, /generateDistinctMasterPrompt/);
-  assert.match(studio, /Eigenständigkeit/);
+  assert.match(studio, /Konzept-Abstand/);
   assert.match(route, /limit\(30\)/);
   assert.match(route, /eq\(masterPrompts\.authorId, user\.id\)/);
   assert.match(route, /lead\.claimedById !== user\.id/);

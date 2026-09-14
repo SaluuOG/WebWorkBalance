@@ -46,6 +46,193 @@ const statusLabel: Record<WebsiteQualityFindingStatus, string> = {
 function statusClasses(status: WebsiteQualityFindingStatus) {
   if (status === "good") return "border-[#52d6a0]/20 bg-[#52d6a0]/[.055] text-[#75e5b7]";
   if (status === "warning") return "border-[#d7b56d]/20 bg-[#d7b56d]/[.055] text-[#efd28e]";
-  return ëvr«²ÚîÆ­yÚŞ®éğŠØay§‚·©şÖ¢•ú+~ée¢ëiºÖ—cãÂöF—cà¢Å&öw&W72fÇVS×³c‡Ò6Æ74æÖSÒ&×BÓB&r×v†—FRõ²ãuÒ²eõ¶FF×6Æ÷C×&öw&W72Ö–æF–6F÷%ÕÓ¦&rÕ²3ff†feÒ"&–ÖÆ&VÃÒ%vV'6—FRÕ66âÌ:GVgB"óà¢ÂöF—cà¢—Ğ ¢²ÆöF–ærbbW'&÷"bb7F—fU&W÷'Bbb€¢ÆF—b6Æ74æÖSÒ'&÷VæFVBÓ'†Â&÷&FW"&÷&FW"Õ²6Cv#SfEÒó#&rÕ²6Cv#SfEÒõ²ãSUÒÓB#à¢ÆF—b6Æ74æÖSÒ&fÆW‚—FV×2×7F'BvÓ2#ãÄ6—&6ÆTÆW'B6Æ74æÖSÒ&×BÓãR6—¦RÓR6‡&–æ²ÓFW‡BÕ²6VfC#†UÒ"óãÆF—b6Æ74æÖSÒ&Ö–â×rÓ#ãÇ7G&öær6Æ74æÖSÒ'FW‡B×6Ò#ä¶V–âWFöÖF—66†W"VÆ—L:GG2Õ66÷&SÂ÷7G&öæsãÇ6Æ74æÖSÒ&×BÓFW‡B×‡2ÆVF–ærÓRFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç¶W'&÷'ÓÂ÷ç·fW&–f–6F–öãòæWf–FVæ6RæÆVæwF‚òÇVÂ6Æ74æÖSÒ&×BÓ276R×’ÓFW‡B×‡2FW‡BÖf÷&Vw&÷VæBósR#ç·fW&–f–6F–öâæWf–FVæ6Rç6Æ–6RƒÂ2’æÖ‚†—FVÒ’ÓâÆÆ’¶W“×¶—FV×Óî(
-"¶—FV×ÓÂöÆ“â—ÓÂ÷VÃâ¢çVÆÇÓÂöF—cãÂöF—cà¢ÆF—b6Æ74æÖSÒ&×BÓBw&–Bw&–BÖ6öÇ2Ó"vÓ"#ãÄ'WGFöâG—SÒ&'WGFöâ"6—¦SÒ'6Ò"f&–çCÒ&÷WFÆ–æR"6Æ74æÖSÒ&&÷&FW"×v†—FRó"öä6Æ–6³×²‚’Óâfö–B'Vå66â‚—ÓãÅ&Vg&W6„7r6Æ74æÖSÒ&×"Ó"6—¦RÓ2ãR"óâW&æWWB,;ÆfVãÂô'WGFöããÆ‡&Vc×¶'W6–æW72çvV'6—FWÒF&vWCÒ%ö&Ææ²"&VÃÒ&æ÷&VfW'&W""6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"§W7F–g’Ö6VçFW"vÓ"&÷VæFVBÖÆr&÷&FW"&÷&FW"×v†—FRó‚Ó2FW‡B×6Ò#åvV'6—FR;fffæVâÄW‡FW&æÄÆ–æ²6Æ74æÖSÒ'6—¦RÓ2ãR"óãÂöãÂöF—cà¢ÂöF—cà¢—Ğ ¢²ÆöF–ærbb7F—fU&W÷'Bbb€¢ÆF—b6Æ74æÖSÒ'76R×’ÓR#à¢ÆF—b6Æ74æÖSÒ&w&–BvÓ26Ó¦w&–BÖ6öÇ2Õ³g%öWFõÒ#à¢ÆF—b6Æ74æÖSÒ'&÷VæFVBÓ'†Â&÷&FW"&÷&FW"×v†—FRõ²ã…Ò&rÖ&Æ6²óRÓB#à¢ÆF—b6Æ74æÖSÒ&fÆW‚—FV×2×7F'BvÓ2#ãÇ7â6Æ74æÖSÒ&fÆW‚6—¦RÓ6‡&–æ²Ó—FV×2Ö6VçFW"§W7F–g’Ö6VçFW"&÷VæFVB×†Â&rÕ²3S&CfÒóFW‡BÕ²3sVSV#uÒ#ãÅ6†–VÆD6†V6²6Æ74æÖSÒ'6—¦RÓR"óãÂ÷7ããÆF—b6Æ74æÖSÒ&Ö–â×rÓ#ãÇ7G&öær6Æ74æÖSÒ&&Æö6²FW‡B×6Ò#äöff—¦–VÆÆRvV'6—FRfW&–f—¦–W'CÂ÷7G&öæsãÆ‡&Vc×¶7F—fU&W÷'Bæf–æÅW&ÇÒF&vWCÒ%ö&Ææ²"&VÃÒ&æ÷&VfW'&W""6Æ74æÖSÒ&×BÓfÆW‚Ö‚×rÖgVÆÂ—FV×2Ö6VçFW"vÓG'Væ6FRFW‡B×‡2FW‡BÕ²3–f3feÒ†÷fW#§VæFW&Æ–æR#ç¶7F—fU&W÷'BæFöÖ–çÓÄW‡FW&æÄÆ–æ²6Æ74æÖSÒ'6—¦RÓ26‡&–æ²Ó"óãÂöãÇ6Æ74æÖSÒ&×BÓ"FW‡BÕ³…ÒÆVF–ærÓBFW‡BÖ×WFVBÖf÷&Vw&÷VæB#å§V÷&FçVæw2ÕfW'G&VVâ¶7F—fU&W÷'Bæöff–6–Âæ6öæf–FVæ6WÒó+r¶7F—fU&W÷'Bæöff–6–Âç&V6öçÓÂ÷ãÂöF—cãÂöF—cà¢ÂöF—cà¢ÆF—b6Æ74æÖSÒ&fÆW‚Ö–â×rÓ3b—FV×2Ö6VçFW"§W7F–g’Ö&WGvVVâvÓB&÷VæFVBÓ'†Â&÷&FW"&÷&FW"Õ²6Cv#SfEÒó‚&rÕ²6Cv#SfEÒõ²ãSUÒ‚ÓB’Ó26Ó¦&Æö6²6Ó§FW‡B×&–v‡B#à¢ÆF—cãÇ7â6Æ74æÖSÒ&&Æö6²FW‡BÕ³…ÒWW&66RG&6¶–ær×v–FW"FW‡BÖ×WFVBÖf÷&Vw&÷VæB#åVÆ—L:GCÂ÷7ããÇ7G&öær6Æ74æÖS×¶×BÓ&Æö6²FW‡BÓ7†ÂG·66÷&T6Æ76W2†7F—fU&W÷'Bæ÷fW&ÆÅ66÷&R—ÖÓç¶7F—fU&W÷'Bæ÷fW&ÆÅ66÷&WÓÂ÷7G&öæsãÂöF—cà¢ÆF—b6Æ74æÖSÒ'6Ó¦×BÓ#ãÇ7â6Æ74æÖSÒ&&Æö6²FW‡B×‡2föçBÖÖVF—VÒ#ç¶7F—fU&W÷'Bæw&FWÓÂ÷7ããÇ7â6Æ74æÖSÒ&×BÓ&Æö6²FW‡BÕ³…ÒFW‡BÖ×WFVBÖf÷&Vw&÷VæB#å&VÆVæ6‚Ô6†æ6R¶7F—fU&W÷'Bæ÷÷'GVæ—G—ÓÂ÷7ããÂöF—cà¢ÂöF—cà¢ÂöF—cà ¢ÆF—b6Æ74æÖSÒ&w&–Bw&–BÖ6öÇ2Ó2vÓ"6Ó¦w&–BÖ6öÇ2ÓR#à¢µ°¢²$çGv÷'B"ÂG¶7F—fU&W÷'BæÖWG&–72ç&W7öç6T×7Ò×6ÒÀ¢²$…DÔÂ"ÂG¶7F—fU&W÷'BæÖWG&–72æ‡FÖÄ¶'Ò´&ÒÀ¢²%|;g'FW""Â7F—fU&W÷'BæÖWG&–72çv÷&D6÷VçBçFôÆö6ÆU7G&–ær‚&FRÔDR"•ÒÀ¢²$&–ÆFW""Â7F—fU&W÷'BæÖWG&–72æ–ÖvT6÷VçEÒÀ¢²%67&—FR"Â7F—fU&W÷'BæÖWG&–72ç67&—D6÷VçEÒÀ¢ÒæÖ‚…¶Æ&VÂÂfÇVUÒ’ÓâÆF—b¶W“×¶Æ&VÇÒ6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ãuÒ&r×v†—FRõ²ã#UÒÓ"ãR#ãÇ7â6Æ74æÖSÒ&&Æö6²FW‡BÕ³…ÒFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç¶Æ&VÇÓÂ÷7ããÇ7G&öær6Æ74æÖSÒ&×BÓ&Æö6²G'Væ6FRFW‡B×‡2#ç·fÇVWÓÂ÷7G&öæsãÂöF—câ—Ğ¢ÂöF—cà ¢ÆF—cà¢ÆF—b6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"§W7F–g’Ö&WGvVVâvÓ2#ãÆF—cãÆƒB6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"vÓ"FW‡B×6ÒföçB×6VÖ–&öÆB#ãÄ6—&6ÆTÆW'B6Æ74æÖSÒ'6—¦RÓBFW‡BÕ²6VfC#†UÒ"óâv–6‡F–w7FR6†æ6VãÂöƒCãÇ6Æ74æÖSÒ&×BÓFW‡B×‡2FW‡BÖ×WFVBÖf÷&Vw&÷VæB#ä¶öæ·&WFR&wVÖVçFRl;Ç"æÇ—6RVæB&VÆVæ6‚ÔvW7,:F6‚ãÂ÷ãÂöF—cãÄ&FvRf&–çCÒ&÷WFÆ–æR"6Æ74æÖSÒ&&÷&FW"×v†—FRó#ç¶7F—fU&W÷'BçF÷—77VW2æÆVæwF‡ÓÂô&FvSãÂöF—cà¢ÆF—b6Æ74æÖSÒ&×BÓ276R×’Ó"#à¢¶7F—fU&W÷'BçF÷—77VW2ç6Æ–6RƒÂB’æÖ‚†—FVÒ’ÓâÆ'F–6ÆR¶W“×¶G¶—FVÒæ6FVv÷'—ÒÒG¶—FVÒæ–GÖÒ6Æ74æÖS×¶&÷VæFVB×†Â&÷&FW"Ó2G·7FGW46Æ76W2†—FVÒç7FGW2—ÖÓãÆF—b6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"§W7F–g’Ö&WGvVVâvÓ"#ãÇ7G&öær6Æ74æÖSÒ'FW‡B×‡2FW‡BÖf÷&Vw&÷VæB#ç¶—FVÒæÆ&VÇÓÂ÷7G&öæsãÇ7â6Æ74æÖSÒ'FW‡BÕ³…ÒföçB×6VÖ–&öÆBWW&66RG&6¶–ær×v–FW"#ç·7FGW4Æ&VÅ¶—FVÒç7FGW5×ÓÂ÷7ããÂöF—cãÇ6Æ74æÖSÒ&×BÓFW‡B×‡2ÆVF–ærÓRFW‡BÖf÷&Vw&÷VæBósR#ç¶—FVÒæf–æF–æwÓÂ÷ãÇ6Æ74æÖSÒ&×BÓFW‡B×‡2ÆVF–ærÓRFW‡BÖ×WFVBÖf÷&Vw&÷VæB#äV×fV†ÇVæs¢¶—FVÒç&V6öÖÖVæFF–öçÓÂ÷ãÂö'F–6ÆSâ—Ğ¢²7F—fU&W÷'BçF÷—77VW2æÆVæwF‚bbÆF—b6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"vÓ"&÷VæFVB×†Â&÷&FW"&÷&FW"Õ²3S&CfÒó#&rÕ²3S&CfÒõ²ãUÒÓ2FW‡B×6ÒFW‡BÕ²3sVSV#uÒ#ãÄ6†V6´6—&6ÆS"6Æ74æÖSÒ'6—¦RÓB"óâ¶V–æRFWWFÆ–6†Vâ66‡v6‡7FVÆÆVâ–Ò66†æVÆÇ66âãÂöF—cçĞ¢ÂöF—cà¢ÂöF—cà ¢Ä66÷&F–öâG—SÒ&×VÇF—ÆR"6Æ74æÖSÒ'&÷VæFVBÓ'†Â&÷&FW"&÷&FW"×v†—FRõ²ã…Ò&rÖ&Æ6²ó‚Ó2#à¢¶7F—fU&W÷'Bæ6FVv÷&–W2æÖ‚†—FVÒ’ÓâÄ66÷&F–öä—FVÒfÇVS×¶—FVÒæ¶W—Ò¶W“×¶—FVÒæ¶W—Ò6Æ74æÖSÒ&&÷&FW"×v†—FRõ²ãuÒ#ãÄ66÷&F–öåG&–vvW"6Æ74æÖSÒ&æò×VæFW&Æ–æR†÷fW#¦æò×VæFW&Æ–æR#ãÇ7â6Æ74æÖSÒ&fÆW‚Ö–â×rÓfÆW‚Ó—FV×2Ö6VçFW"vÓ2#ãÇ7â6Æ74æÖS×¶Ö–â×rÓ"FW‡BÖÆrföçB×6VÖ–&öÆBG·66÷&T6Æ76W2†—FVÒç66÷&R—ÖÓç¶—FVÒç66÷&WÓÂ÷7ããÇ7â6Æ74æÖSÒ&Ö–â×rÓ#ãÇ7G&öær6Æ74æÖSÒ&&Æö6²G'Væ6FRFW‡B×6Ò#ç¶—FVÒæÆ&VÇÓÂ÷7G&öæsãÇ7â6Æ74æÖSÒ&×BÓãR&Æö6²FW‡B×‡2föçBÖæ÷&ÖÂFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç¶—FVÒç7VÖÖ'—ÓÂ÷7ããÂ÷7ããÂ÷7ããÂô66÷&F–öåG&–vvW#ãÄ66÷&F–öä6öçFVçCãÆF—b6Æ74æÖSÒ'76R×’Ó""Ó#ç¶—FVÒæf–æF–æw2æÖ‚†VçG'’’ÓâÆF—b¶W“×¶VçG'’æ–GÒ6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ãuÒ&r×v†—FRõ²ã%ÒÓ2#ãÆF—b6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"§W7F–g’Ö&WGvVVâvÓ"#ãÇ7G&öær6Æ74æÖSÒ'FW‡B×‡2#ç¶VçG'’æÆ&VÇÓÂ÷7G&öæsãÄ&FvRf&–çCÒ&÷WFÆ–æR"6Æ74æÖS×¶‚ÓR‚Ó"FW‡BÕ³…ÒG·7FGW46Æ76W2†VçG'’ç7FGW2—ÖÓç·7FGW4Æ&VÅ¶VçG'’ç7FGW5×ÓÂô&FvSãÂöF—cãÇ6Æ74æÖSÒ&×BÓãRFW‡B×‡2ÆVF–ærÓRFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç¶VçG'’æf–æF–æwÓÂ÷ç¶VçG'’ç7FGW2ÓÒ&vööB"bbÇ6Æ74æÖSÒ&×BÓFW‡B×‡2ÆVF–ærÓRFW‡BÖf÷&Vw&÷VæBósR#î(i"¶VçG'’ç&V6öÖÖVæFF–öçÓÂ÷çÓÂöF—câ—ÓÂöF—cãÂô66÷&F–öä6öçFVçCãÂô66÷&F–öä—FVÓâ—Ğ¢Âô66÷&F–öãà ¢ÆF—b6Æ74æÖSÒ'&÷VæFVBÓ'†Â&÷&FW"&÷&FW"Õ²6Cv#SfEÒó‚&rÕ²6Cv#SfEÒõ²ã3UÒÓ26Ó§ÓB#à¢ÆF—b6Æ74æÖSÒ&fÆW‚—FV×2×7F'B§W7F–g’Ö&WGvVVâvÓ2#ãÆF—cãÇ6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"vÓ"FW‡B×6ÒföçB×6VÖ–&öÆBFW‡BÕ²6VfC#†UÒ#ãÅ7&¶ÆW26Æ74æÖSÒ'6—¦RÓB"óâ&V6†W&6†RÔF÷76–W#Â÷ãÇ6Æ74æÖSÒ&×BÓFW‡B×‡2ÆVF–ærÓRFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ä–æ†ÇFRVæB76WG2F—&V·BW2FW"fW&–f—¦–W'FVâöff—¦–VÆÆVâvV'6—FRãÂ÷ãÂöF—cãÄ'WGFöâG—SÒ&'WGFöâ"6—¦SÒ'6Ò"f&–çCÒ&÷WFÆ–æR"6Æ74æÖSÒ&&÷&FW"×v†—FRó"öä6Æ–6³×¶6÷•&W6V&6‡ÓãÄ6÷’6Æ74æÖSÒ&×"Ó"6—¦RÓ2ãR"óâ¶÷–W&VãÂô'WGFöããÂöF—cà¢ÅF'2FVfVÇEfÇVSÒ&–æfò"6Æ74æÖSÒ&×BÓB#à¢ÅF'4Æ—7B6Æ74æÖSÒ&w&–B‚ÖWFòrÖgVÆÂw&–BÖ6öÇ2Ó2&rÖ&Æ6²ó#Ó#ãÅF'5G&–vvW"fÇVSÒ&–æfò"6Æ74æÖSÒ'FW‡B×‡2#ãÄ&÷B6Æ74æÖSÒ&×"Ó6—¦RÓ2ãR"óâ–æf÷3ÂõF'5G&–vvW#ãÅF'5G&–vvW"fÇVSÒ&–ÖvW2"6Æ74æÖSÒ'FW‡B×‡2#ãÄ–ÖvT–6öâ6Æ74æÖSÒ&×"Ó6—¦RÓ2ãR"óâ&–ÆFW#ÂõF'5G&–vvW#ãÅF'5G&–vvW"fÇVSÒ'6÷W&6W2"6Æ74æÖSÒ'FW‡B×‡2#ãÄvÆö&S"6Æ74æÖSÒ&×"Ó6—¦RÓ2ãR"óâVVÆÆVãÂõF'5G&–vvW#ãÂõF'4Æ—7Cà¢ÅF'46öçFVçBfÇVSÒ&–æfò"6Æ74æÖSÒ&×BÓ276R×’Ó2#à¢¶7F—fU&W÷'Bç&W6V&6‚æFW67&—F–öâbbÆF—b6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ãuÒ&rÖ&Æ6²óÓ2#ãÇ7â6Æ74æÖSÒ'FW‡BÕ³…ÒWW&66RG&6¶–ær×v–FW"FW‡BÖ×WFVBÖf÷&Vw&÷VæB#å6V—FVæ&W66‡&V–'VæsÂ÷7ããÇ6Æ74æÖSÒ&×BÓ"FW‡B×‡2ÆVF–ærÓRFW‡BÖf÷&Vw&÷VæBóƒ#ç¶7F—fU&W÷'Bç&W6V&6‚æFW67&—F–öçÓÂ÷ãÂöF—cçĞ¢Å&W6V&6„Æ—7BF—FÆSÒ$ÆV—7GVæw2ÒVæB–æ†ÇG6†–çvV—6R"—FV×3×¶7F—fU&W÷'Bç&W6V&6‚ç6W'f–6T†–çG2æÆVæwF‚ò7F—fU&W÷'Bç&W6V&6‚ç6W'f–6T†–çG2¢7F—fU&W÷'Bç&W6V&6‚æ†VF–æw2ç6Æ–6RƒÂ‚—ÒV×G“Ò$¶V–æR¶Æ&VâÆV—7GVæw<;Æ&W'66‡&–gFVâW‡G&†–W'Bâ"óà¢Å&W6V&6„Æ—7BF—FÆSÒ$¶öçF·F†–çvV—6R"—FV×3×¶7F—fU&W÷'Bç&W6V&6‚æ6öçF7D†–çG7ÒV×G“Ò$¶V–æR§W<:GG¦Æ–6†Vâ¶öçF·F†–çvV—6RW‡G&†–W'Bâ"óà¢ÆF—b6Æ74æÖSÒ&w&–Bw&–BÖ6öÇ2Ó"vÓ"#ãÅ&W6V&6„Æ—7BF—FÆSÒ%FV6†æ–²Ô†–çvV—6R"—FV×3×¶7F—fU&W÷'Bç&W6V&6‚çFV6†æöÆöw”†–çG7ÒV×G“Ò$¶V–â7—7FVÒV–æFWWF–rW&¶æçBâ"6ö×7BóãÆF—b6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ãuÒ&rÖ&Æ6²óÓ2#ãÇ7â6Æ74æÖSÒ'FW‡BÕ³…ÒWW&66RG&6¶–ær×v–FW"FW‡BÖ×WFVBÖf÷&Vw&÷VæB#äf&&†–çvV—6SÂ÷7ããÆF—b6Æ74æÖSÒ&×BÓ2fÆW‚fÆW‚×w&vÓ"#ç¶7F—fU&W÷'Bç&W6V&6‚æ'&æD6öÆ÷'2æÖ‚†6öÆ÷"’ÓâÇ7â¶W“×¶6öÆ÷'Ò6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"vÓãRFW‡BÕ³…ÒFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ãÇ7â6Æ74æÖSÒ'6—¦RÓR&÷VæFVBÖÖB&÷&FW"&÷&FW"×v†—FRóR"7G–ÆS×·²&6¶w&÷VæD6öÆ÷#¢6öÆ÷"×Òóç¶6öÆ÷'ÓÂ÷7ãâ—×²7F—fU&W÷'Bç&W6V&6‚æ'&æD6öÆ÷'2æÆVæwF‚bbÇ7â6Æ74æÖSÒ'FW‡B×‡2FW‡BÖ×WFVBÖf÷&Vw&÷VæB#ä¶V–æRW‡G&†–W'BãÂ÷7ãçÓÂöF—cãÂöF—cãÂöF—cà¢ÂõF'46öçFVçCà¢ÅF'46öçFVçBfÇVSÒ&–ÖvW2"6Æ74æÖSÒ&×BÓ2#à¢¶7F—fU&W÷'Bç&W6V&6‚æ–ÖvW2æÆVæwF‚òÆF—b6Æ74æÖSÒ&w&–Bw&–BÖ6öÇ2Ó"vÓ"#ç¶7F—fU&W÷'Bç&W6V&6‚æ–ÖvW2ç6Æ–6RƒÂ‚’æÖ‚†–ÖvR’ÓâÆ¶W“×¶–ÖvRçW&ÇÒ‡&Vc×¶–ÖvRçW&ÇÒF&vWCÒ%ö&Ææ²"&VÃÒ&æ÷&VfW'&W""6Æ74æÖSÒ&w&÷W÷fW&fÆ÷rÖ†–FFVâ&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ã…Ò&rÖ&Æ6²ó#ãÆ–Ör7&3×¶–ÖvRçW&ÇÒÇC×¶–ÖvRæÇGÒÆöF–æsÒ&Æ§’"6Æ74æÖSÒ&7V7B×f–FVòrÖgVÆÂ&rÖ&Æ6²ó#ö&¦V7BÖ6÷fW""óãÆF—b6Æ74æÖSÒ'Ó"#ãÆF—b6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"§W7F–g’Ö&WGvVVâvÓ"#ãÇ7â6Æ74æÖSÒ'G'Væ6FRFW‡BÕ³…ÒföçBÖÖVF—VÒ#ç¶–ÖvRæÇGÓÂ÷7ããÄW‡FW&æÄÆ–æ²6Æ74æÖSÒ'6—¦RÓ26‡&–æ²ÓFW‡BÖ×WFVBÖf÷&Vw&÷VæB"óãÂöF—cãÇ6Æ74æÖSÒ&×BÓFW‡BÕ³…ÒÆVF–ærÓBFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç¶–ÖvRæ¶–æBÓÓÒ&Æövò"ò$ÆövòÔ†–çvV—2"¢–ÖvRæ¶–æBÓÓÒ'6ö6–Â×&Wf–Wr"ò%6ö6–Â&Wf–Wr"¢%vV'6—FRÔ&–ÆB'Ò+r&V6‡FR,;ÆfVãÂ÷ãÂöF—cãÂöâ—ÓÂöF—câ¢Ç6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"ÖF6†VB&÷&FW"×v†—FRó’ÓrFW‡BÖ6VçFW"FW‡B×‡2FW‡BÖ×WFVBÖf÷&Vw&÷VæB#ä¶V–æRvVV–væWFVâ&–ÆF¶æF–FFVâ–âFW"7F'G6V—FRvVgVæFVâãÂ÷çĞ¢Ç6Æ74æÖSÒ&×BÓ2fÆW‚vÓ"FW‡BÕ³…ÒÆVF–ærÓBFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ãÅ6†–VÆD6†V6²6Æ74æÖSÒ&×BÓãR6—¦RÓ2ãR6‡&–æ²ÓFW‡BÕ²3sVSV#uÒ"óâF–R&–ÆFW"vVŒ;g&Vâæ–6‡BWFöÖF—66‚WV6‚âf÷"9Æ&W&æ†ÖR–ÖÖW"§W7F–Ö×VærÂW&†V&W'&V6‡BVæBÆ—¦Vç¢,;ÆfVâãÂ÷à¢ÂõF'46öçFVçCà¢ÅF'46öçFVçBfÇVSÒ'6÷W&6W2"6Æ74æÖSÒ&×BÓ276R×’Ó2#à¢ÆF—b6Æ74æÖSÒ&w&–BvÓ"#ç¶7F—fU&W÷'Bç&W6V&6‚æ–×÷'FçEvW2æÖ‚‡vR’ÓâÆ¶W“×·vRçW&ÇÒ‡&Vc×·vRçW&ÇÒF&vWCÒ%ö&Ææ²"&VÃÒ&æ÷&VfW'&W""6Æ74æÖSÒ&fÆW‚—FV×2Ö6VçFW"§W7F–g’Ö&WGvVVâvÓ2&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ãuÒ&rÖ&Æ6²óÓ2FW‡B×‡2G&ç6—F–öâ†÷fW#¦&÷&FW"Õ²6Cv#SfEÒó##ãÇ7â6Æ74æÖSÒ&Ö–â×rÓ#ãÇ7G&öær6Æ74æÖSÒ&&Æö6²G'Væ6FRFW‡BÖf÷&Vw&÷VæB#ç·vRæÆ&VÇÓÂ÷7G&öæsãÇ7â6Æ74æÖSÒ&×BÓ&Æö6²G'Væ6FRFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç·vRçG—WÒ+r·vRçW&ÇÓÂ÷7ããÂ÷7ããÄW‡FW&æÄÆ–æ²6Æ74æÖSÒ'6—¦RÓ2ãR6‡&–æ²ÓFW‡BÖ×WFVBÖf÷&Vw&÷VæB"óãÂöâ—×²7F—fU&W÷'Bç&W6V&6‚æ–×÷'FçEvW2æÆVæwF‚bbÇ6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"ÖF6†VB&÷&FW"×v†—FRó’ÓbFW‡BÖ6VçFW"FW‡B×‡2FW‡BÖ×WFVBÖf÷&Vw&÷VæB#ä¶V–æR&VÆWfçFVâVçFW'6V—FVâW‡G&†–W'BãÂ÷çÓÂöF—cà¢Å&W6V&6„Æ—7BF—FÆSÒ%6ö6–ÂÖVF–"—FV×3×¶7F—fU&W÷'Bç&W6V&6‚ç6ö6–ÄÆ–æ·7ÒV×G“Ò$¶V–æR6ö6–ÂÔÆ–æ·2VbFW"vV'6—FRW&¶æçBâ"óà¢ÂõF'46öçFVçCà¢ÂõF'3à¢ÂöF—cà ¢ÆF—b6Æ74æÖSÒ&fÆW‚fÆW‚Ö6öÂvÓ"6Ó¦fÆW‚×&÷r#à¢Ä'WGFöâG—SÒ&'WGFöâ"f&–çCÒ&÷WFÆ–æR"6Æ74æÖSÒ&fÆW‚Ó&÷&FW"×v†—FRó"öä6Æ–6³×²‚’Óâfö–B'Vå66â‚—ÒF—6&ÆVC×¶ÆöF–æwÓãÅ&Vg&W6„7r6Æ74æÖSÒ&×"Ó"6—¦RÓB"óâæWR,;ÆfVãÂô'WGFöãà¢Æ‡&Vc×¶7F—fU&W÷'Bæf–æÅW&ÇÒF&vWCÒ%ö&Ææ²"&VÃÒ&æ÷&VfW'&W""6Æ74æÖSÒ&fÆW‚‚ÓfÆW‚Ó—FV×2Ö6VçFW"§W7F–g’Ö6VçFW"vÓ"&÷VæFVB×†Â&rÕ²3ff†feÒ‚ÓBFW‡B×6ÒföçB×6VÖ–&öÆBFW‡BÕ²3sEÒ#åvV'6—FR;fffæVâÄW‡FW&æÄÆ–æ²6Æ74æÖSÒ'6—¦RÓB"óãÂöà¢ÂöF—cà¢·6f–æt&Æö6¶VBbbÇ6Æ74æÖSÒ'FW‡BÖ6VçFW"FW‡BÕ³…ÒÆVF–ærÓBFW‡BÖ×WFVBÖf÷&Vw&÷VæB#äFW"66â—7B6–6‡F&"Âv—&B&W"æ–6‡B–ÒÆVBvW7V–6†W'BÂ6öÆævRFV–âFVÖÖ—FvÆ–VBF&â&&V—FWBãÂ÷çĞ¢Ç6Æ74æÖSÒ'FW‡BÕ³…ÒÆVF–ærÓBFW‡BÖ×WFVBÖf÷&Vw&÷VæB#å7FæC¢¶æWrFFR†7F—fU&W÷'Bç66ææVDB’çFôÆö6ÆU7G&–ær‚&FRÔDR"—Ò+rWFöÖF—66†W"66†æVÆÇ66âÂ¶V–âföÆÇ7L:FæF–vW"'&÷w6W"ÒÂÆ–v‡F†÷W6RÒöFW"&V6‡G66†V6²ãÂ÷à¢ÂöF—cà¢—Ğ ¢²ÆöF–ærbbW'&÷"bb7F—fU&W÷'Bbb€¢Ä'WGFöâG—SÒ&'WGFöâ"6Æ74æÖSÒ'rÖgVÆÂ"öä6Æ–6³×²‚’Óâfö–B'Vå66â‚—ÓãÅ6V&6‚6Æ74æÖSÒ&×"Ó"6—¦RÓB"óâöff—¦–VÆÆRvV'6—FRæÇ—6–W&VãÂô'WGFöãà¢—Ğ¢ÂöF—cà¢Â÷6V7F–öãà¢“°§Ğ ¦gVæ7F–öâ&W6V&6„Æ—7B‡²F—FÆRÂ—FV×2ÂV×G’Â6ö×7BÒfÇ6RÓ¢²F—FÆS¢7G&–æs²—FV×3¢7G&–æuµÓ²V×G“¢7G&–æs²6ö×7Có¢&ööÆVâÒ’°¢&WGW&âÆF—b6Æ74æÖSÒ'&÷VæFVB×†Â&÷&FW"&÷&FW"×v†—FRõ²ãuÒ&rÖ&Æ6²óÓ2#ãÇ7â6Æ74æÖSÒ'FW‡BÕ³…ÒWW&66RG&6¶–ær×v–FW"FW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç·F—FÆWÓÂ÷7ãç¶—FV×2æÆVæwF‚òÇVÂ6Æ74æÖS×¶×BÓ"76R×’ÓFW‡B×‡2ÆVF–ærÓRFW‡BÖf÷&Vw&÷VæBóƒG¶6ö×7Bò&Æ–æRÖ6Æ×Ób"¢"'ÖÓç¶—FV×2ç6Æ–6RƒÂ6ö×7Bòb¢’æÖ‚†—FVÒ’ÓâÆÆ’¶W“×¶—FV×Ò6Æ74æÖSÒ&'&V²×v÷&G2#î(
-"¶—FV×ÓÂöÆ“â—ÓÂ÷VÃâ¢Ç6Æ74æÖSÒ&×BÓ"FW‡B×‡2ÆVF–ærÓRFW‡BÖ×WFVBÖf÷&Vw&÷VæB#ç¶V×G—ÓÂ÷çÓÂöF—cã°§Ğ
+  return "border-[#ff6677]/20 bg-[#ff6677]/[.055] text-[#ff8290]";
+}
+
+function scoreClasses(score: number) {
+  if (score >= 80) return "text-[#75e5b7]";
+  if (score >= 60) return "text-[#efd28e]";
+  return "text-[#ff8290]";
+}
+
+export function WebsiteQualityScanner({
+  business,
+  report,
+  currentAudit,
+  savingBlocked,
+  onReport,
+}: {
+  business: Business;
+  report: WebsiteQualityReport | null;
+  currentAudit: WebsiteAudit;
+  savingBlocked: boolean;
+  onReport: (report: WebsiteQualityReport, audit: WebsiteAudit) => Promise<void> | void;
+}) {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [verification, setVerification] = useState<OfficialWebsiteVerification | null>(report?.official ?? null);
+  const [localReport, setActiveReport] = useState<WebsiteQualityReport | null>(report);
+  const autoScanKey = useRef<string | null>(null);
+  const activeReport = localReport && (!report || localReport.scannedAt >= report.scannedAt) ? localReport : report;
+
+  async function runScan(silent = false) {
+    if (!business.website || business.isDemo || loading) return;
+    setLoading(true);
+    setError(null);
+    if (!silent) toast.info("Offizielle Website wird geprÃ¼ft â€¦");
+    try {
+      const response = await fetch("/api/website-quality", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          business: {
+            name: business.name,
+            address: business.address,
+            phone: business.phone,
+            email: business.email,
+            source: business.source,
+            sourceUrl: business.sourceUrl,
+            website: business.website,
+          },
+        }),
+      });
+      const data = (await response.json()) as ScanResponse;
+      if (!response.ok) throw new Error(data.error || "Der Website-Scan ist fehlgeschlagen.");
+      setVerification(data.verification ?? null);
+      if (!data.report) {
+        setActiveReport(null);
+        setError(data.verification?.reason ?? "Die Website konnte nicht sicher als offizielle Firmen-Website bestÃ¤tigt werden.");
+        return;
+      }
+      const nextAudit = quickAuditFromWebsiteReport(data.report, currentAudit);
+      setActiveReport(data.report);
+      await onReport(data.report, nextAudit);
+      toast.success(`Website geprÃ¼ft: ${data.report.overallScore}/100`);
+    } catch (scanError) {
+      setError(scanError instanceof Error ? scanError.message : "Der Website-Scan konnte nicht abgeschlossen werden.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    const key = `${business.id}|${business.website ?? ""}`;
+    if (!business.website || business.isDemo || activeReport || autoScanKey.current === key) return;
+    autoScanKey.current = key;
+    const timer = window.setTimeout(() => void runScan(true), 250);
+    return () => window.clearTimeout(timer);
+    // The automatic scan is intentionally keyed to the selected company URL.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [business.id, business.website]);
+
+  if (!business.website || business.isDemo) return null;
+
+  async function copyResearch() {
+    if (!activeReport) return;
+    await navigator.clipboard.writeText(websiteResearchBrief(business, activeReport));
+    toast.success("Recherche-Dossier kopiert");
+  }
+
+  return (
+    <section className="overflow-hidden rounded-3xl border border-[#6fa8ff]/22 bg-gradient-to-br from-[#6fa8ff]/[.08] via-white/[.025] to-[#52d6a0]/[.045] shadow-[0_24px_80px_rgba(0,0,0,.18)]">
+      <div className="border-b border-white/[.07] p-4 sm:p-5">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="flex items-center gap-2 text-sm font-semibold text-[#9fc1ff]"><Search className="size-4" /> Website Quality Scan</p>
+            <h3 className="mt-1 text-xl font-semibold tracking-tight">Offiziellen Auftritt prÃ¼fen</h3>
+            <p className="mt-1 text-xs leading-5 text-muted-foreground">Zuordnung, QualitÃ¤t, Relaunch-Chancen und Recherchematerial in einem Durchlauf.</p>
+          </div>
+          <Badge variant="outline" className="shrink-0 border-[#52d6a0]/20 bg-[#52d6a0]/[.06] text-[#75e5b7]"><ShieldCheck className="mr-1 size-3.5" /> Nur offiziell</Badge>
+        </div>
+      </div>
+
+      <div className="p-4 sm:p-5">
+        {loading && (
+          <div className="rounded-2xl border border-white/[.08] bg-black/15 p-5">
+            <div className="flex items-center gap-3"><RefreshCw className="size-5 animate-spin text-[#9fc1ff]" /><div><strong className="text-sm">Website wird analysiert</strong><p className="mt-1 text-xs text-muted-foreground">Domain bestÃ¤tigen Â· Technik lesen Â· Inhalte und Bildquellen sammeln</p></div></div>
+            <Progress value={68} className="mt-4 bg-white/[.07] [&_[data-slot=progress-indicator]]:bg-[#6fa8ff]" aria-label="Website-Scan lÃ¤uft" />
+          </div>
+        )}
+
+        {!loading && error && !activeReport && (
+          <div className="rounded-2xl border border-[#d7b56d]/20 bg-[#d7b56d]/[.055] p-4">
+            <div className="flex items-start gap-3"><CircleAlert className="mt-0.5 size-5 shrink-0 text-[#efd28e]" /><div className="min-w-0"><strong className="text-sm">Kein automatischer QualitÃ¤ts-Score</strong><p className="mt-1 text-xs leading-5 text-muted-foreground">{error}</p>{verification?.evidence.length ? <ul className="mt-3 space-y-1 text-xs text-foreground/75">{verification.evidence.slice(0, 3).map((item) => <li key={item}>â€¢ {item}</li>)}</ul> : null}</div></div>
+            <div className="mt-4 grid grid-cols-2 gap-2"><Button type="button" size="sm" variant="outline" className="border-white/10" onClick={() => void runScan()}><RefreshCw className="mr-2 size-3.5" /> Erneut prÃ¼fen</Button><a href={business.website} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 rounded-lg border border-white/10 px-3 text-sm">Website Ã¶ffnen <ExternalLink className="size-3.5" /></a></div>
+          </div>
+        )}
+
+        {!loading && activeReport && (
+          <div className="space-y-5">
+            <div className="grid gap-3 sm:grid-cols-[1fr_auto]">
+              <div className="rounded-2xl border border-white/[.08] bg-black/15 p-4">
+                <div className="flex items-start gap-3"><span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#52d6a0]/10 text-[#75e5b7]"><ShieldCheck className="size-5" /></span><div className="min-w-0"><strong className="block text-sm">Offizielle Website verifiziert</strong><a href={activeReport.finalUrl} target="_blank" rel="noreferrer" className="mt-1 flex max-w-full items-center gap-1 truncate text-xs text-[#9fc1ff] hover:underline">{activeReport.domain}<ExternalLink className="size-3 shrink-0" /></a><p className="mt-2 text-[11px] leading-4 text-muted-foreground">Zuordnungs-Vertrauen {activeReport.official.confidence}/100 Â· {activeReport.official.reason}</p></div></div>
+              </div>
+              <div className="flex min-w-36 items-center justify-between gap-4 rounded-2xl border border-[#d7b56d]/18 bg-[#d7b56d]/[.055] px-4 py-3 sm:block sm:text-right">
+                <div><span className="block text-[11px] uppercase tracking-wider text-muted-foreground">QualitÃ¤t</span><strong className={`mt-1 block text-3xl ${scoreClasses(activeReport.overallScore)}`}>{activeReport.overallScore}</strong></div>
+                <div className="sm:mt-1"><span className="block text-xs font-medium">{activeReport.grade}</span><span className="mt-1 block text-[11px] text-muted-foreground">Relaunch-Chance {activeReport.opportunity}</span></div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+              {[
+                ["Antwort", `${activeReport.metrics.responseMs} ms`],
+                ["HTML", `${activeReport.metrics.htmlKb} KB`],
+                ["WÃ¶rter", activeReport.metrics.wordCount.toLocaleString("de-DE")],
+                ["Bilder", activeReport.metrics.imageCount],
+                ["Scripte", activeReport.metrics.scriptCount],
+              ].map(([label, value]) => <div key={label} className="rounded-xl border border-white/[.07] bg-white/[.025] p-2.5"><span className="block text-[10px] text-muted-foreground">{label}</span><strong className="mt-1 block truncate text-xs">{value}</strong></div>)}
+            </div>
+
+            <div>
+              <div className="flex items-center justify-between gap-3"><div><h4 className="flex items-center gap-2 text-sm font-semibold"><CircleAlert className="size-4 text-[#efd28e]" /> Wichtigste Chancen</h4><p className="mt-1 text-xs text-muted-foreground">Konkrete Argumente fÃ¼r Analyse und Relaunch-GesprÃ¤ch.</p></div><Badge variant="outline" className="border-white/10">{activeReport.topIssues.length}</Badge></div>
+              <div className="mt-3 space-y-2">
+                {activeReport.topIssues.slice(0, 4).map((item) => <article key={`${item.category}-${item.id}`} className={`rounded-xl border p-3 ${statusClasses(item.status)}`}><div className="flex items-center justify-between gap-2"><strong className="text-xs text-foreground">{item.label}</strong><span className="text-[10px] font-semibold uppercase tracking-wider">{statusLabel[item.status]}</span></div><p className="mt-1 text-xs leading-5 text-foreground/75">{item.finding}</p><p className="mt-1 text-xs leading-5 text-muted-foreground">Empfehlung: {item.recommendation}</p></article>)}
+                {!activeReport.topIssues.length && <div className="flex items-center gap-2 rounded-xl border border-[#52d6a0]/20 bg-[#52d6a0]/[.05] p-3 text-sm text-[#75e5b7]"><CheckCircle2 className="size-4" /> Keine deutlichen Schwachstellen im Schnellscan.</div>}
+              </div>
+            </div>
+
+            <Accordion type="multiple" className="rounded-2xl border border-white/[.08] bg-black/10 px-3">
+              {activeReport.categories.map((item) => <AccordionItem value={item.key} key={item.key} className="border-white/[.07]"><AccordionTrigger className="no-underline hover:no-underline"><span className="flex min-w-0 flex-1 items-center gap-3"><span className={`min-w-12 text-lg font-semibold ${scoreClasses(item.score)}`}>{item.score}</span><span className="min-w-0"><strong className="block truncate text-sm">{item.label}</strong><span className="mt-0.5 block text-xs font-normal text-muted-foreground">{item.summary}</span></span></span></AccordionTrigger><AccordionContent><div className="space-y-2 pb-1">{item.findings.map((entry) => <div key={entry.id} className="rounded-xl border border-white/[.07] bg-white/[.02] p-3"><div className="flex items-center justify-between gap-2"><strong className="text-xs">{entry.label}</strong><Badge variant="outline" className={`h-5 px-2 text-[10px] ${statusClasses(entry.status)}`}>{statusLabel[entry.status]}</Badge></div><p className="mt-1.5 text-xs leading-5 text-muted-foreground">{entry.finding}</p>{entry.status !== "good" && <p className="mt-1 text-xs leading-5 text-foreground/75">â†’ {entry.recommendation}</p>}</div>)}</div></AccordionContent></AccordionItem>)}
+            </Accordion>
+
+            <div className="rounded-2xl border border-[#d7b56d]/18 bg-[#d7b56d]/[.035] p-3 sm:p-4">
+              <div className="flex items-start justify-between gap-3"><div><p className="flex items-center gap-2 text-sm font-semibold text-[#efd28e]"><Sparkles className="size-4" /> Recherche-Dossier</p><p className="mt-1 text-xs leading-5 text-muted-foreground">Inhalte und Assets direkt aus der verifizierten offiziellen Website.</p></div><Button type="button" size="sm" variant="outline" className="border-white/10" onClick={copyResearch}><Copy className="mr-2 size-3.5" /> Kopieren</Button></div>
+              <Tabs defaultValue="info" className="mt-4">
+                <TabsList className="grid h-auto w-full grid-cols-3 bg-black/20 p-1"><TabsTrigger value="info" className="text-xs"><Bot className="mr-1 size-3.5" /> Infos</TabsTrigger><TabsTrigger value="images" className="text-xs"><ImageIcon className="mr-1 size-3.5" /> Bilder</TabsTrigger><TabsTrigger value="sources" className="text-xs"><Globe2 className="mr-1 size-3.5" /> Quellen</TabsTrigger></TabsList>
+                <TabsContent value="info" className="mt-3 space-y-3">
+                  {activeReport.research.description && <div className="rounded-xl border border-white/[.07] bg-black/10 p-3"><span className="text-[10px] uppercase tracking-wider text-muted-foreground">Seitenbeschreibung</span><p className="mt-2 text-xs leading-5 text-foreground/80">{activeReport.research.description}</p></div>}
+                  <ResearchList title="Leistungs- und Inhaltshinweise" items={activeReport.research.serviceHints.length ? activeReport.research.serviceHints : activeReport.research.headings.slice(0, 8)} empty="Keine klaren LeistungsÃ¼berschriften extrahiert." />
+                  <ResearchList title="Kontakthinweise" items={activeReport.research.contactHints} empty="Keine zusÃ¤tzlichen Kontakthinweise extrahiert." />
+                  <div className="grid grid-cols-2 gap-2"><ResearchList title="Technik-Hinweise" items={activeReport.research.technologyHints} empty="Kein System eindeutig erkannt." compact /><div className="rounded-xl border border-white/[.07] bg-black/10 p-3"><span className="text-[10px] uppercase tracking-wider text-muted-foreground">Farbhinweise</span><div className="mt-3 flex flex-wrap gap-2">{activeReport.research.brandColors.map((color) => <span key={color} className="flex items-center gap-1.5 text-[10px] text-muted-foreground"><span className="size-5 rounded-md border border-white/15" style={{ backgroundColor: color }} />{color}</span>)}{!activeReport.research.brandColors.length && <span className="text-xs text-muted-foreground">Keine extrahiert.</span>}</div></div></div>
+                </TabsContent>
+                <TabsContent value="images" className="mt-3">
+                  {activeReport.research.images.length ? <div className="grid grid-cols-2 gap-2">{activeReport.research.images.slice(0, 8).map((image) => <a key={image.url} href={image.url} target="_blank" rel="noreferrer" className="group overflow-hidden rounded-xl border border-white/[.08] bg-black/10"><img src={image.url} alt={image.alt} loading="lazy" className="aspect-video w-full bg-black/20 object-cover" /><div className="p-2"><div className="flex items-center justify-between gap-2"><span className="truncate text-[11px] font-medium">{image.alt}</span><ExternalLink className="size-3 shrink-0 text-muted-foreground" /></div><p className="mt-1 text-[10px] leading-4 text-muted-foreground">{image.kind === "logo" ? "Logo-Hinweis" : image.kind === "social-preview" ? "Social Preview" : "Website-Bild"} Â· Rechte prÃ¼fen</p></div></a>)}</div> : <p className="rounded-xl border border-dashed border-white/10 py-7 text-center text-xs text-muted-foreground">Keine geeigneten Bildkandidaten in der Startseite gefunden.</p>}
+                  <p className="mt-3 flex gap-2 text-[11px] leading-4 text-muted-foreground"><ShieldCheck className="mt-0.5 size-3.5 shrink-0 text-[#75e5b7]" /> Die Bilder gehÃ¶ren nicht automatisch euch. Vor Ãœbernahme immer Zustimmung, Urheberrecht und Lizenz prÃ¼fen.</p>
+                </TabsContent>
+                <TabsContent value="sources" className="mt-3 space-y-3">
+                  <div className="grid gap-2">{activeReport.research.importantPages.map((page) => <a key={page.url} href={page.url} target="_blank" rel="noreferrer" className="flex items-center justify-between gap-3 rounded-xl border border-white/[.07] bg-black/10 p-3 text-xs transition hover:border-[#d7b56d]/20"><span className="min-w-0"><strong className="block truncate text-foreground">{page.label}</strong><span className="mt-1 block truncate text-muted-foreground">{page.type} Â· {page.url}</span></span><ExternalLink className="size-3.5 shrink-0 text-muted-foreground" /></a>)}{!activeReport.research.importantPages.length && <p className="rounded-xl border border-dashed border-white/10 py-6 text-center text-xs text-muted-foreground">Keine relevanten Unterseiten extrahiert.</p>}</div>
+                  <ResearchList title="Social Media" items={activeReport.research.socialLinks} empty="Keine Social-Links auf der Website erkannt." />
+                </TabsContent>
+              </Tabs>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <Button type="button" variant="outline" className="flex-1 border-white/10" onClick={() => void runScan()} disabled={loading}><RefreshCw className="mr-2 size-4" /> Neu prÃ¼fen</Button>
+              <a href={activeReport.finalUrl} target="_blank" rel="noreferrer" className="flex h-10 flex-1 items-center justify-center gap-2 rounded-xl bg-[#6fa8ff] px-4 text-sm font-semibold text-[#07101d]">Website Ã¶ffnen <ExternalLink className="size-4" /></a>
+            </div>
+            {savingBlocked && <p className="text-center text-[11px] leading-4 text-muted-foreground">Der Scan ist sichtbar, wird aber nicht im Lead gespeichert, solange dein Teammitglied daran arbeitet.</p>}
+            <p className="text-[11px] leading-4 text-muted-foreground">Stand: {new Date(activeReport.scannedAt).toLocaleString("de-DE")} Â· Automatischer Schnellscan, kein vollstÃ¤ndiger Browser-, Lighthouse- oder Rechtscheck.</p>
+          </div>
+        )}
+
+        {!loading && !error && !activeReport && (
+          <Button type="button" className="w-full" onClick={() => void runScan()}><Search className="mr-2 size-4" /> Offizielle Website analysieren</Button>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function ResearchList({ title, items, empty, compact = false }: { title: string; items: string[]; empty: string; compact?: boolean }) {
+  return <div className="rounded-xl border border-white/[.07] bg-black/10 p-3"><span className="text-[10px] uppercase tracking-wider text-muted-foreground">{title}</span>{items.length ? <ul className={`mt-2 space-y-1 text-xs leading-5 text-foreground/80 ${compact ? "line-clamp-6" : ""}`}>{items.slice(0, compact ? 6 : 10).map((item) => <li key={item} className="break-words">â€¢ {item}</li>)}</ul> : <p className="mt-2 text-xs leading-5 text-muted-foreground">{empty}</p>}</div>;
+}
