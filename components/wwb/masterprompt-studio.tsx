@@ -838,7 +838,7 @@ export function MasterPromptStudio({
               <AccordionTrigger className="text-sm">Seitenaufbau & verbindlicher Szenenplan · {result.implementationPlan.scenes.length} Szenen</AccordionTrigger>
               <AccordionContent>
                 <p className="text-base font-semibold">{result.implementationPlan.pageStructure.name}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{VIDEO_STYLE_STANDARDS.length} neu analysierte Videos ergänzen die bisherigen Referenzmethoden. Die Stilwelt wird auf diese Firma übertragen.</p>
+                <p className="mt-2 text-sm text-muted-foreground">{VIDEO_STYLE_STANDARDS.length} dokumentierte Video-Studien ergänzen die bisherigen Referenzmethoden. Die Stilwelt wird auf diese Firma übertragen.</p>
                 <ul className="mt-2 space-y-2 text-sm">{result.implementationPlan.referenceStandards.slice(0, 2).map((rule) => <li key={rule}>{rule}</li>)}</ul>
                 <p className="mt-1 text-sm text-muted-foreground">{result.implementationPlan.companyFocus}</p>
                 <p className="mt-2 text-sm text-muted-foreground">{result.implementationPlan.evidenceStatus}</p>

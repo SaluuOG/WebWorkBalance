@@ -3,6 +3,7 @@ import test from "node:test";
 import {
   MAX_MASTER_PROMPT_LENGTH,
   VIDEO_STYLE_STANDARDS,
+  REFERENCE_METHOD_VERSION,
   countStyleDifferences,
   fingerprintStyleKey,
   getReferenceMethodCatalog,
@@ -132,7 +133,7 @@ test("creates scene-by-scene motion direction with mobile and reduced-motion fal
 
 test("translates the reference studies into an original company-specific creative blueprint", () => {
   const result = generateMasterPrompt({ business: business(), prices });
-  assert.equal(result.creativeBlueprint.referenceStudyCount, 28);
+  assert.equal(result.creativeBlueprint.referenceStudyCount, 16);
   assert.ok(result.creativeBlueprint.techniques.length >= 4);
   assert.match(result.creativeBlueprint.visualMetaphor, /(Linie|Blick|Grundriss)/);
   assert.match(result.prompt, /## Kreativ-DNA DNA-/);
@@ -255,17 +256,17 @@ test("user-controlled selections are never driven by scroll and subtle tracks st
   }
 });
 
-test("all seven recorded style worlds produce their own section ordering and production method", () => {
+test("all documented style worlds produce their own section ordering and production method", () => {
   const structures = new Set();
   for (const style of VIDEO_STYLE_STANDARDS) {
     const result = generateMasterPrompt({ business: business(), prices, settings: { referenceStyle: style.id } });
-    assert.equal(result.implementationPlan.pageStructure.name, style.name);
+    assert.ok(result.implementationPlan.pageStructure.name.startsWith(style.name));
     assert.ok(result.prompt.includes(style.file));
     structures.add(result.implementationPlan.pageStructure.sections.join("|"));
     assert.ok(result.implementationPlan.pageStructure.workflow[0].length > 40);
   }
-  assert.equal(structures.size, 7);
-  assert.equal(getReferenceMethodCatalog().length, 27);
+  assert.equal(structures.size, 16);
+  assert.equal(getReferenceMethodCatalog().length, 36);
 });
 
 test("new companies differ in at least three visual dimensions across a small team portfolio", () => {
@@ -287,5 +288,55 @@ test("games are opt-in and retain company-specific playable rules in both tracks
     assert.match(result.implementationPlan.game.brief, /Holzbau/);
     assert.match(result.implementationPlan.game.implementation, /ready → playing → feedback → completed/);
     assert.match(result.implementationPlan.game.acceptance, /Neustart/);
+  }
+});
+
+
+test("reuploaded reference signatures produce executable contracts in both production tracks", () => {
+  const additions = VIDEO_STYLE_STANDARDS.filter((style) => style.signatureMethod);
+  assert.equal(additions.length, 9);
+  for (const style of additions) {
+    assert.equal(normalizeMasterPromptSettings(business(), { referenceStyle: style.id }).referenceStyle, style.id);
+    for (const productionTrack of ["master", "express"]) {
+      const result = generateMasterPrompt({ business: business(), prices, settings: { referenceStyle: style.id, productionTrack, animation: "cinematic", complexity: "high-end", budget: "open", spatialEffects: "hero" }, research: { services: ["Individuelle Holzbauplanung"], targetAudiences: ["Bauherren"], differentiators: ["Wiederverwendete Bauteile"] } });
+      const scene = result.implementationPlan.scenes.find((item) => item.techniqueId === style.signatureMethod);
+      assert.ok(scene, style.id);
+      assert.match(scene.subject, /Holzbauplanung/);
+      assert.ok(scene.timeline?.length > 30);
+      assert.ok(result.prompt.includes(style.file));
+      assert.ok(result.prompt.includes(style.assetPlan[0]));
+      assert.ok(result.prompt.includes(style.checkpoints[0]));
+      assert.ok(result.prompt.includes(REFERENCE_METHOD_VERSION));
+      assert.doesNotMatch(result.prompt, /undefined|NaN/);
+      assert.ok(result.prompt.length < MAX_MASTER_PROMPT_LENGTH);
+    }
+  }
+});
+
+test("each reuploaded style offers multiple compositions while manual dramaturgy wins", () => {
+  for (const style of VIDEO_STYLE_STANDARDS.filter((item) => item.signatureMethod)) {
+    const layouts = new Set();
+    for (let variant = 0; variant < 20; variant++) {
+      const result = generateMasterPrompt({ business: business(), prices, variant, settings: { referenceStyle: style.id } });
+      layouts.add(result.implementationPlan.pageStructure.sections.join("|"));
+      assert.equal(result.fingerprint.structure, result.implementationPlan.pageStructure.name);
+    }
+    assert.equal(layouts.size, 2, style.id);
+    const direct = generateMasterPrompt({ business: business(), prices, settings: { referenceStyle: style.id, storyStructure: "direct" } });
+    assert.equal(direct.implementationPlan.pageStructure.name, "Klarer Beratungsweg");
+  }
+});
+
+test("new signatures respect disabled effects and retain product or booking controls", () => {
+  const interactive = ["return-stage-worlds", "occlusion-to-ensemble", "ingredient-carousel-continuity", "threshold-to-booking"];
+  for (const style of VIDEO_STYLE_STANDARDS.filter((item) => item.signatureMethod)) {
+    const still = generateMasterPrompt({ business: business(), prices, settings: { referenceStyle: style.id, animation: "none", spatialEffects: "hero", scrollMotion: "off" } });
+    assert.ok(still.implementationPlan.scenes.every((scene) => scene.renderer === "static"));
+    const scene = still.implementationPlan.scenes.find((item) => item.techniqueId === style.signatureMethod);
+    assert.ok(scene);
+    if (interactive.includes(scene.techniqueId)) assert.match(scene.implementation, /Funktionsvertrag:/);
+    const constrained = generateMasterPrompt({ business: business(), prices, settings: { referenceStyle: style.id, technology: "standard", budget: "small", spatialEffects: "hero", animation: "subtle" } });
+    assert.ok(constrained.implementationPlan.scenes.every((item) => item.renderer !== "webgl"));
+    for (const item of constrained.implementationPlan.scenes.filter((item) => item.renderer === "dom")) assert.doesNotMatch(item.timeline, /180°|650 ms|700 ms|25°/);
   }
 });

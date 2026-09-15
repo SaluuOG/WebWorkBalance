@@ -25,7 +25,7 @@ export type ExpressTimebox = "60" | "120" | "180";
 export type ExpressScope = "focused" | "large" | "signature";
 export type ResearchDepth = "quick" | "standard" | "deep" | "maximum";
 export type AutonomyLevel = "assist" | "guided" | "autopilot";
-export type ReferenceStyle = "automatic" | "fashion-dossier" | "surreal-journey" | "monumental-hero" | "villa-editorial" | "showroom" | "flavor-selector" | "campaign-commerce";
+export type ReferenceStyle = "automatic" | "fashion-dossier" | "surreal-journey" | "monumental-hero" | "villa-editorial" | "showroom" | "flavor-selector" | "campaign-commerce" | "experience-specification" | "cargo-relay" | "return-stage" | "ensemble-catalog" | "documentary-blueprint" | "ritual-booking" | "painterly-chapters" | "ingredient-orbit" | "isometric-network";
 export type WebsiteGame = "off" | "automatic" | "quiz" | "memory" | "challenge";
 
 export interface MasterPromptSettings {
@@ -317,6 +317,15 @@ export const MASTER_PROMPT_OPTIONS: Record<Exclude<keyof MasterPromptSettings, "
     { value: "showroom", label: "Showroom & Auswahl" },
     { value: "flavor-selector", label: "Produktwelt & Varianten" },
     { value: "campaign-commerce", label: "Kampagne & Sortiment" },
+    {"value": "experience-specification", "label": "Erlebnis → Detail → Fakten"},
+    {"value": "cargo-relay", "label": "Prozess & Übergaben"},
+    {"value": "return-stage", "label": "Produktwelten & Rückkehr"},
+    {"value": "ensemble-catalog", "label": "Einzelmotiv & Gesamtauswahl"},
+    {"value": "documentary-blueprint", "label": "Reportage & technische Erklärung"},
+    {"value": "ritual-booking", "label": "Markenerlebnis & Buchung"},
+    {"value": "painterly-chapters", "label": "Malerische Erzählung"},
+    {"value": "ingredient-orbit", "label": "Produktdetails & Merkmalsfokus"},
+    {"value": "isometric-network", "label": "Isometrische Arbeitswelt"},
   ],
   websiteGame: [{ value: "off", label: "Kein Spiel" }, { value: "automatic", label: "Passendes Spiel vorschlagen" }, { value: "quiz", label: "Wissens- / Entdeckerquiz" }, { value: "memory", label: "Motiv-Memory" }, { value: "challenge", label: "Spielerische Aufgabe" }],
 };
@@ -354,7 +363,7 @@ const TYPOGRAPHY = ["Editorial-Serif plus ruhige Grotesk", "geometrische Grotesk
 const IMAGERY = ["authentische Großmotive mit Detailausschnitten", "filmische Totale und Nahaufnahmen", "Masken und bewusste Negativflächen", "dokumentarische Bildfolge mit Hero-Momenten", "Materialdetails als visuelle Klammer"];
 const RHYTHMS = ["ruhiger Einstieg, dichter Beweis, klarer Abschluss", "immersive und kompakte Abschnitte im Wechsel", "Information zwischen starken Bildmomenten", "kontinuierliche Story mit Interaktionspausen", "Nutzen, Beweis, Detail, Handlung"];
 
-// Abstrahierte Gestaltungsprinzipien aus 21 analysierten Premium-Webdesign-Referenzen.
+// Übernommene Gestaltungsprinzipien plus dokumentierte, erneut gesichtete Video-Studien.
 // Bewusst ohne Marken, Texte oder konkrete Kompositionen der Vorlagen: Die Engine darf
 // Muster kombinieren, muss daraus aber für jedes Unternehmen eine neue visuelle Logik bilden.
 const CREATIVE_TECHNIQUES: CreativeTechniqueDefinition[] = [
@@ -627,6 +636,227 @@ const CREATIVE_TECHNIQUES: CreativeTechniqueDefinition[] = [
     fallback: "Eine statische, nummerierte Schnitt- oder Ebenengrafik mit sichtbarer Legende und Zoomfunktion liefern.",
     industries: ["auto", "craft", "professional", "health", "retail", "gastro"], layouts: ["technical", "minimal", "asymmetric", "automatic"],
     minimumAnimation: 1, minimumComplexity: 2, minimumBudget: 1, spatial: "optional",
+  },  {
+    "name": "Vom Erlebnis zur Spezifikation",
+    "family": "Journey",
+    "direction": "Derselbe reale Leistungsgegenstand führt vom Zugang über eine anschauliche Totale zur präzisen Detail- und Faktenansicht. Perspektivwechsel erklären Maßstab und Funktion.",
+    "implementation": "Zugang, Totale, Detail und Planansicht in einem gemeinsamen Koordinatensystem vorbereiten. Kapitelzustand und sichtbares HTML-Faktenpanel getrennt halten; Ansichtswechsel unterbrechbar machen. Beim Wechsel in die Planansicht Position und Silhouette des Hauptmotivs halten, Fakten erst nach der Ruhephase ergänzen.",
+    "fallback": "Zugang, Hauptmotiv und beschriftete Planansicht als drei unterschiedlich große statische Bildflächen mit vollständigen Fakten zeigen.",
+    "industries": [
+      "hotel",
+      "professional",
+      "auto"
+    ],
+    "spatial": "optional",
+    "id": "experience-to-specification",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Frachtstaffel durch Perspektivwechsel",
+    "family": "Process",
+    "direction": "Ein realer Auftrag oder Werkstoff bleibt als visueller Anker erkennbar, während bestätigte Stationen und verantwortliche Werkzeuge wechseln. Die Staffel erklärt Übergaben statt bloß Fahrzeuge zu zeigen.",
+    "implementation": "Den belegten Prozess zunächst als semantische Schrittliste modellieren. Einen persistenten Kern und austauschbare Stationsgruppen verwenden; Übergabepunkt pro Gruppe festlegen. Weltposition beim Wechsel über gemeinsame Anker erhalten. Trägerwechsel und Kameraperspektive nacheinander bewegen, nicht gleichzeitig.",
+    "fallback": "Eine ruhige Prozessstaffel mit identisch markiertem Auftrag und drei bis fünf belegten Übergaben zeigen.",
+    "industries": [
+      "craft",
+      "auto",
+      "professional",
+      "generic"
+    ],
+    "spatial": "optional",
+    "id": "cargo-handoff-continuity",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Produktwelten mit Rückkehrbühne",
+    "family": "Configurator",
+    "direction": "Eine gemeinsame Auswahlbühne öffnet je Angebot eine eigene Material-, Licht- und Detailwelt. Zurückkehren stellt die vorherige Auswahlposition wieder her.",
+    "implementation": "Zustände overview → entering(itemId) → detail(itemId) → returning → overview modellieren. Index, Fokus und Scrollposition der Ausgangsbühne sichern. Pro Angebot ein eigenständiges Detailarrangement aus freigegebenen Medien definieren; Fakten und Anfrage erhalten die gewählte ID.",
+    "fallback": "Zugängliche Angebotsübersicht mit einzelnen Detailabschnitten und eindeutigen Zurück-Links; Wechsel ohne Übergang.",
+    "industries": [
+      "retail",
+      "beauty",
+      "auto"
+    ],
+    "spatial": "optional",
+    "id": "return-stage-worlds",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Vom Einzelmotiv zum Ensemble",
+    "family": "Product",
+    "direction": "Ein nahes fachliches Motiv verdeckt kurz den Szenenwechsel und öffnet danach den nächsten Eintrag; am Ende werden die Angebote als gemeinsam vergleichbare Gesamtauswahl sichtbar.",
+    "implementation": "Produktindex und Galerie atomar führen. Eine isolierte Medienebene als Verdeckungsmaske verwenden, Überschrift und Navigation bleiben außerhalb. Vor dem Wechsel Zielmotiv laden; Endansicht zeigt alle tatsächlich verfügbaren Optionen und führt zur Auswahl zurück.",
+    "fallback": "Einzelansichten mit festen Abmessungen und direkt sichtbarer Gesamtauswahl; Motive ohne Kamerafahrt oder Maskenwechsel nebeneinander vergleichen.",
+    "industries": [
+      "gastro",
+      "retail",
+      "beauty"
+    ],
+    "spatial": "optional",
+    "id": "occlusion-to-ensemble",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Vom Betriebsbild zum Datenbild",
+    "family": "Explainer",
+    "direction": "Ein echter Arbeitsschauplatz wird einer bewusst abstrahierten technischen Erklärung gegenübergestellt. Dunkle Reportage, präzise Liniengrafik und helle Lesefläche wechseln ihren Informationszweck.",
+    "implementation": "Dokumentarisches Bild, abstrahierte Linienfassung und HTML-Erklärung getrennt aufbauen. Motivkontur und Blickachse am Übergang abstimmen; Textkontrast beim Flächenwechsel absichern. Navigation verankert lassen, aktive Sektion aus dem sichtbaren Inhalt ableiten.",
+    "fallback": "Reales Bild und gekennzeichnete Schemazeichnung als ruhige Vergleichsfläche, gefolgt von einer hellen Erklärung.",
+    "industries": [
+      "craft",
+      "auto",
+      "professional",
+      "generic"
+    ],
+    "spatial": "none",
+    "id": "documentary-wireframe-rhythm",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Von der Schwelle zur Buchung",
+    "family": "Story",
+    "direction": "Ein kurzer markenspezifischer Auftakt öffnet die Arbeitswelt; danach führen echte Ergebnisse, Leistungen und eine klare Buchung aus der Inszenierung in eine konkrete Handlung.",
+    "implementation": "Den Auftakt als optionale Mediensequenz mit sofort erreichbarem Überspringen und CTA bauen. Zustände intro → content → booking getrennt führen; Buchungsdialog erhält Leistungswahl, Fokusfalle, Escape und Rückkehrfokus. Eine beeindruckende Szene darf den Besuch niemals aussperren.",
+    "fallback": "Ein charakteristisches Standbild vor direkt sichtbaren Leistungen und einer funktionierenden Terminanfrage.",
+    "industries": [
+      "beauty",
+      "hotel",
+      "health",
+      "generic"
+    ],
+    "spatial": "none",
+    "id": "threshold-to-booking",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Malerische Kapitel mit Motivbrücke",
+    "family": "Editorial",
+    "direction": "Ein eigenes Leitobjekt trägt mindestens drei fachlich sinnvolle Handlungen: etwa teilen, verbinden, prüfen oder einsetzen. Eine Oberfläche des Objekts übernimmt den Bildraum und wird zum Träger der nächsten Erklärung.",
+    "implementation": "Ein Leitmotiv über fotografische, gemalte und reduzierte Darstellungen hinweg wiedererkennbar halten. Gemeinsame Formkante für den Medienwechsel definieren; semantischen Text außerhalb dekorativer Masken halten. Papierstruktur als leichte Hintergrunddatei statt schwerer Canvas-Simulation verwenden. Vor dem Bildbau drei aus echten Leistungen abgeleitete Verben und die Aussage jedes Kapitels festlegen. Ein Arbeitsdokument oder Materialdetail wird flächenfüllend und öffnet danach eine gerahmte Übersicht; keine beliebigen fliegenden Dekorationen.",
+    "fallback": "Malerische Kapitel als statische, abwechslungsreiche Doppelseiten mit wiederkehrendem Detail und lesbaren Fakten.",
+    "industries": [
+      "gastro",
+      "hotel",
+      "retail",
+      "craft"
+    ],
+    "spatial": "none",
+    "id": "painterly-medium-bridge",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Produkt als Merkmal-Beleg",
+    "family": "Configurator",
+    "direction": "Ein ausgewähltes Produkt bleibt der räumliche Anker. Für jede belegbare Eigenschaft dreht oder kadriert sich genau die passende Detailansicht in den Blick; das Objekt selbst trägt die Erklärung.",
+    "implementation": "selectedProductId und activeFeatureId getrennt führen. Je bestätigtem Merkmal eine passende Ansicht, Detailmarkierung und HTML-Aussage hinterlegen; keine Eigenschaften erfinden. Produktform, Material und Identität bleiben beim Wechsel konstant. Die Auswahl und die Detailansichten sind über beschriftete Buttons bedienbar; keine automatische Merkmalswahl.",
+    "fallback": "Produktübersicht und auswählbare statische Detailausschnitte mit passenden Beschriftungen; Merkmalliste und Anfrage vollständig zugänglich halten.",
+    "industries": [
+      "gastro",
+      "retail",
+      "fitness",
+      "beauty"
+    ],
+    "spatial": "optional",
+    "id": "ingredient-carousel-continuity",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
+  },
+  {
+    "name": "Von der Arbeitsstation zum Netzwerk",
+    "family": "Spatial",
+    "direction": "Eine klar lesbare Miniaturwelt wechselt vom Gesamtzusammenhang zu einer Arbeitsstation und wieder zum Netzwerk. Der Maßstabswechsel erklärt Zuständigkeiten und Verbindungen.",
+    "implementation": "Belegte Stationen als getrennte, beschriftete Gruppen anlegen. Übersicht und Stationsansichten mit festem Kameraziel definieren; nur eine Szene gleichzeitig aktiv rendern. Hotspots haben zugängliche HTML-Pendants. Detailtexte und anschließender normaler Seiteninhalt liegen außerhalb der 3D-Fläche.",
+    "fallback": "Isometrische Standgrafik mit nummerierten Stationen und direkt erreichbaren HTML-Abschnitten; ohne 3D oder Kamera vollständig verständlich.",
+    "industries": [
+      "craft",
+      "auto",
+      "professional",
+      "generic"
+    ],
+    "spatial": "optional",
+    "id": "isometric-network-scale",
+    "layouts": [
+      "automatic",
+      "editorial",
+      "asymmetric",
+      "technical",
+      "luxury"
+    ],
+    "minimumAnimation": 0,
+    "minimumComplexity": 1,
+    "minimumBudget": 0
   },
 ];
 
@@ -715,7 +945,7 @@ export function createDesignFingerprint(input: Pick<MasterPromptInput, "business
   const mode = input.mode ?? recommendMasterPromptMode(input.business);
   const item = PROFILES[industryKey(input.business)] ?? PROFILES.generic;
   const seed = hash([
-    input.business.sourceId, input.business.name, input.business.address, mode, input.variant ?? 0,
+    REFERENCE_METHOD_VERSION, input.business.sourceId, input.business.name, input.business.address, mode, input.variant ?? 0,
     settings.creativity, settings.complexity, settings.animation, settings.layout,
     settings.experienceArchetype, settings.storyStructure, settings.interactionDensity,
     settings.typographyMotion, settings.assetDirection, settings.brandTone,
@@ -860,13 +1090,18 @@ function creativeMetaphorFor(business: Business, seed: number) {
 }
 
 // Versioned, repository-backed methods survive chat context and device resets.
-// The inherited 21-study count is historical, not a claim of fresh video verification.
-export const REFERENCE_METHOD_VERSION = "wwb-motion-3";
+// Count only individually documented video studies; reuploads are not new originals.
+export const REFERENCE_METHOD_VERSION = "wwb-motion-4";
 export const MAX_MASTER_PROMPT_LENGTH = 80_000;
-export const VIDEO_STYLE_STANDARDS: Array<{
+export interface VideoStyleStandard {
   id: Exclude<ReferenceStyle, "automatic">; name: string; file: string; observed: string; style: string;
   sections: string[]; methods: string[]; industries: string[]; workflow: string; limit: string;
-}> = [
+  signatureMethod?: string;
+  assetPlan?: string[];
+  checkpoints?: string[];
+  variants?: Array<{ name: string; sections: string[]; composition: string }>;
+}
+export const VIDEO_STYLE_STANDARDS: VideoStyleStandard[] = [
   {
     "id": "fashion-dossier",
     "name": "Material- und Identitätsdossier",
@@ -1054,6 +1289,541 @@ export const VIDEO_STYLE_STANDARDS: Array<{
     ],
     "workflow": "Kampagnenmotiv und Produkte auf Konsistenz prüfen; Collage, nutzbares Raster und Story-Split einzeln gestalten, dann über Motivdetails verbinden.",
     "limit": "Ein hochkant gefilmter Desktop belegt keine mobile Website."
+  },
+  {
+    "id": "experience-specification",
+    "name": "Vom Erlebnis zur Spezifikation",
+    "file": "-8919957103071095100(1).MP4",
+    "observed": "0–2.5s Fensteröffnung und Portal; 4.25–7.5s Produktansicht wird zur technischen Übersicht; 7.75–10.83s Service und Reichweite.",
+    "style": "Ein Gegenstand verbindet emotionale Annäherung, Proportion und belastbare Information; der Wechsel von Atmosphäre zu Spezifikation ist das eigentliche Signature-Detail.",
+    "sections": [
+      "Zugang zur konkreten Leistung",
+      "Hauptmotiv im Zusammenhang",
+      "Detail und Nutzen",
+      "Beschriftete Planansicht / belegte Fakten",
+      "Persönliche Beratung"
+    ],
+    "methods": [
+      "experience-to-specification",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "hotel",
+      "professional",
+      "auto"
+    ],
+    "workflow": "Zugang, Totale, Detail und Planansicht in einem gemeinsamen Koordinatensystem vorbereiten. Kapitelzustand und sichtbares HTML-Faktenpanel getrennt halten; Ansichtswechsel unterbrechbar machen. Beim Wechsel in die Planansicht Position und Silhouette des Hauptmotivs halten, Fakten erst nach der Ruhephase ergänzen.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "experience-to-specification",
+    "assetPlan": [
+      "Dasselbe bestätigte Motiv als Totale, Detail und Planansicht vorbereiten; Perspektive, Maße und Licht nachvollziehbar halten.",
+      "Zugangsrahmen und Motiv getrennt liefern; Flugzeug oder Luxuskabine nur bei echtem Branchenbezug verwenden."
+    ],
+    "checkpoints": [
+      "Beim Übergang bleibt die Motividentität erhalten; das Faktenpanel ist unabhängig von Canvas lesbar.",
+      "Kamera ist ohne Roll, Zurückscrollen stabil; keine aus dem Video übernommenen Produktdaten."
+    ],
+    "variants": [
+      {
+        "name": "Erlebnis zuerst",
+        "sections": [
+          "Zugang zur konkreten Leistung",
+          "Hauptmotiv im Zusammenhang",
+          "Detail und Nutzen",
+          "Beschriftete Planansicht / belegte Fakten",
+          "Persönliche Beratung"
+        ],
+        "composition": "Großes Zugangsbild, danach freigestelltes Hauptmotiv; Fakten als seitliches Dossier statt Kartenraster."
+      },
+      {
+        "name": "Detail zuerst",
+        "sections": [
+          "Ein belegbares Qualitätsdetail",
+          "Leistung im Überblick",
+          "Arbeitswelt und Herkunft",
+          "Direkter Vergleich wichtiger Fakten",
+          "Gezielte Anfrage"
+        ],
+        "composition": "Asymmetrische Detail-Totale-Doppelseite; Faktenliste als ruhige Mitte, Raumbild erst vor der Anfrage."
+      }
+    ]
+  },
+  {
+    "id": "cargo-relay",
+    "name": "Frachtstaffel durch Perspektivwechsel",
+    "file": "-7801457148905485753(1).MP4",
+    "observed": "0–2.25s Leuchtring und Flächenwechsel; 3–5.5s Containerübergabe und Lkw; 5.5–9s Draufsichtstraße und Schiff; 9.5–10.6s Belege.",
+    "style": "Objektkontinuität verbindet unterschiedliche Transport- oder Arbeitswelten. Hoher, seitlicher und naher Blick wechseln aus fachlichem Grund.",
+    "sections": [
+      "Auftrag oder Material vorstellen",
+      "Erste bestätigte Station",
+      "Übergaben im Zusammenhang",
+      "Reichweite mit belegbaren Daten",
+      "Projekt / Transport anfragen"
+    ],
+    "methods": [
+      "cargo-handoff-continuity",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "craft",
+      "auto",
+      "professional",
+      "generic"
+    ],
+    "workflow": "Den belegten Prozess zunächst als semantische Schrittliste modellieren. Einen persistenten Kern und austauschbare Stationsgruppen verwenden; Übergabepunkt pro Gruppe festlegen. Weltposition beim Wechsel über gemeinsame Anker erhalten. Trägerwechsel und Kameraperspektive nacheinander bewegen, nicht gleichzeitig.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "cargo-handoff-continuity",
+    "assetPlan": [
+      "Kernobjekt, Stationsgruppen und Übergabeanker mit konstanten Abmessungen und Materialkennung liefern.",
+      "Nur tatsächlich angebotene Prozessschritte und Regionen verwenden; bei anderen Branchen Auftrag, Werkstück oder Akte statt Container wählen."
+    ],
+    "checkpoints": [
+      "Bei Rückwärtsbewegung bleibt der Kern an derselben Übergabestelle; keine Teleport-Sprünge.",
+      "Die Prozessliste funktioniert bei fehlenden Modellen und ausgeschalteter Bewegung vollständig."
+    ],
+    "variants": [
+      {
+        "name": "Auftrag auf Reise",
+        "sections": [
+          "Auftrag oder Material vorstellen",
+          "Erste bestätigte Station",
+          "Übergaben im Zusammenhang",
+          "Reichweite mit belegbaren Daten",
+          "Projekt / Transport anfragen"
+        ],
+        "composition": "Ein persistenter Kern auf wechselnden Bühnen; Prozessbeschriftung in stabiler Randspalte."
+      },
+      {
+        "name": "Übergabe als Beweis",
+        "sections": [
+          "Kritische Kundenfrage an einer Übergabe",
+          "Verantwortlichkeiten erklären",
+          "Gesamtablauf als übersichtliche Route",
+          "Ausgewählte Arbeitsstation im Detail",
+          "Passenden Auftrag besprechen"
+        ],
+        "composition": "Zweiteilige Übergabegrafik als Einstieg, normale Prozessliste als Mitte, eine große Detailstation am Ende."
+      }
+    ]
+  },
+  {
+    "id": "return-stage",
+    "name": "Produktwelten mit Rückkehrbühne",
+    "file": "-6215933416139985581(1).MP4",
+    "observed": "0–4.5s Anwendungsswitches der Aufnahme; 6–8.5s gemeinsame Auswahl; 9.5–12s rote Produktwelt; 12.25–15.5s dunkle Welt; 16.25–19.7s helle Welt.",
+    "style": "Gemeinsame Produktfamilie, aber verschiedene Einzelwelten statt drei identischer Detailkarten mit anderen Bildern.",
+    "sections": [
+      "Gemeinsame Auswahlbühne",
+      "Eigenständige Detailwelt des Angebots",
+      "Material / Anwendung prüfen",
+      "Passende Anfrage",
+      "Zur Auswahl zurück"
+    ],
+    "methods": [
+      "return-stage-worlds",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "retail",
+      "beauty",
+      "auto"
+    ],
+    "workflow": "Zustände overview → entering(itemId) → detail(itemId) → returning → overview modellieren. Index, Fokus und Scrollposition der Ausgangsbühne sichern. Pro Angebot ein eigenständiges Detailarrangement aus freigegebenen Medien definieren; Fakten und Anfrage erhalten die gewählte ID.",
+    "limit": "Die Aufnahme enthält harte Schnitte und Editorwechsel; ein funktionsfähiger Konfigurator oder Name-/Share-Editor wird nicht nachgewiesen.",
+    "signatureMethod": "return-stage-worlds",
+    "assetPlan": [
+      "Je Angebot Totale, Materialdetail und Anwendung derselben Variante vorbereiten; stabile itemId und Faktenmodell führen.",
+      "Jede Detailwelt erhält eigenen Zuschnitt, Lichtcharakter und Textposition; fremde Jacken oder Marken nicht als Firmenprodukte übernehmen."
+    ],
+    "checkpoints": [
+      "Nach Auswahl und Rückkehr stimmen Index, Fokus und angefragtes Angebot überein.",
+      "Drei Varianten unterscheiden sich auch in Komposition und Bildregie, nicht nur in Hintergrundfarbe."
+    ],
+    "variants": [
+      {
+        "name": "Auswahlbühne",
+        "sections": [
+          "Gemeinsame Auswahlbühne",
+          "Eigenständige Detailwelt des Angebots",
+          "Material / Anwendung prüfen",
+          "Passende Anfrage",
+          "Zur Auswahl zurück"
+        ],
+        "composition": "Drei Motive auf einer Bühne; Detailwelt wechselt zwischen Nahaufnahme, freier Fläche und technischer Randspalte."
+      },
+      {
+        "name": "Material als Einstieg",
+        "sections": [
+          "Charakteristisches Materialdetail",
+          "Dazu passende Angebote wählen",
+          "Anwendung im persönlichen Kontext",
+          "Unterschiede direkt vergleichen",
+          "Beratung mit gespeicherter Auswahl"
+        ],
+        "composition": "Makro-Hero und vertikaler Angebotsindex; gemeinsame Vergleichstabelle ersetzt ein wiederholtes Kartenband."
+      }
+    ]
+  },
+  {
+    "id": "ensemble-catalog",
+    "name": "Vom Einzelmotiv zum Ensemble",
+    "file": "-4186847397357342673(1).MP4",
+    "observed": "0–2s erstes Fläschchen auf Eis; 2–7.5s Verdeckung und zweites Produkt; 7.5–13s zweiter Übergang und drittes Produkt; 13–18.5s Gesamtauslage; 18.5–21s hervorgehobene Katalogkacheln.",
+    "style": "Einzelprodukte erhalten große, voneinander abweichende Bühnen; die gemeinsame Endauslage erklärt Auswahl und Zusammenhang.",
+    "sections": [
+      "Ein Angebot im charakteristischen Detail",
+      "Weitere Angebote gezielt entdecken",
+      "Alle Optionen gemeinsam sehen",
+      "Eigenschaften vergleichen",
+      "Auswahl anfragen"
+    ],
+    "methods": [
+      "occlusion-to-ensemble",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "gastro",
+      "retail",
+      "beauty"
+    ],
+    "workflow": "Produktindex und Galerie atomar führen. Eine isolierte Medienebene als Verdeckungsmaske verwenden, Überschrift und Navigation bleiben außerhalb. Vor dem Wechsel Zielmotiv laden; Endansicht zeigt alle tatsächlich verfügbaren Optionen und führt zur Auswahl zurück.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "occlusion-to-ensemble",
+    "assetPlan": [
+      "Motive freistellen und ihre Größenverhältnisse bestimmen; Vordergrundmaske und vergleichbare Endauslage separat vorbereiten.",
+      "Sortennamen, Zutaten und Verfügbarkeit aus echten Angaben übernehmen; keine Eiswelt für fachfremde Unternehmen."
+    ],
+    "checkpoints": [
+      "Die Verdeckung betrifft nur Medien, niemals Pflichttexte oder Bedienung.",
+      "Aktive Variante, Fakten und Anfrage bleiben synchron; kaputtes Zielbild lässt die bisherige Auswahl bedienbar."
+    ],
+    "variants": [
+      {
+        "name": "Entdecken und sammeln",
+        "sections": [
+          "Ein Angebot im charakteristischen Detail",
+          "Weitere Angebote gezielt entdecken",
+          "Alle Optionen gemeinsam sehen",
+          "Eigenschaften vergleichen",
+          "Auswahl anfragen"
+        ],
+        "composition": "Großes Einzelmotiv mit ruhigem Seitenetikett; Endauslage als frei kuratierte Motivgruppe."
+      },
+      {
+        "name": "Gesamtauswahl zuerst",
+        "sections": [
+          "Alle verfügbaren Optionen überblicken",
+          "Persönlichen Favoriten öffnen",
+          "Herstellung / Qualität im Detail",
+          "Ähnliche Optionen vergleichen",
+          "Favoriten anfragen"
+        ],
+        "composition": "Ungleich große Gesamtcollage vor dem Detail; schmaler Auswahlindex bleibt erreichbar, kein Vollbild-Zwang."
+      }
+    ]
+  },
+  {
+    "id": "documentary-blueprint",
+    "name": "Vom Betriebsbild zum Datenbild",
+    "file": "-2080693491323830558(1).MP4",
+    "observed": "0–3.25s Lkw, Betriebsgelände und Drahtansicht; 3.25–6.75s helle Erklärung und Foto-zu-Linien-Bildwechsel; 6.75–7.75s Akronymkapitel; 7.75–11.5s Netzwerk und Belege.",
+    "style": "Hoher Kontrast zwischen Betrieb, Schema und Erklärung; unterschiedliche Informationsdichte schafft Rhythmus ohne austauschbare Kartenreihen.",
+    "sections": [
+      "Realer Betrieb / belegbares Ergebnis",
+      "Vorgang schematisch erklären",
+      "Leistungen auf heller Lesefläche",
+      "Nachweise und Verantwortliche",
+      "Konkrete Anfrage"
+    ],
+    "methods": [
+      "documentary-wireframe-rhythm",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "craft",
+      "auto",
+      "professional",
+      "generic"
+    ],
+    "workflow": "Dokumentarisches Bild, abstrahierte Linienfassung und HTML-Erklärung getrennt aufbauen. Motivkontur und Blickachse am Übergang abstimmen; Textkontrast beim Flächenwechsel absichern. Navigation verankert lassen, aktive Sektion aus dem sichtbaren Inhalt ableiten.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "documentary-wireframe-rhythm",
+    "assetPlan": [
+      "Echtes Betriebsbild und klar als Schema bezeichnete Konturvariante mit gleichem Ausschnitt vorbereiten.",
+      "Kennzahlen, Kartenpunkte und technische Labels brauchen Quellen; fehlende Daten als Rechercheauftrag führen."
+    ],
+    "checkpoints": [
+      "Schema und Foto sind unterscheidbar; eine dekorative Drahtansicht gilt nicht als technischer Nachweis.",
+      "Hell-/Dunkelwechsel hält Text und Navigation lesbar; Inhalte bleiben in logischer DOM-Reihenfolge."
+    ],
+    "variants": [
+      {
+        "name": "Reportage mit Erklärung",
+        "sections": [
+          "Realer Betrieb / belegbares Ergebnis",
+          "Vorgang schematisch erklären",
+          "Leistungen auf heller Lesefläche",
+          "Nachweise und Verantwortliche",
+          "Konkrete Anfrage"
+        ],
+        "composition": "Breites Reportagebild, schmale technische Randnotizen, anschließend großzügiger heller Satzspiegel."
+      },
+      {
+        "name": "Frage und Nachweis",
+        "sections": [
+          "Fachliche Kundenfrage",
+          "Antwort als nachvollziehbares Schema",
+          "Echten Betrieb als Beleg zeigen",
+          "Zuständigkeit und Leistungsumfang",
+          "Anfrage mit Randbedingungen"
+        ],
+        "composition": "Kompakte Frage-Antwort-Fläche vor einer großen Schemazeichnung; dokumentarischer Split als später Beweis."
+      }
+    ]
+  },
+  {
+    "id": "ritual-booking",
+    "name": "Von der Schwelle zur Buchung",
+    "file": "-1979294151548389942(2).MP4",
+    "observed": "0–2.75s Tür öffnet zur Arbeitswelt; 2.75–8.25s Hero, Portrait und Handdetail; 8.25–11.25s Leistungen und Preisliste; 11.25–13.27s Buchungsaktion und Dialog.",
+    "style": "Filmischer Markenmoment und funktionale Terminoberfläche erhalten bewusst unterschiedliche Dichte; Hände, Arbeit und Ergebnis stellen den fachlichen Zusammenhang her.",
+    "sections": [
+      "Kurzer Markenauftakt mit erreichbarer Hauptaktion",
+      "Arbeitswelt und konkrete Ergebnisse",
+      "Leistungen und bestätigte Preise",
+      "Termin passend zur Leistung anfragen"
+    ],
+    "methods": [
+      "threshold-to-booking",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "beauty",
+      "hotel",
+      "health",
+      "generic"
+    ],
+    "workflow": "Den Auftakt als optionale Mediensequenz mit sofort erreichbarem Überspringen und CTA bauen. Zustände intro → content → booking getrennt führen; Buchungsdialog erhält Leistungswahl, Fokusfalle, Escape und Rückkehrfokus. Eine beeindruckende Szene darf den Besuch niemals aussperren.",
+    "limit": "Der sichtbare Dialog belegt keine abgeschlossene Buchung und keinen funktionierenden Buchungsserver.",
+    "signatureMethod": "threshold-to-booking",
+    "assetPlan": [
+      "Firmenbezogenes Schwellenmotiv oder Arbeitsdetail, echte Ergebnisfotos und Portraits mit Freigabe planen.",
+      "Bei Gesundheitsbetrieben nur sachliche belegbare Inhalte und zurückhaltende Inszenierung; kein fremdes Model als tatsächliches Team ausgeben."
+    ],
+    "checkpoints": [
+      "Intro jederzeit überspringbar; CTA, Leistungsdaten und Kontakt funktionieren schon vor Medienladung.",
+      "Dialog auf Touch und Tastatur vollständig bedienbar, Fehler verständlich; sichtbare Maske allein ist kein Nachweis einer fertigen Buchungsintegration."
+    ],
+    "variants": [
+      {
+        "name": "Erlebnis mit direkter Buchung",
+        "sections": [
+          "Kurzer Markenauftakt mit erreichbarer Hauptaktion",
+          "Arbeitswelt und konkrete Ergebnisse",
+          "Leistungen und bestätigte Preise",
+          "Termin passend zur Leistung anfragen"
+        ],
+        "composition": "Optionales Schwellenbild, große Arbeitsaufnahme, danach ruhige Leistungsliste mit ständig erreichbarer Buchungsaktion."
+      },
+      {
+        "name": "Leistung zuerst",
+        "sections": [
+          "Gesuchte Leistung und Terminanfrage",
+          "Echte Ergebnisse in variierenden Ausschnitten",
+          "Menschen und Arbeitsweise",
+          "Preis- und Ablaufklärung",
+          "Buchung mit vorausgewählter Leistung"
+        ],
+        "composition": "Nutzbare Leistungsauswahl im ersten Bildschirm; filmische Identität erst als späterer Beleg, kein Pflichtprolog."
+      }
+    ]
+  },
+  {
+    "id": "painterly-chapters",
+    "name": "Malerische Kapitel mit Motivbrücke",
+    "file": "-1360803790880632830(1).MP4",
+    "observed": "1.75–4.75s Leitmotivteilung und blaue Flächenübernahme; 6.5–10.25s monumentale Arbeitswelt; 10.25–13.75s Papier wird zur gerahmten Studie; 15.25–18.13s FAQ und Schlussgeste.",
+    "style": "Weißraum, gesättigte Bildwelt und papierartige Fläche wechseln in einer bewussten Dramaturgie; die Motivbrücke schafft Zusammenhang ohne kopierte Originalillustration.",
+    "sections": [
+      "Herkunft / Idee am echten Leitmotiv",
+      "Arbeit als eigenständige Bildgeschichte",
+      "Material- oder Qualitätsdetail",
+      "Menschen und belegbarer Kontext",
+      "Persönliche Einladung"
+    ],
+    "methods": [
+      "painterly-medium-bridge",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "gastro",
+      "hotel",
+      "retail",
+      "craft"
+    ],
+    "workflow": "Ein Leitmotiv über fotografische, gemalte und reduzierte Darstellungen hinweg wiedererkennbar halten. Gemeinsame Formkante für den Medienwechsel definieren; semantischen Text außerhalb dekorativer Masken halten. Papierstruktur als leichte Hintergrunddatei statt schwerer Canvas-Simulation verwenden.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "painterly-medium-bridge",
+    "assetPlan": [
+      "Eigenständiges Leitmotiv und zwei mediale Interpretationen desselben Motivs vorbereiten; als Illustration/Konzept klar kennzeichnen.",
+      "Gemälde, Fotos und Papierstruktur brauchen jeweils Rechte; keine fremde Geschichte oder Herkunft auf die Firma übertragen."
+    ],
+    "checkpoints": [
+      "Medienwechsel hält Form, Blickachse und Aussage zusammen; Materialmix dient einer verständlichen Aussage.",
+      "Mindestens drei verschiedene Bild-/Text-Kompositionen; keine dauernde Parallaxe und keine gestreckten Papiertexturen."
+    ],
+    "variants": [
+      {
+        "name": "Herkunft als Bilderzählung",
+        "sections": [
+          "Herkunft / Idee am echten Leitmotiv",
+          "Arbeit als eigenständige Bildgeschichte",
+          "Material- oder Qualitätsdetail",
+          "Menschen und belegbarer Kontext",
+          "Persönliche Einladung"
+        ],
+        "composition": "Luftiger Editorial-Auftakt, tiefe gemalte Medienfläche, anschließend heller Materialbericht mit ungleichen Bildgrößen."
+      },
+      {
+        "name": "Material wird Geschichte",
+        "sections": [
+          "Ein konkretes Material mit Herkunft",
+          "Angebot und Anwendung",
+          "Malerische Interpretation der Arbeitsweise",
+          "Belegbare Menschen / Entstehung",
+          "Anfrage zum gezeigten Angebot"
+        ],
+        "composition": "Detailspalte neben großer Typografie; gemalte Szene als Mitte, echte Arbeitsbilder in ruhigem Abschluss."
+      }
+    ]
+  },
+  {
+    "id": "ingredient-orbit",
+    "name": "Produkt als Merkmal-Beleg",
+    "file": "-393015269072123485(1).MP4",
+    "observed": "0–2.25s Dosenkarussell und gewählte Variante; 2.25–7.67s Produktdrehung mit passenden Etikett-/Merkmalsmarkierungen; 7.67–10.75s Claim und Sortimentspanorama; 10.75–14.9s FAQ, Newsletter und visuelle Rückkehr.",
+    "style": "Ein gewähltes Produkt erklärt mehrere Eigenschaften über passende Blickwinkel und Detailmarkierungen. Aussage, sichtbare Produktseite und hervorgehobenes Merkmal gehören zusammen.",
+    "sections": [
+      "Passendes Produkt auswählen",
+      "Merkmale direkt am Produkt erkunden",
+      "Anwendung und echte Belege",
+      "Sortiment als ruhige Gesamtansicht",
+      "Fragen und gezielte Anfrage"
+    ],
+    "methods": [
+      "ingredient-carousel-continuity",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "gastro",
+      "retail",
+      "fitness",
+      "beauty"
+    ],
+    "workflow": "Zuerst Merkmal, bestätigte Aussage und passende Produktansicht als funktionierenden Zustand bauen. Danach Blickwinkel und Detailmarkierung ergänzen; die volle Merkmalliste bleibt stets als HTML erreichbar.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "ingredient-carousel-continuity",
+    "assetPlan": [
+      "Für jedes bestätigte Merkmal Detailausschnitt oder Modellansicht samt Markierungsposition anlegen; dieselbe Produkt-ID durchgehend erhalten.",
+      "Keine Wirk- oder Zutatenbehauptungen aus dem Video übernehmen; unbekannte Eigenschaften als Rechercheauftrag behandeln."
+    ],
+    "checkpoints": [
+      "Aktives Merkmal, sichtbare Produktansicht und Erklärung stimmen nach jeder Auswahl überein.",
+      "Jede Aussage bleibt unabhängig von der 3D-Szene als Text lesbar; keine dauernde Produktrotation und keine zwangsweise Wiedergabe."
+    ],
+    "variants": [
+      {
+        "name": "Auswahl als Auftakt",
+        "sections": [
+          "Passendes Produkt auswählen",
+          "Merkmale direkt am Produkt erkunden",
+          "Anwendung und echte Belege",
+          "Sortiment als ruhige Gesamtansicht",
+          "Fragen und gezielte Anfrage"
+        ],
+        "composition": "Gewähltes Produkt auf einer Seite, ruhige Erklärung auf der anderen; Detailmarkierung wechselt mit der Auswahl, das Produkt bleibt als Anker stehen."
+      },
+      {
+        "name": "Eigenschaft führt zur Auswahl",
+        "sections": [
+          "Eine konkrete Kundenfrage",
+          "Passendes Produktmerkmal im Detail",
+          "Weitere Eigenschaften direkt vergleichen",
+          "Gesamtes Angebot überblicken",
+          "Beratung mit gespeicherter Auswahl"
+        ],
+        "composition": "Vergleichender Textauftakt mit kleinen Produktbildern; nur die gewählte Variante erhält später eine große Bühne."
+      }
+    ]
+  },
+  {
+    "id": "isometric-network",
+    "name": "Von der Arbeitsstation zum Netzwerk",
+    "file": "-388175669482362820(1).MP4",
+    "observed": "0–2.25s Lagerübersicht; 2.25–3.75s Innenfunktion und Straßenweg; 3.75–5.75s Hafen, Flughafen, Schienen und Büro; 6.33–7.93s Übergang in normale Leistungsinhalte.",
+    "style": "Heller Boden, kompakte Objekte und stabile Kameraneigung erzeugen eine lesbare Arbeitswelt. Ein klarer Übergang führt anschließend zurück zu normalem Webinhalt.",
+    "sections": [
+      "Arbeitswelt als übersichtliches Ganzes",
+      "Eine Station nachvollziehbar öffnen",
+      "Verbindungen und Zuständigkeiten",
+      "Leistungsdetails außerhalb der Szene",
+      "Auftrag konkret besprechen"
+    ],
+    "methods": [
+      "isometric-network-scale",
+      "editorial-anchor-object",
+      "cinematic-tonal-chapters"
+    ],
+    "industries": [
+      "craft",
+      "auto",
+      "professional",
+      "generic"
+    ],
+    "workflow": "Belegte Stationen als getrennte, beschriftete Gruppen anlegen. Übersicht und Stationsansichten mit festem Kameraziel definieren; nur eine Szene gleichzeitig aktiv rendern. Hotspots haben zugängliche HTML-Pendants. Detailtexte und anschließender normaler Seiteninhalt liegen außerhalb der 3D-Fläche.",
+    "limit": "Originaltechnik, genaue Eingabetrigger, Animationsdauer und mobiles Verhalten sind aus der Bildschirmaufnahme nicht nachgewiesen.",
+    "signatureMethod": "isometric-network-scale",
+    "assetPlan": [
+      "Leichte Stationsmodelle oder eine freigegebene isometrische Illustration, einheitliche Bodenhöhe und Schattenrichtung vorbereiten.",
+      "Nur echte Standorte und Wege bezeichnen; abstrakte Beispielszenen ausdrücklich als Konzept kennzeichnen."
+    ],
+    "checkpoints": [
+      "Labels bleiben bei jedem Maßstab lesbar; Kamera schneidet keine aktive Station ab.",
+      "Der Übergang zur normalen Seite löst keine Scrollsperre aus; Touch, Zurück und statische Ersatzansicht bleiben vollständig nutzbar."
+    ],
+    "variants": [
+      {
+        "name": "Welt vor Detail",
+        "sections": [
+          "Arbeitswelt als übersichtliches Ganzes",
+          "Eine Station nachvollziehbar öffnen",
+          "Verbindungen und Zuständigkeiten",
+          "Leistungsdetails außerhalb der Szene",
+          "Auftrag konkret besprechen"
+        ],
+        "composition": "Eine helle Gesamtbühne mit nummerierter HTML-Legende; Detailpanel seitlich, anschließend ruhige normale Inhaltsabschnitte."
+      },
+      {
+        "name": "Station vor Netzwerk",
+        "sections": [
+          "Eine konkrete Kundenaufgabe",
+          "Dazu passende Arbeitsstation",
+          "Station im größeren Zusammenhang",
+          "Leistungsumfang und Verantwortliche",
+          "Nächsten Schritt vereinbaren"
+        ],
+        "composition": "Große einzelne Station neben einer Kundenfrage; Gesamtkarte erst als spätere Erklärung, klare Textfläche zum Abschluss."
+      }
+    ]
   }
 ];
 
@@ -1129,10 +1899,11 @@ function pageStructureFor(business: Business, settings: MasterPromptSettings, se
   if (settings.storyStructure === "journey") key = settings.spatialEffects !== "off" ? "spatial" : "cinematic";
   if (settings.storyStructure === "reveal") key = "technical";
   if (key === "spatial" && (settings.animation === "none" || settings.spatialEffects === "off" || settings.technology === "standard")) key = "editorial";
-  const useReference = settings.referenceStyle !== "automatic" || (settings.storyStructure === "automatic" && settings.experienceArchetype === "automatic");
+  const useReference = settings.storyStructure === "automatic" && (settings.referenceStyle !== "automatic" || settings.experienceArchetype === "automatic");
   const [baseName, ...baseSections] = structures[key];
-  const name = useReference ? reference.name : baseName;
-  const sections = useReference ? reference.sections : baseSections;
+  const variant = useReference && reference.variants?.length ? pick(reference.variants, seed, "reference-composition") : undefined;
+  const name = useReference ? `${reference.name}${variant ? ` · ${variant.name}` : ""}` : baseName;
+  const sections = useReference ? variant?.sections ?? reference.sections : baseSections;
   const productionStart = key === "spatial" ? "Zuerst das fachliche Motiv als kleine funktionsfähige 3D-Szene plus Poster prüfen; erst danach zur Seite ausbauen."
     : key === "product" ? "Zuerst ein echtes Produkt-/Leistungsdatum, ein Motiv und die Auswahlzustände zu einer funktionierenden Bühne verbinden."
     : key === "technical" ? "Zuerst den belegten Prozess als semantische Liste bauen; daraus Schrittfolge und visuelle Erklärung ableiten."
@@ -1140,7 +1911,7 @@ function pageStructureFor(business: Business, settings: MasterPromptSettings, se
     : key === "editorial" ? "Zuerst Motiv, eigenständigen Satzspiegel und zwei gegensätzliche Abschnittskompositionen entwickeln; danach Bewegung ergänzen."
     : "Zuerst Besucherfrage, belastbare Antwort und Kontaktweg in eine ohne Effekte vollständig nutzbare Seite übersetzen.";
   return {
-    name, rationale: `Die Dramaturgie erklärt ${focus}; Aufbau und Medien müssen aus dieser konkreten Arbeit entstehen. Fehlende Motive sind Rechercheaufträge.`,
+    name, rationale: `Die Dramaturgie erklärt ${focus}; Aufbau und Medien müssen aus dieser konkreten Arbeit entstehen. ${variant ? `Komposition: ${variant.composition} ` : ""}Fehlende Motive sind Rechercheaufträge.`,
     sections,
     workflow: [useReference ? reference.workflow : productionStart, "Ein Schlüsselabschnitt auf Desktop und Smartphone vollständig ausarbeiten; Qualität an diesem Abschnitt festlegen, bevor weitere Abschnitte entstehen.", "Die übrigen Kapitel aus den tatsächlichen Inhalten gestalten: mindestens drei verschiedene Kompositionen, bewusst wechselnde Bildgrößen, eigenständige Übergangslogik.", "Alle SC-Szenen integrieren, Geräte-Fallbacks und Zustandswechsel testen; erst danach Abnahmematrix und fertigen Build liefern."],
   };
@@ -1176,6 +1947,24 @@ const METHOD_TRACKS: Record<string, string> = {
   "product-runway-configurator": "Auswahl A → B: altes Objekt x=-0.4, opacity=0; neues x=0.4 → 0, opacity=1; zugängliches Faktenpanel unabhängig von der Bühne.",
   "object-interface-match-cut": "Medienkante und Zielrahmen vermessen; FLIP-Transform vom Detail zum Panel, Endzustand in normalem Layout; Text bleibt semantisch unabhängig.",
   "technical-anatomy-explode": "Bis zu fünf belegte Ebenen entlang y um je 0.15 auseinanderführen; Labels mit Leader-Lines; Auswahl setzt Ebene zurück, andere bleiben sichtbar.",
+  "experience-to-specification": "Zugang 0–20% → freier Blick 20–45% → Hauptmotiv 45–70% → ruhige Planansicht 70–100%. Blickziel bleibt am identischen Motiv; vor dem Faktenpanel Bewegung beenden. Vorgeschlagene Objektrotation maximal 25°, bei Planansicht per Crossfade statt sprunghafter Projektionsumschaltung.",
+  "cargo-handoff-continuity": "Station A hält den Kern → beide Übergabeanker decken sich → Träger B übernimmt → A verlässt die Bühne → Ruhe mit beschriftetem Schritt. Pro Übergabe 0/30/55/80/100%; nur aktive und nächste Stationsgruppe laden, Kern bleibt sichtbar.",
+  "return-stage-worlds": "Auswahl A: Rahmen des gewählten Motivs messen → Motiv zum Detailrahmen überführen → eigene Licht-/Materialfläche einblenden → Text lesbar im Endzustand. Rückkehr invertiert den Rahmenwechsel und stellt Fokus auf A. Vorschlag 650 ms, neue Auswahl bricht vorige Transition sauber ab.",
+  "occlusion-to-ensemble": "Nutzer wählt B → Vordergrundmotiv verschiebt sich über die Medienfläche → bei vollständiger Verdeckung wechselt nur die Zielmediengruppe → Maske verlässt die Fläche → B ruht. Übergangsvorschlag 700 ms, danach Übersichtsaktion mit allen Optionen; keine automatische Produktauswahl.",
+  "documentary-wireframe-rhythm": "Reportage 0–35% → Kontur deckungsgleich einblenden 35–55% → Originalbild zurücknehmen 55–70% → ruhige Erklärung 70–100%. Maximal zwei Medienebenen, Linien sind bewusst konzeptionell und keine behaupteten technischen Messdaten.",
+  "threshold-to-booking": "Schwellenmotiv geschlossen → Öffnung auf 60% → Arbeitswelt sichtbar → Medienebene verlassen und normale Inhaltsseite zeigen. Vorschlag einmalig 900 ms; keine Wiederholung bei Rückkehr. Buchung öffnet allein per Nutzeraktion und bleibt vollständig ohne Animation bedienbar.",
+  "painterly-medium-bridge": "Leitobjekt mit fachlicher Handlung → eigene Oberfläche/Negativraum übernimmt den Medienraum → nächste Arbeitsszene → Dokumentdetail wird bildfüllend → dasselbe Werk in gerahmter Übersicht mit ruhigem Faktenblock. Übergabeanker in Position, Kontur und Materialfarbe abgleichen; 25% jeder Szene als lesbaren Endzustand halten.",
+  "ingredient-carousel-continuity": "Produkt wählen → gewähltes Motiv bleibt bestehen → Merkmalsbutton wählt passende Ansicht → Detailmarkierung und HTML-Aussage synchron → ruhiger Endzustand. Rotationsziel je Merkmal aus dem Motivmanifest, maximal eine halbe Umdrehung; bei Rückseitenmerkmal etwa 0 → 180°. Vorschlag 650 ms, Abbruch setzt das aktuelle Ziel, keine Animationswarteschlange.",
+  "isometric-network-scale": "Übersicht mit freier Textzone → ausgewählte Station auf 1.35-fachen Maßstab → ruhiger Detailzustand → Gesamtübersicht wiederherstellen → normale Inhaltsfläche. Kameraneigung konstant, Rotation maximal 15°; Zurück setzt Maßstab und Fokus zurück. Mehrere Orte nur zeigen, wenn ihre tatsächliche Verbindung belegt ist.",
+
+};
+
+// Functional behavior survives disabled motion or a static rendering fallback.
+const METHOD_INTERACTIONS: Record<string, string> = {
+  "return-stage-worlds": "Funktionsvertrag: overview → detail(selectedId) → overview. Gewählte ID, Ausgangsfokus und Scrollposition speichern; Rückkehr stellt sie wieder her. Fakten und Anfrage gehören immer zur aktiven ID; nur Klick/Enter navigiert, niemals Hover allein.",
+  "occlusion-to-ensemble": "Funktionsvertrag: product(selectedId) ↔ overview. Beschriftete Vor-/Zurück- und Übersichtsbuttons; Gesamtauswahl vollständig per Tastatur erreichbar. Fehlendes Bild blockiert weder Fakten noch eine neue Auswahl.",
+  "ingredient-carousel-continuity": "Funktionsvertrag: selectedProductId + activeFeatureId. Jede Merkmalsauswahl aktualisiert Erklärung, passende Ansicht und Detailmarkierung atomar. Für alle Merkmale existiert eine zugängliche Textliste; Produktwechsel setzt nur inkompatible Merkmale zurück.",
+  "threshold-to-booking": "Funktionsvertrag: Inhalt und Kontakt sind sofort erreichbar. Leistungswahl wird in den Buchungs-/Anfragedialog übernommen; beschriftete Felder, Escape, Fokusfalle, Rückkehrfokus, verständliche Fehler und echtes Erfolgsfeedback. Ohne angebundenes Buchungssystem klar als Terminanfrage ausweisen.",
 };
 
 function createImplementationPlan(business: Business, settings: MasterPromptSettings, fingerprint: DesignFingerprint, blueprint: MasterPromptCreativeBlueprint, research?: MasterPromptResearch): MasterPromptImplementationPlan {
@@ -1195,7 +1984,7 @@ function createImplementationPlan(business: Business, settings: MasterPromptSett
     if (webgl) spatialCount += 1;
     const staticVariant = still || (method.spatial !== "none" && !webgl);
     const renderer = webgl ? "webgl" : staticVariant ? "static" : "dom";
-    const directInput = ["proof-comparison-wipe", "guided-focus-lens", "product-orbit-selector", "motion-catalog-counter", "material-world-variants", "product-runway-configurator", "interactive-process-diorama", "responsive-organic-field"].includes(method.id);
+    const directInput = ["proof-comparison-wipe", "guided-focus-lens", "product-orbit-selector", "motion-catalog-counter", "material-world-variants", "product-runway-configurator", "interactive-process-diorama", "responsive-organic-field", "return-stage-worlds", "occlusion-to-ensemble", "ingredient-carousel-continuity"].includes(method.id);
     const scroll = !directInput && renderer !== "static" && settings.scrollMotion !== "off" && settings.storyStructure !== "direct" && index > 0;
     const trigger = renderer === "static" ? "Sofort sichtbarer Endzustand; Nutzereingaben aktualisieren ohne Übergangsanimation."
       : directInput ? "Ausschließlich durch direkte Auswahl, Range-Regler oder Pointer-Eingabe; keine automatische oder scrollgesteuerte Zustandsänderung."
@@ -1206,19 +1995,19 @@ function createImplementationPlan(business: Business, settings: MasterPromptSett
     const geometry = /partikel/i.test(method.name) ? "BufferGeometry + Points, wiederverwendete Attribute"
       : "ein freigegebenes GLB-Modell oder selbst erstelltes, ausdrücklich konzeptionelles Objekt";
     const renderSpec = webgl
-      ? `Three.js lazy laden; ${geometry}; Szene auf 2 Einheiten normieren. PerspectiveCamera FOV 35°, Start ${pose}, Ziel (0,0,0), near 0.1/far 50. Key-Light (3,4,4), sanftes Fill (-3,1,2); roughness 0.55, metalness 0.1 als Ausgangspunkt, an echtes Material anpassen. Keine wahllosen Metallkugeln. Renderer max. DPR 1.5; Offscreen pausieren, beim Unmount Geometrie/Material/Texturen/Renderer freigeben.`
+      ? `${method.implementation} Three.js lazy laden; ${geometry}; Szene auf 2 Einheiten normieren. PerspectiveCamera FOV 35°, Start ${pose}, Ziel (0,0,0), near 0.1/far 50. Key-Light (3,4,4), sanftes Fill (-3,1,2); roughness 0.55, metalness 0.1 als Ausgangspunkt, an echtes Material anpassen. Keine wahllosen Metallkugeln. Renderer max. DPR 1.5; Offscreen pausieren, beim Unmount Geometrie/Material/Texturen/Renderer freigeben.`
       : staticVariant ? `${method.fallback} Keine Kamera, Partikel, Parallaxe oder automatische Bewegung.`
       : `${method.implementation} Umsetzung ${settings.technology === "gsap" ? "mit GSAP-Kontext und Cleanup" : "mit CSS/WAAPI und kleinem isoliertem Controller"}; Listener/Observer beim Unmount entfernen.`;
     const track = webgl ? `${METHOD_TRACKS[method.id] || "Objekt rotation.y -0.18 → 0.18 rad; Kamera und lesbarer Text bleiben stabil."} Die gleiche Szene muss als echtes Canvas sichtbar gerendert werden.`
       : staticVariant ? "Endzustand ohne Interpolation; Inhalte und Auswahl sofort bedienbar."
-      : settings.animation === "subtle" && !directInput ? "Motiv opacity 0.9 → 1 und translateY(8px) → 0; keine große Maskenöffnung, Skalierung oder Kamerafahrt." : METHOD_TRACKS[method.id];
+      : settings.animation === "subtle" ? `${directInput ? "Nur nach bewusster Auswahl: " : ""}Motiv opacity 0.9 → 1 und translateY(8px) → 0; keine große Maskenöffnung, Skalierung oder Kamerafahrt.` : METHOD_TRACKS[method.id];
     return {
       id: `SC-${index + 1}`, techniqueId: method.id, name: method.name,
       component: webgl && settings.spatialEffects === "hero" ? "CompanyHeroScene" : `CompanyScene${index + 1}`,
       renderer, subject: `${business.name}: ${context.focus}${context.audience ? `; für ${context.audience}` : ""}. ${method.direction}`,
       trigger,
       timeline: renderer === "static" || directInput ? track : `0% Vorbereitung → 25% Detail → 70% Aussage → 100% Ruhe. ${track} ${scroll && ["storytelling", "immersive"].includes(settings.scrollMotion) ? "Scroll-Fortschritt statt zeitlichem Easing; kein zusätzliches Zeit-Tween." : `Zeitbasis: ${timing}.`} Abbruch zeigt den Endzustand.`,
-      implementation: renderSpec,
+      implementation: `${renderSpec} ${METHOD_INTERACTIONS[method.id] ?? ""}`.trim(),
       assets: webgl ? "GLB/komprimierte Texturen insgesamt Ziel ≤2 MB je Szene, max. 60k Dreiecke; Mobile ≤20k; AVIF-Poster ≤180 KB. Quelle/Lizenz, Motivbezug und Freigabe erfassen."
         : "Passendes Firmenmotiv mit Quelle und Freigabe; AVIF/WebP srcset 480/960/1600, feste Abmessungen, Hero-Ziel ≤250 KB. Keine zufälligen Bilder.",
       mobile: settings.mobilePriority === "speed" || renderer === "static" ? "Unter 768px statisches Hochformatmotiv; keine WebGL-Initialisierung; gleicher Inhalt und CTA."
@@ -1232,7 +2021,20 @@ function createImplementationPlan(business: Business, settings: MasterPromptSett
     version: REFERENCE_METHOD_VERSION, methodCount: CREATIVE_TECHNIQUES.length,
     companyFocus: context.focus, evidenceStatus: context.status, scenes,
     game: websiteGameFor(business, settings, fingerprint.seed, context.focus),
-    referenceStandards: (() => { const ref = referenceStandardFor(business, settings, fingerprint.seed); return [`Referenzprinzip: ${ref.name}. ${ref.style}`, `Beobachtet in ${ref.file}: ${ref.observed} ${ref.limit}`, "Motivkontinuität, eigenständiger Satzspiegel, bewusste Ruhephasen, funktionierende Interaktionen und unterschiedliche Abschnittskompositionen sind Qualitätsanforderungen. Übertrage die Methoden auf echte Merkmale dieser Firma.", "Medien zuerst planen: Motivblatt mit Perspektive, Licht, Material, Zuschnitt und stabilen Layernamen. Kein Wechsel zu einer beliebigen anderen Person, Immobilie oder Produktform zwischen Szenen.", "Nicht einfach denselben Aufbau mit anderen Farben wiederverwenden. Wenn nur der Firmenname austauschbar ist, das Konzept neu entwickeln."]; })(),
+    referenceStandards: (() => {
+      const ref = referenceStandardFor(business, settings, fingerprint.seed);
+      return [
+        `Referenzprinzip: ${ref.name}. ${ref.style}`,
+        `Beobachtet in ${ref.file}: ${ref.observed} ${ref.limit}`,
+        `Übertragung für ${business.name}: Hauptmotiv aus „${context.focus}“ ableiten${context.audience ? `; Besucher: ${context.audience}` : ""}${context.difference ? `; belegbare Eigenheit: ${context.difference}` : ""}. Das Originalmotiv ist keine Vorgabe für diese Firma.`,
+        "Beobachtung und Bauvorschlag trennen: Kamerawackeln, Perspektive des abgefilmten Monitors, Creator-Overlays und Videoschnitte sind keine Website-Effekte. Zeitstempel bezeichnen Belegstellen, keine verpflichtende Animationsdauer.",
+        "Motivkontinuität, eigenständiger Satzspiegel, bewusste Ruhephasen, funktionierende Interaktionen und unterschiedliche Abschnittskompositionen sind Qualitätsanforderungen.",
+        ...(ref.assetPlan ?? []).map((asset) => `Medienvorbereitung: ${asset}`),
+        ...(ref.checkpoints ?? []).map((check) => `Referenz-Abnahme: ${check}`),
+        "Pro Hauptmotiv ein Motivblatt mit Perspektive, Licht, Material, Zuschnitt und stabilen Layernamen erstellen. Herkunft, Rechte und Ersatzmotiv je Datei dokumentieren.",
+        "Kein Austausch bloß von Firmenname und Farben. Wenn das Konzept unverändert für den zuletzt bearbeiteten Betrieb passt, Hauptmotiv, Abschnittsfolge und Interaktion neu ableiten.",
+      ];
+    })(),
     pageStructure: pageStructureFor(business, settings, fingerprint.seed, context.focus),
     constraints: [
       still ? "Animation aus hat Vorrang: keine dekorative Bewegung, Kamerafahrt, Scroll-Timeline oder Loop. Auch bewegte Referenzmethoden statisch umsetzen."
@@ -1241,6 +2043,7 @@ function createImplementationPlan(business: Business, settings: MasterPromptSett
       !spatial ? "Räumliche Laufzeiteffekte aus: keine WebGL-Szene. Bei HTML/CSS/JS, Animation aus, einfacher Komplexität oder kleinem Budget wird die 3D-Auswahl statisch adaptiert."
         : `3D ${settings.spatialEffects}: ${settings.spatialEffects === "hero" ? "genau eine räumliche Hero-Szene" : settings.spatialEffects === "accent" ? "höchstens ein räumlicher Akzent" : "höchstens zwei kohärente räumliche Szenen"}; echter Renderer, motivbezogene Geometrie und überprüfbare Interaktion sind Pflicht.`,
       settings.typographyMotion === "still" || still ? "Typografie statisch: keine Wort-/Buchstaben-Reveals oder Texttransformation." : "H1, Kernnutzen und CTA bleiben während jeder Inszenierung lesbar.",
+      "Manuell gewählte Dramaturgie hat Vorrang vor der Abschnittsfolge einer Stilwelt. Ihre Bild- und Bewegungsprinzipien an diesen Aufbau anpassen; keine zweite widersprüchliche Seitenstruktur bauen.",
       "Die nachfolgenden Szenenverträge haben Vorrang vor allgemeinen Referenzideen. Fallbacks nur für ausgeschaltete Effekte, Accessibility, fehlende freigegebene Assets oder nachgewiesene Geräte-/Performanceprobleme; Ersatz und Grund offen dokumentieren.",
     ],
     qualityGates: [
@@ -1610,9 +2413,12 @@ export function createCreativeBlueprint({
     .sort((left, right) => techniqueScore(right, business, settings, fingerprint.seed, research) - techniqueScore(left, business, settings, fingerprint.seed, research));
   const wanted = { simple: 3, professional: 4, complex: 5, "high-end": 6 }[settings.complexity];
   const selectedDefinitions: CreativeTechniqueDefinition[] = [];
+  const referenceSignature = referenceStandardFor(business, settings, fingerprint.seed).signatureMethod;
+  const signature = eligible.find((item) => item.id === referenceSignature);
+  if (signature) selectedDefinitions.push(signature);
   const spatialSignature = settings.animation !== "none" && ["hero", "experience"].includes(settings.spatialEffects)
     ? eligible.find((item) => item.spatial !== "none") : undefined;
-  if (spatialSignature) selectedDefinitions.push(spatialSignature);
+  if (spatialSignature && !selectedDefinitions.includes(spatialSignature)) selectedDefinitions.push(spatialSignature);
   for (const candidate of eligible) {
     if (candidate.id === "motion-token-grammar") continue;
     if (selectedDefinitions.length >= wanted) break;
@@ -1647,11 +2453,11 @@ export function createCreativeBlueprint({
   const signatureMoment = settings.animation === "none"
     ? `Ein unverwechselbares Detail aus der realen Arbeit von ${business.name} verbindet Hero, Leistungsübersicht und CTA als statische visuelle Klammer.`
     : `Beim Übergang von Leistung zu Beweis verwandelt sich ein echtes Detail von ${business.name} nach dem Prinzip „${primary.name}“ in den nächsten inhaltlichen Zustand; „${secondary.name}“ übernimmt anschließend die Orientierung, nie bloße Dekoration.`;
-  const blueprintSeed = hash(`${fingerprint.seed}:${mode}:${techniques.map((item) => item.id).join("|")}:reference-dna-v3`);
+  const blueprintSeed = hash(`${fingerprint.seed}:${mode}:${techniques.map((item) => item.id).join("|")}:${REFERENCE_METHOD_VERSION}`);
   return {
     id: `DNA-${blueprintSeed.toString(36).toUpperCase().padStart(7, "0")}`,
     title: `${primary.name} × ${secondary.name}`,
-    referenceStudyCount: 21 + VIDEO_STYLE_STANDARDS.length,
+    referenceStudyCount: VIDEO_STYLE_STANDARDS.length,
     visualMetaphor,
     storyArc,
     techniques,
@@ -1765,7 +2571,7 @@ export function generateMasterPrompt(input: MasterPromptInput): MasterPromptResu
   let tasks = mode === "acquisition" ? salesTasks : mode === "complete" ? [...webTasks, ...salesTasks] : webTasks;
   if (settings.promptDepth === "compact") tasks = tasks.slice(0, 3);
   if (settings.promptDepth === "detailed") tasks = tasks.slice(0, 6);
-  const standardPrompt = `# Individueller WebWorkBalance-Masterprompt\n\nDu bist Creative Director, UX-Stratege, Conversion-Texter und Senior-Webentwickler. Erstelle kein austauschbares Branchen-Template. Leite jede Entscheidung aus diesem Unternehmen, seiner Arbeit, Zielgruppe und dem Geschäftsziel ab.\n\n## Auftrag\n${mission(mode)}\n\n## Verfügbare Daten\n${available.map((fact) => `- ${fact.label}: ${fact.value} (Quelle: ${fact.source})`).join("\n")}\n\n## Fehlende oder unbelegte Angaben\n${missing.map((fact) => `- ${fact.placeholder}: ${fact.label}; benötigt für ${fact.reason}`).join("\n") || "- Keine erwarteten Pflichtangaben fehlen."}\n\nErfinde niemals Leistungen, Preise, Personen, Bewertungen, Referenzen, Zertifikate, Öffnungszeiten oder Unternehmensgeschichte. Nutze Platzhalter und formuliere konkrete Recherchefragen.\n\n## Quellen und Referenzen\n${evidence}\nReferenzen nur analysieren, nicht kopieren. Bilder, Texte, Logos und Designs nur mit belegten Rechten verwenden.\n\n## Individuelles Bildkonzept\n- Richtung: ${imagePlan.direction}\n${imagePlan.requiredAssets.map((asset) => `- ${asset}`).join("\n")}\n- Recherchebegriffe: ${imagePlan.searchQueries.join(" | ")}\nKennzeichne jedes Bild als firmeneigen, lizenziert, KI-generiert oder reine Inspiration. Eine Suchtreffer-Zuordnung niemals als bestätigt behandeln.\n\n## Design-Fingerabdruck ${fingerprint.id}\n- Thema: ${fingerprint.theme}\n- Leitidee: ${fingerprint.concept}\n- Komposition: ${fingerprint.composition}\n- Hero: ${fingerprint.hero}\n- Farbwelt: ${fingerprint.palette}\n- Typografie: ${fingerprint.typography}\n- Bildregie: ${fingerprint.imagery}\n- Bewegung: ${fingerprint.motion}\n- Rhythmus: ${fingerprint.rhythm}\n\nDer Fingerabdruck ist Ausgangspunkt, kein Template. Vermeide generische SaaS-Heros, zufällige Verläufe, austauschbare Kartenraster und Effekte ohne Funktion.\n\n## Kreativ-DNA ${creativeBlueprint.id}\nDie gespeicherte Methodenbibliothek baut auf 21 übernommenen Referenzstudien und ${VIDEO_STYLE_STANDARDS.length} neu protokollierten Videos auf; frühere Originalvideos wurden in diesem Update nicht erneut geprüft. Sie sind ein Werkzeugkasten, keine Vorlage.\n- Kombination: ${creativeBlueprint.title}\n- Unternehmensspezifische Metapher: ${creativeBlueprint.visualMetaphor}\n- Signature Moment: ${creativeBlueprint.signatureMoment}\n\n### Dramaturgie\n${creativeBlueprint.storyArc.map((step, index) => `${index + 1}. ${step}`).join("\n")}\n\n### Gewählte Kreativtechniken\n${creativeBlueprint.techniques.map((technique, index) => `${index + 1}. ${technique.name} · ${technique.family}\n   - Idee: ${technique.direction}\n   - Umsetzung: ${technique.implementation}\n   - Fallback: ${technique.fallback}`).join("\n")}\n\n### Technischer Rahmen\n${creativeBlueprint.technicalDirection}\n\n### Eigenständigkeitsregeln\n${creativeBlueprint.originalityRules.map((rule) => `- ${rule}`).join("\n")}\n\n## Animationsregie\n- Signatur: ${motionPlan.signature}\n${motionPlan.scenes.map((scene, index) => `${index + 1}. ${scene.name}\n   - Trigger: ${scene.trigger}\n   - Choreografie: ${scene.choreography}\n   - Zweck: ${scene.purpose}\n   - Mobile: ${scene.mobileFallback}\n   - Reduced Motion: ${scene.reducedMotion}`).join("\n")}\n- Performance-Budget: ${motionPlan.performanceBudget}\n\n## Konfiguration\nKreativität ${settings.creativity}; Komplexität ${settings.complexity}; Animation ${settings.animation}; Scroll ${settings.scrollMotion}; 3D ${settings.spatialEffects}; Übergänge ${settings.transitions}; Layout ${settings.layout}; Bilder ${settings.imagery}; Mobile ${settings.mobilePriority}; Ziel ${settings.conversionGoal}; Tiefe ${settings.promptDepth}; Technik ${settings.technology}; Budget ${settings.budget}.\nBewegungsregel: ${movementRules(settings)}. Jede Animation muss Inhalt erklären, Marke spürbar machen oder Bedienung verbessern. prefers-reduced-motion, Touch, Tastatur und mobile Fallbacks einplanen.\n${settings.customInstructions ? `\n## Eigene Wünsche\n${settings.customInstructions}\nDiese Wünsche dürfen Fakten-, Rechte-, Performance- und Barrierefreiheitsregeln nicht verletzen.\n` : ""}\n## Branchenbasis\n- Zielgruppe: ${item.audience}\n- Vertrauenssignale: ${item.trust.join(", ")}\n- Ausgangsstruktur: ${["Nutzenversprechen", "Leistungen", ...item.sections, "Vertrauen", "Kontakt"].join(" → ")}\n- Preisannahme: ${offer.name}, etwa ${offer.price.toLocaleString("de-DE")} € netto; Umfang vor Angebot klären.\n\n## Ergebnis\n${tasks.map((task, index) => `${index + 1}. ${task}`).join("\n")}\n\n## Qualitätskontrolle\nIst die Leitidee nur für dieses Unternehmen plausibel? Sind mindestens drei Gestaltungsdimensionen gegenüber bisherigen Varianten neu? Unterscheidet sich die Umsetzung in Aufbau, Bildregie und Bewegung klar von den Referenzstudien und üblichen Templates? Ist jede Aussage belegt oder markiert? Ist die mobile Version vollständig nutzbar? Passen Aufwand und Technik zum Budget? Bei einem Nein das Konzept überarbeiten.`;
+  const standardPrompt = `# Individueller WebWorkBalance-Masterprompt\n\nDu bist Creative Director, UX-Stratege, Conversion-Texter und Senior-Webentwickler. Erstelle kein austauschbares Branchen-Template. Leite jede Entscheidung aus diesem Unternehmen, seiner Arbeit, Zielgruppe und dem Geschäftsziel ab.\n\n## Auftrag\n${mission(mode)}\n\n## Verfügbare Daten\n${available.map((fact) => `- ${fact.label}: ${fact.value} (Quelle: ${fact.source})`).join("\n")}\n\n## Fehlende oder unbelegte Angaben\n${missing.map((fact) => `- ${fact.placeholder}: ${fact.label}; benötigt für ${fact.reason}`).join("\n") || "- Keine erwarteten Pflichtangaben fehlen."}\n\nErfinde niemals Leistungen, Preise, Personen, Bewertungen, Referenzen, Zertifikate, Öffnungszeiten oder Unternehmensgeschichte. Nutze Platzhalter und formuliere konkrete Recherchefragen.\n\n## Quellen und Referenzen\n${evidence}\nReferenzen nur analysieren, nicht kopieren. Bilder, Texte, Logos und Designs nur mit belegten Rechten verwenden.\n\n## Individuelles Bildkonzept\n- Richtung: ${imagePlan.direction}\n${imagePlan.requiredAssets.map((asset) => `- ${asset}`).join("\n")}\n- Recherchebegriffe: ${imagePlan.searchQueries.join(" | ")}\nKennzeichne jedes Bild als firmeneigen, lizenziert, KI-generiert oder reine Inspiration. Eine Suchtreffer-Zuordnung niemals als bestätigt behandeln.\n\n## Design-Fingerabdruck ${fingerprint.id}\n- Thema: ${fingerprint.theme}\n- Leitidee: ${fingerprint.concept}\n- Komposition: ${fingerprint.composition}\n- Hero: ${fingerprint.hero}\n- Farbwelt: ${fingerprint.palette}\n- Typografie: ${fingerprint.typography}\n- Bildregie: ${fingerprint.imagery}\n- Bewegung: ${fingerprint.motion}\n- Rhythmus: ${fingerprint.rhythm}\n\nDer Fingerabdruck ist Ausgangspunkt, kein Template. Vermeide generische SaaS-Heros, zufällige Verläufe, austauschbare Kartenraster und Effekte ohne Funktion.\n\n## Kreativ-DNA ${creativeBlueprint.id}\nDie Methodenbibliothek enthält übernommene Gestaltungsprinzipien und ${VIDEO_STYLE_STANDARDS.length} einzeln dokumentierte Video-Studien. Erneute Uploads werden nur einmal gezählt. Die Beobachtungen sind Qualitätsreferenzen; konkrete Technik, Laufzeitwerte und zusätzliche Abschnitte sind eigenständige Umsetzungsvorschläge.\n- Kombination: ${creativeBlueprint.title}\n- Unternehmensspezifische Metapher: ${creativeBlueprint.visualMetaphor}\n- Signature Moment: ${creativeBlueprint.signatureMoment}\n\n### Dramaturgie\n${creativeBlueprint.storyArc.map((step, index) => `${index + 1}. ${step}`).join("\n")}\n\n### Gewählte Kreativtechniken\n${creativeBlueprint.techniques.map((technique, index) => `${index + 1}. ${technique.name} · ${technique.family}\n   - Idee: ${technique.direction}\n   - Umsetzung: ${technique.implementation}\n   - Fallback: ${technique.fallback}`).join("\n")}\n\n### Technischer Rahmen\n${creativeBlueprint.technicalDirection}\n\n### Eigenständigkeitsregeln\n${creativeBlueprint.originalityRules.map((rule) => `- ${rule}`).join("\n")}\n\n## Animationsregie\n- Signatur: ${motionPlan.signature}\n${motionPlan.scenes.map((scene, index) => `${index + 1}. ${scene.name}\n   - Trigger: ${scene.trigger}\n   - Choreografie: ${scene.choreography}\n   - Zweck: ${scene.purpose}\n   - Mobile: ${scene.mobileFallback}\n   - Reduced Motion: ${scene.reducedMotion}`).join("\n")}\n- Performance-Budget: ${motionPlan.performanceBudget}\n\n## Konfiguration\nKreativität ${settings.creativity}; Komplexität ${settings.complexity}; Animation ${settings.animation}; Scroll ${settings.scrollMotion}; 3D ${settings.spatialEffects}; Übergänge ${settings.transitions}; Layout ${settings.layout}; Bilder ${settings.imagery}; Mobile ${settings.mobilePriority}; Ziel ${settings.conversionGoal}; Tiefe ${settings.promptDepth}; Technik ${settings.technology}; Budget ${settings.budget}.\nBewegungsregel: ${movementRules(settings)}. Jede Animation muss Inhalt erklären, Marke spürbar machen oder Bedienung verbessern. prefers-reduced-motion, Touch, Tastatur und mobile Fallbacks einplanen.\n${settings.customInstructions ? `\n## Eigene Wünsche\n${settings.customInstructions}\nDiese Wünsche dürfen Fakten-, Rechte-, Performance- und Barrierefreiheitsregeln nicht verletzen.\n` : ""}\n## Branchenbasis\n- Zielgruppe: ${item.audience}\n- Vertrauenssignale: ${item.trust.join(", ")}\n- Ausgangsstruktur: ${["Nutzenversprechen", "Leistungen", ...item.sections, "Vertrauen", "Kontakt"].join(" → ")}\n- Preisannahme: ${offer.name}, etwa ${offer.price.toLocaleString("de-DE")} € netto; Umfang vor Angebot klären.\n\n## Ergebnis\n${tasks.map((task, index) => `${index + 1}. ${task}`).join("\n")}\n\n## Qualitätskontrolle\nIst die Leitidee nur für dieses Unternehmen plausibel? Sind mindestens drei Gestaltungsdimensionen gegenüber bisherigen Varianten neu? Unterscheidet sich die Umsetzung in Aufbau, Bildregie und Bewegung klar von den Referenzstudien und üblichen Templates? Ist jede Aussage belegt oder markiert? Ist die mobile Version vollständig nutzbar? Passen Aufwand und Technik zum Budget? Bei einem Nein das Konzept überarbeiten.`;
   const productionDirective = highEndBuildDirective(settings, creativeBlueprint, imagePlan, item);
   const basePrompt = settings.productionTrack === "express"
     ? expressBuildDirective({ business: input.business, mode, settings, item, available, missing, evidence, fingerprint, imagePlan, blueprint: creativeBlueprint, motionPlan, offer })

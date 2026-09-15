@@ -1,0 +1,206 @@
+{
+  "sprache": "de",
+  "untersuchungsrahmen": "Lokale Sichtanalyse der erneut hochgeladenen Aufnahme; keine Recherche zur Originalwebsite, kein Quellcodezugriff und kein Nachweis einer verwendeten Engine oder Bibliothek.",
+  "evidenzgrenzen": [
+    "Zeitangaben bezeichnen die Laufzeit des hochgeladenen Videos. Die Aufnahme kann beschleunigt, geschnitten oder ungleichmäßig gescrollt sein; diese Sekunden sind keine gemessenen Website-Animationsdauern.",
+    "Desktop-Website wird auf einem real gefilmten Bildschirm gezeigt. Perspektive, Belichtung, Kompression, Moiré und Handbewegung sind Eigenschaften der Aufnahme.",
+    "Sichtbar sind Bildzustände und Bewegungsfolgen. Scrollbindung, Pinning, Hit-Areas, Tastaturbedienbarkeit, DOM-Struktur und tatsächliche Rendertechnik sind ohne Interaktionsprotokoll nicht bewiesen.",
+    "Audio ist als Stream vorhanden; diese Studie bewertet visuelle Webgestaltung und behauptet keine Audiofunktion der Website.",
+    "Alle technischen Szenenverträge und Zeitbudgets unten sind eigene Umsetzungsvorschläge, keine Rekonstruktion des Quellcodes."
+  ],
+  "pruefverfahren": {
+    "metadaten": "ffprobe: Dauer, Auflösung, Bildrate, Streams",
+    "grobsichtung": "Timestamped Kontaktbogen über die vollständige Laufzeit, Abstand 1 s plus Endbild. Alle Kontaktbögen tatsächlich visuell geöffnet.",
+    "feinsichtung": "Viertelsekunden-Kontaktbögen der Websequenzen, zusätzlich mehrere unbeschnittene Einzelbilder tatsächlich visuell geöffnet.",
+    "sicherheit": "hoch = unmittelbar sichtbare Folge; mittel = räumliche/dekorative Interpretation; offen = technische Ursache oder Bedienung nicht nachgewiesen."
+  },
+  "masterprompt_regel": "Benutze die dramaturgische Methode mit eigenen Inhalten, Art Direction und Assets. Leite jede Bewegung aus einem Kommunikationszweck ab. Kopiere weder Marke noch Slogans, Modellform, Szenenfolge oder charakteristische Farb-/Typografiekombination vollständig.",
+  "clip_id": "a01",
+  "quelldatei": "-8919957103071095100(1).MP4",
+  "dauer_sekunden": 10.833333,
+  "bild": {
+    "breite": 576,
+    "hoehe": 1024,
+    "fps": 30
+  },
+  "methoden_id": "erlebnis-zu-spezifikation",
+  "methoden_name": "Vom Erlebnis zur Spezifikation",
+  "methoden_kern": "Ein Leitobjekt durchläuft verschiedene Informationsmaßstäbe: sensorischer Zugang, bildfüllender Raum, skulpturale Produktansicht, technische Übersicht und betrieblicher Kontext. Die Methode präzisiert einen Portal-Einstieg zu einer vollständigen Argumentationsfolge.",
+  "kurzbefund": "Luxusflug-Website mit warmer dunkler Fensterbühne, cyanfarbener Wolkenpassage, cremefarbener Jet-Präsentation und dunklem Global-Kapitel. Charakteristisch ist der Wechsel vom Fluggefühl zu Produktdetails und schließlich zu Reichweite/Leistungsnachweis.",
+  "beobachtete_gestaltung": [
+    "0–1,25 s: zentraler ovaler Flugzeugfensterrahmen vor braun-goldenem Lichtsaum; große weiße kurze Headlines links und rechts; kleine Erläuterung links unten.",
+    "1,25–4,25 s: Fensteröffnung wächst zu einer bildfüllenden cyanfarbenen Wolkenwelt. Ein kurzer weißer Textblock erscheint um 3,25 s.",
+    "4,25–7,50 s: helle warme Fläche, weit auseinandergezogene Headline-Hälften, goldfarbener Jet in Draufsicht. Später liegen Modellbezeichnung links oben und technische Information in mehreren kleinen Zonen um das Objekt.",
+    "7,75–8,50 s: ruhiger redaktioneller Zweispalter, links Leistungs-/Serviceinhalt, rechts hochformatiges Kabinenfoto mit Hund. Das Bild belegt eine Servicegeschichte statt einer abstrakten Leistungszahl.",
+    "8,50–10,83 s: dunkler globaler Abschnitt mit übergroßer Hintergrundtypografie, heller Statistiktafel und kugelförmigem Erd-/Routennetz.",
+    "Kleine horizontale Navigation oben und pillenförmiger Buchungs-CTA am unteren Bildschirmzentrum bleiben über viele Kapitel in annähernd derselben relativen Position sichtbar. Tatsächliches CSS-Fixed/Sticky ist nicht nachgewiesen."
+  ],
+  "zeitcodierte_motion": [
+    {
+      "zeit": "00:00–00:00.75",
+      "sichtbarer_beleg": "Die helle Blende verdeckt zunächst die Fensteröffnung. Um 0,25 s liegt die Unterkante höher, um 0,50–0,75 s ist das cyanfarbene Außenbild weitgehend frei.",
+      "abgrenzung": "Die relative Bewegung innerhalb eines gleich großen Fensterrahmens belegt eine Blendenöffnung. Scroll- oder zeitgesteuert bleibt offen.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:00.50–00:01.25",
+      "sichtbarer_beleg": "Die seitlichen großen Textteile treten unscharf/versetzt auf und sind um 1,00 s weitgehend lesbar; um 1,25 s gibt es erneut versetzte Zeichenkonturen.",
+      "abgrenzung": "Sichtbare Konturverdopplung kann sowohl Motion-/Blur-Design als auch Aufnahmeartefakt enthalten; kein exakter Blur-Wert wird behauptet.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:01.25–00:02.50",
+      "sichtbarer_beleg": "Fenster und Rahmen wachsen stark, die beiden Headlines verlassen seitlich das Bild; ab etwa 2,50 s füllen Wolken die Fläche ohne erkennbaren Rahmen.",
+      "abgrenzung": "Ein Portal-/Zoom-Effekt ist klar sichtbar. Ob 3D-Kamerafahrt, skalierte maskierte Ebene oder Videosequenz: offen.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:02.50–00:04.25",
+      "sichtbarer_beleg": "Wolken verschieben sich weiter; um 3,25 s erscheint ein größerer weißer Textblock. Das Blau hellt danach zu nahezu leerem Cyan/Creme auf.",
+      "abgrenzung": "Die zeitliche Textpräsenz ist kurz in dieser Aufnahme. Daraus darf keine absichtlich extrem kurze reale Lesezeit abgeleitet werden.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:04.25–00:06.25",
+      "sichtbarer_beleg": "Die Headline-Hälften erscheinen. Eine goldfarbene Flugzeugnase kommt von unten; das Flugzeug wandert aufwärts und wird so groß, dass die Flügel die seitlichen Texte überlagern.",
+      "abgrenzung": "Objektbewegung relativ zu Header und Headline ist klar. Die physische Aufnahmekamera erklärt diese Veränderung nicht.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:06.25–00:07.50",
+      "sichtbarer_beleg": "Die Produktansicht wird kleiner und vollständig; technische Textzonen treten hinzu. Um 7,25–7,50 s wird die massive Außenform durch eine schmale planartige Kabinendarstellung ersetzt.",
+      "abgrenzung": "Wechsel zwischen Produktaußenansicht und schematischer Innenansicht ist sichtbar. Morph, Crossfade oder getrennte Assets sind nicht unterscheidbar.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:07.75–00:08.75",
+      "sichtbarer_beleg": "Der Zweispalter mit Serviceinhalt und Kabinenfoto schiebt sich nach oben; unten erscheint die dunkle Folgefläche.",
+      "abgrenzung": "Konventioneller vertikaler Abschnittswechsel ist sichtbar. Dies ist ein wichtiges Ruheintervall zwischen aufwendigen Szenen.",
+      "sicherheit": "hoch"
+    },
+    {
+      "zeit": "00:09.00–00:10.83",
+      "sichtbarer_beleg": "Große dunkle Hintergrundschrift und eine Erdkugel mit hellen Bogenlinien werden sichtbar. Eine helle Tafel mit sichtbarer Flugstatistik zieht von unten nach oben und verlässt später den oberen Bereich.",
+      "abgrenzung": "Die Tafel ist inhaltlicher Beleg. Ihre sichtbare Zahl beschreibt die Referenzgestaltung und ist keine verifizierte aktuelle Unternehmenskennzahl.",
+      "sicherheit": "hoch"
+    }
+  ],
+  "aufnahme_vs_website": {
+    "aufnahme": [
+      "Blaue Raumbeleuchtung, Laptop mit Code, Hand, Bildschirmrahmen und das große Claude-Symbol samt Frage oberhalb des Monitors gehören zur Videoinszenierung.",
+      "Leichtes Kamerawackeln verändert den ganzen Monitor; es ist kein Website-Parallax."
+    ],
+    "website": [
+      "Blendenöffnung, Fenstervergrößerung, Jet-Bewegung, Layout-/Farbwechsel und bewegte Statistiktafel geschehen innerhalb des Browserinhalts."
+    ],
+    "nicht_belegt": [
+      "Das Programm auf dem Laptop beweist weder Urheberschaft noch Technologie der dargestellten Website.",
+      "Keine reale Flugbuchung, Menüfunktion oder mobile Ansicht wird gezeigt."
+    ]
+  },
+  "transferprinzipien": [
+    {
+      "prinzip": "Maßstab ist Informationshierarchie",
+      "anwendung": "Weitwinkel vermittelt Gefühl, Nahaufnahme erzeugt Wertigkeit, technische Totale erklärt, Kontextansicht belegt Nutzen. Jede Ansicht braucht eine andere inhaltliche Aufgabe."
+    },
+    {
+      "prinzip": "Ein Objekt vermittelt zwischen Layouts",
+      "anwendung": "Das zentrale Motiv bleibt erkennbar, während die Textordnung von flankierender Headline zu frei platzierten Spezifikationen wechselt."
+    },
+    {
+      "prinzip": "Nach Immersion folgt konkrete Evidenz",
+      "anwendung": "Nach maximal einer aufwendigen Erlebnispassage ein lesbares Daten- oder Servicekapitel vorsehen; dadurch entsteht Argumentation statt einer Effektsammlung."
+    },
+    {
+      "prinzip": "Farbtemperatur strukturiert Bedeutungen",
+      "anwendung": "Warmer Innenraum, kühler Außenraum, heller Produktbeleg, dunkles Netzwerk markieren verschiedene Aufgaben. Eine eigene Marke darf dafür völlig andere Farben verwenden."
+    }
+  ],
+  "szenenvertraege": [
+    {
+      "id": "A01-S1",
+      "kommunikationsziel": "Den Übergang vom Zugang zum Erlebnis verständlich machen.",
+      "trigger_vorschlag": "Scrollfortschritt einer eigenen Szene nach stabil sichtbarem Hero; auf Touch auch Schaltfläche „Erlebnis ansehen“.",
+      "startzustand": "p=0: geschlossenes oder teilweise geöffnetes eigenes Rahmenelement; Headline und primärer CTA bereits zugänglich.",
+      "mittelzustand": "p=0,2: Öffnung frei; p=0,55: Rahmen wächst außerhalb des Viewports, begleitende Texte gehen separat ab.",
+      "endzustand": "p=1: nahtlose Erlebnisfläche; nachfolgende Zusammenfassung lesbar im DOM.",
+      "timing_vorschlag": "Eigener Vorschlag: 100–140 vh Scrollstrecke, Mindesthaltezone für Text; keine globale Scrollsperre.",
+      "cleanup_und_ruecklauf": "Beim Exit Masken-/Transformebenen deaktivieren; Rückscroll deterministisch; bei Resize Anker aus Containergröße neu berechnen; bei Reduced Motion direkt Erlebnisposter zeigen."
+    },
+    {
+      "id": "A01-S2",
+      "kommunikationsziel": "Vom emotionalen Objektbild zur prüfbaren Produktaussage führen.",
+      "trigger_vorschlag": "Eigener Produktabschnitt erreicht obere Viewportzone.",
+      "startzustand": "p=0: Produktfragment tritt in großzügigen Leerraum zwischen zwei unterschiedlichen Textzonen.",
+      "mittelzustand": "p=0,35: Produkt dominiert; p=0,65: vollständige Ansicht verkleinert sich in die Datenkomposition.",
+      "endzustand": "p=1: ruhige Produkt- oder Schemaansicht mit mindestens drei echten, lesbaren Angaben.",
+      "timing_vorschlag": "Eigener Vorschlag: 140–200 vh; 20–30 Prozent des Fortschritts als lesbare Endhaltung. Auf einem Buttonpfad 700–1000 ms Bewegung plus unbegrenzte Lesedauer.",
+      "cleanup_und_ruecklauf": "Immer dieselbe logische Produkt-ID; Übergangsbild entladen, finalen Posterzustand behalten; Rücklauf tauscht Darstellungen ohne doppelte Texte oder Fokusverlust."
+    },
+    {
+      "id": "A01-S3",
+      "kommunikationsziel": "Serviceversprechen mit greifbarem Inhalt und Reichweite verknüpfen.",
+      "trigger_vorschlag": "Normale Abschnittsfolge nach der Produktansicht.",
+      "startzustand": "Redaktioneller Zweispalter mit eigenem Foto, klarer Überschrift und Servicebeweis.",
+      "mittelzustand": "Dunklere/andersfarbige Kontextfläche tritt ein; Statistik erscheint als eigenständige Tafel.",
+      "endzustand": "Lesbare Zahlen und ein optionales Routenbild mit erläuternder Legende, danach ein nutzbarer CTA.",
+      "timing_vorschlag": "Eigener Vorschlag: Zweispalter ohne Pinning; Kontextgrafik 60–100 vh, nur ein kleiner Bewegungsakzent.",
+      "cleanup_und_ruecklauf": "Statistik bleibt als Text erhalten; unsichtbare Karten-/Globusanimation pausieren; keine automatisch erzeugten oder erfundenen Routen/Leistungszahlen."
+    }
+  ],
+  "asset_vorbereitung": [
+    "Eigenes Leitobjekt in mindestens drei definierten Ansichten vorbereiten: emotionales Detail, vollständige Außenansicht, technisches Schema. Gemeinsame Achse und Ankerpunkte erleichtern sichtbare Kontinuität.",
+    "Rahmen und Hintergrund getrennt mit Reserve über den sichtbaren Ausschnitt exportieren; für die Nahfahrt müssen Kanten und Innenöffnung in ausreichender Auflösung vorliegen.",
+    "Cloud-/Atmosphärenmaterial nur mit passender Lizenz und optionalem ruhigen Poster; keine hochaufgelöste lange Sequenz laden, bevor sie gebraucht wird.",
+    "Technische Daten als echter Text; eigene Servicefotografie und belegbare Kennzahlen. Keine im Clip erkennbaren Firmenzahlen übernehmen.",
+    "Wenn ein Echtzeitmodell nötig ist: optimiertes Modell, komprimierte Texturen, reduzierte Materialien und zwei Qualitätsstufen. Bei fester Kamerafolge ist eine gerenderte Sequenz ebenfalls eine Option, keine Aussage zur Vorlage."
+  ],
+  "responsive_fallback": {
+    "desktop": "Weite Textflanken nur verwenden, wenn genug Platz für das Produkt bleibt. Header/CTA auf Überlagerungen prüfen; 3D/Sequenz in einem eigenen, begrenzten Bereich.",
+    "mobile": "Headline oberhalb, Objekt darunter, Spezifikationen anschließend als kompakte Liste; Portal optional auf ein kurzes Öffnen innerhalb eines Kartenfensters begrenzen. Keine seitlich abgeschnittenen Hauptaussagen.",
+    "reduced_motion": "Statische Rahmenansicht → ruhiges Erlebnisbild → technische Produktansicht in normalem Dokumentfluss; alle Informationen und CTA bleiben verfügbar.",
+    "ausfall": "Bei Modell-/Videoausfall ein vorbereitetes Produktposter und Datenlayout rendern; keine leere Vollbildfläche oder endlose Ladeinszenierung."
+  },
+  "alternative_kompositionen": [
+    {
+      "id": "A01-K1",
+      "name": "Asymmetrisches Produktdossier",
+      "folge": "Kleine These links / großes Detail rechts → schmale horizontale Datenleiste → breite technische Ansicht → ruhige Fotoreportage → kompakte Anfragefläche.",
+      "unterschied": "Keine zentrierte Portal-Hero-Komposition; Maßstabswechsel passieren im Bildfeld rechts, nicht über die gesamte Seite."
+    },
+    {
+      "id": "A01-K2",
+      "name": "Reisechronik",
+      "folge": "Vollflächiger atmosphärischer Einstieg → vertikale Zeitleiste links und wechselnde Objektansichten rechts → begehbarer Inhaltsindex → Belege in unterschiedlich großen Bild-/Textblöcken.",
+      "unterschied": "Die Chronologie und der Nutzen führen; das technische Objekt tritt erst im mittleren Kapitel auf."
+    }
+  ],
+  "branchen_adaptionen": [
+    {
+      "branche": "Architektur",
+      "uebertragung": "Türdetail → Innenraum → Gebäudeschnitt → Nachbarschaft; eigene Material-/Tageslichtsprache.",
+      "komposition": "Großes Querformat neben schmalen Randnotizen, danach raumhoher Schnitt; keine Flugzeugmetapher."
+    },
+    {
+      "branche": "Präzisionsgeräte",
+      "uebertragung": "Messkontakt → Arbeitsbereich → komplette Maschine → Wartungszugang; Spezifikationen beantworten konkrete Beschaffungsfragen.",
+      "komposition": "Technisches Dossier mit vertikaler Datenkante und optionalem Detail-Lupenfeld."
+    },
+    {
+      "branche": "Hospitality",
+      "uebertragung": "Textiles Detail → Zimmeratmosphäre → Grundriss → lokaler Ausflug; echtes Foto als Beleg.",
+      "komposition": "Editoriale Bildstrecke mit wechselnden Quer-/Hochformaten und Buchungsmodul nach dem Nutzennachweis."
+    }
+  ],
+  "imitationsrisiken": [
+    "Kein identisches Flugzeugfenster, goldener Jet, geteilte Luxus-Headline und Globus in derselben Kombination. Das wäre eine erkennbare Rekonstruktion der visuellen Signatur.",
+    "Die wirkungsvolle Bewegung hängt an hochwertigen eigenen Assets; Platzhalter ersetzen den Kern der Gestaltung nicht.",
+    "Eine Übertragung in sensible oder nüchterne Branchen kann künstlich luxuriös wirken. Kommunikationsziel und Informationspriorität bestimmen die Intensität.",
+    "Die kurzen aufgenommenen Textauftritte dürfen nicht als Lesezeitbudget übernommen werden."
+  ],
+  "source_sha256": "be90010769e0e8192f144c557ce1cb1d63c78321c52c274f9ebf66700e838943",
+  "original_filename": "-8919957103071095100.MP4",
+  "engine_style_id": "experience-specification",
+  "engine_method_id": "experience-to-specification",
+  "evidence_publication": "Zeitachsen und Sichtungsnotizen werden veröffentlicht. Originalclips und extrahierte Belegbilder bleiben außerhalb des Repositorys."
+}

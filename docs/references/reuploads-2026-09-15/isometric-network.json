@@ -1,0 +1,249 @@
+{
+  "id": "c3",
+  "title": "C3 – Ein räumliches Leistungsmodell mit festem Orientierungsrahmen",
+  "source": {
+    "filename": "-388175669482362820(1).MP4",
+    "duration_seconds": 7.933333,
+    "video_duration_seconds": 7.933333,
+    "width": 576,
+    "height": 1024,
+    "fps": 30,
+    "video_frames": 238,
+    "video_codec": "h264",
+    "audio_codec": "aac"
+  },
+  "summary": "Die erkennbare Emons-Seite zeigt eine helle isometrische Logistikwelt. Die Ansicht wechselt vom Umschlaglager über einen geöffneten Lagerbereich, kurvige Straßen, Hafen/Flughafen und Schieneninfrastruktur zum Bürostandort. Eine kleine Informationsfläche links unten und die Navigation halten während dieser räumlichen Reise Orientierung. Danach verlässt die Seite die Erlebnisbühne sichtbar und geht in einen weißen Inhaltsabschnitt mit großem Lkw über. Der Transfer ist eine fachlich strukturierte Weltkarte mit bewusstem Ende.",
+  "method": [
+    "Lokale Reuploads wurden ausschließlich mit ffprobe/ffmpeg untersucht. Vollständige Zeitleisten wurden als zeitbeschriftete Kontaktbögen abgedeckt; diese und ergänzende Übergangsbögen wurden tatsächlich visuell angesehen. Keine externe Webseite, kein Quellcode und keine Netzwerkantworten wurden zur Technologieidentifikation herangezogen.",
+    "Die Sekundenwerte beziehen sich auf die Aufnahmedatei. Scrollgeschwindigkeit und mögliche Wiedergabe- oder Schnittbearbeitung der Aufnahme sind unbekannt; daraus lassen sich keine ursprünglichen Animationsdauern in Millisekunden ableiten.",
+    "Physisch abgefilmter Desktop-Bildschirm: Perspektive, geringe nutzbare Bildschirmauflösung, Bewegungsschlieren und Display-/Kameraartefakte begrenzen die Lesbarkeit. Keine mobile Fassung und kein Reduced-Motion-Modus sind sichtbar. Die vorhandene AAC-Audiospur wurde nicht inhaltlich ausgewertet.",
+    "Videotext über „Claude“ ist ein über dem abgefilmten Raum liegendes Social-Media-Overlay. Seine Behauptung belegt weder Urheberschaft noch Entwicklungswerkzeuge. Alle technischen Szenenverträge und Adaptionen in dieser Studie sind eigene Vorschläge.",
+    "Übersicht: 0–7 s in 1-s-Schritten und 7,866 s. Vollständige Detailzeitleiste: 0–7,75 s alle 0,25 s plus 7,867 s. Zusätzliche Übergangsbilder bei 2,333/2,417, 3,083/3,167, 3,583/3,667, 4,583/4,667, 5,333/5,417 und 6,333/6,417 s. Drei Detailbögen, ein Übergangsbogen und unbeschnittene Einzelbilder bei 1, 4 und 6 s wurden angesehen."
+  ],
+  "style": {
+    "Bildsprache": "Vereinfachte isometrische bzw. axonometrisch wirkende Architektur, kleine Bäume und Menschen, Logistikfahrzeuge, Kräne, Container und Infrastruktur. Die Welt wirkt wie ein helles Architektur-/Spielzeugmodell, ohne konkrete Renderer- oder Projektionsparameter zu belegen.",
+    "Farbe und Material": "Sehr helle cremeweiße Böden/Gebäude, mintgrüne Bäume und Landschaft, hellblaues Wasser, rote Fahrzeuge, Portale und Markenflächen. Später gelb beleuchtete Fenster und schwarze Fassadenbänder als markanter Kontrast am Bürokomplex.",
+    "Typografie": "Leichte moderne Sans-Serif mit zurückhaltenden Größen. Der Informationsblock ist im Verhältnis zum bildfüllenden Modell klein. Später groß gesetzter dreizeiliger Text „Your cargo. Our mission. Welcome to Emons.“ auf Weiß.",
+    "Kompositionen": "Anfang: großes Lagergebäude diagonal, Fahrzeuge links/oben, kleine Textfläche unten links. Weltreise: räumlicher Ausschnitt verschiebt sich unter weitgehend stabiler Erklärung. Hafen/Flughafen als gemeinsame diagonale Übersichtslandschaft. Bürogebäude als markante vertikale Volumen. Ausstieg: großer freigestellter Lkw auf Weiß, anschließend asymmetrische Text-/CTA-Ordnung.",
+    "Navigation": "Kleines rotes Logo links oben, kompakte pillenähnliche Navigation oben, kleine Symbole unten links und Punkt-/Buttonbereiche unten rechts. Browser- oder Vorschauleisten direkt am oberen Displayrand sind nicht mit der Websitegestaltung gleichzusetzen."
+  },
+  "timeline": [
+    {
+      "start": 0,
+      "end": 2.25,
+      "observed": "Helle Lager-/Speditionsanlage mit mehreren roten Emons-Lkw, mintfarbenen Bäumen und kleinen Personen. Zwischen Stichproben verändern einzelne Fahrzeuge ihre Lage, während das Gebäude weitgehend gleich bleibt. Kleine Text-/Buttonfläche unten links.",
+      "interpretation": "Lokale Ambientbewegung in einer ansonsten ruhigen Übersicht ist plausibel und durch wechselnde Fahrzeugpositionen gestützt. Routenlogik oder Interaktivität der Fahrzeuge sind nicht belegt."
+    },
+    {
+      "start": 2.25,
+      "end": 2.75,
+      "observed": "Der Websiteblick schwenkt um bzw. entlang der Anlage. Ein aufgeschnittener/offener Lagerbereich mit Regalen und gelblichen Gütern wird rechts sichtbar.",
+      "interpretation": "Räumlicher Zusammenhang von Außenansicht und Innenfunktion. Eine Live-3D-Kamera oder ein vorgerenderter Übergang könnten dasselbe zeigen."
+    },
+    {
+      "start": 2.75,
+      "end": 3.25,
+      "observed": "Lager wird kleiner und rückt nach oben/links; mehr Bäume, Gelände und Straßen treten ins Bild. Textfläche bleibt unten links.",
+      "interpretation": "Übersichtsfahrt/Zoom-out innerhalb der Webseite, nicht nur Bewegung des Aufnahmegeräts."
+    },
+    {
+      "start": 3.25,
+      "end": 3.75,
+      "observed": "Kurvige Straße durch grünliches Gelände mit kleinen roten Fahrzeugen; anschließend kommt ein Terminalbereich von rechts/unten in den Blick.",
+      "interpretation": "Verbindung zwischen Logistikknoten wird als Weg dargestellt. Klick auf einen bestimmten Knoten ist nicht sicher sichtbar."
+    },
+    {
+      "start": 3.75,
+      "end": 4.583,
+      "observed": "Hafen mit blauem Wasser, Schiff, Containerkränen und unmittelbar angrenzendem Flughafen mit roten Flugzeugen. Blick hält kurz auf der Gesamtanlage.",
+      "interpretation": "Mehrere Transportmodi in gemeinsamer visueller Welt. Die räumliche Nachbarschaft ist eine Marketingdarstellung, kein bestätigter geografischer Standort."
+    },
+    {
+      "start": 4.583,
+      "end": 5.333,
+      "observed": "Der Blick fährt weiter über Hafenflächen zu langen parallelen Schienen und einem großen roten Portalkran; Infrastruktur bewegt sich diagonal durch den Ausschnitt.",
+      "interpretation": "Nächster räumlicher Leistungsknoten. Einzelne Zwischenbilder zeigen Bewegungsunschärfe durch schnelle Bildschirmbewegung/Abfilmung."
+    },
+    {
+      "start": 5.333,
+      "end": 5.75,
+      "observed": "Bürogebäude kommen aus dem Vordergrund in den Blick. Ein rot/schwarz/gelb gestalteter hoher Bau wird vom engen Ausschnitt zur übersichtlichen Gebäudekomposition.",
+      "interpretation": "Wechsel von Verkehrs-/Umschlagfunktion zur Unternehmens-/Standortdarstellung; die genaue inhaltliche Zuordnung ist eine plausible Deutung."
+    },
+    {
+      "start": 5.75,
+      "end": 6.333,
+      "observed": "Mehrere Bürovolumen stehen vor heller Landschaft, größtes Gebäude rechts. Die kleine erklärende Fläche sitzt weiterhin unten links.",
+      "interpretation": "Ruhiger Endknoten der Weltreise. Der sichtbare Text wirkt weiterhin allgemein; spezifische ortsabhängige Textwechsel sind nicht eindeutig erkennbar."
+    },
+    {
+      "start": 6.333,
+      "end": 7.25,
+      "observed": "Die gesamte Modellbühne samt linker Textfläche schiebt sich nach oben. Von unten erscheint eine weiße Sektion mit großem roten Lkw; beide Bereiche sind während der Übergabe gleichzeitig sichtbar.",
+      "interpretation": "Klarer Ausstieg in normalen vertikalen Dokumentfluss. Der Übergang ist in 6,333/6,417 s direkt belegt."
+    },
+    {
+      "start": 7.25,
+      "end": 7.933333,
+      "observed": "Lkw wandert weiter nach oben; links erscheint „Your cargo. Our mission. Welcome to Emons.“, rechts kleine rote Aktionsflächen und kurze Erklärung. Unten beginnt „Our wide range of services“.",
+      "interpretation": "Beginn einer serviceorientierten Informationsseite. Weitere Sektionen, Karten und Aktionen werden vor Clipende nicht ausreichend gezeigt."
+    }
+  ],
+  "layer_separation": {
+    "Webseitenbewegung": "Fahrzeugpositionen, Wechsel zwischen Weltknoten, Maßstabs-/Blickänderungen und der Ausstieg zum weißen Lkw-Abschnitt ändern sich innerhalb der Bildschirmfläche. Text-/Navigationsebenen bleiben während der Weltfahrt weitgehend ortsfest, bevor die ganze Bühne nach oben ausläuft.",
+    "Aufnahme und Overlay": "Der Monitor wird frontal mit leichter Handkamera-Bewegung abgefilmt; seine vertikale Lage und perspektivische Größe im Video ändern sich ebenfalls. „Claude Design is WILD“ liegt als schwarzer Video-Sticker über dem Raum und ist kein Webseitentext. Kleine blaue/graue Leisten ganz oben können Browser-/Vorschau-UI sein und gehören nicht automatisch zum Produktdesign.",
+    "Nicht belegbar": "Kein Beleg für Claude, Three.js, WebGL, Modellformat, Karten-Engine oder Scrollbibliothek. Räumliche Kohärenz belegt nur die Bildwirkung. Ob die Kamerafahrt durch Scroll, Navigationswahl oder eine automatische Tour gesteuert wird, lässt sich aus Hand/Maus und Kontaktbögen nicht eindeutig ableiten."
+  },
+  "principles": [
+    {
+      "name": "Ein System wird als zusammenhängende Welt begreifbar",
+      "evidence": "2,25–5,75 s verbindet Lager, Wege, Hafen/Flughafen, Schiene und Büros durch aufeinanderfolgende räumliche Ansichten.",
+      "transfer": "Leistungsknoten anhand echter Nutzerfragen ordnen und ihre Beziehungen sichtbar machen. Die Weltgeometrie ist eine lesbare Informationsarchitektur, keine beliebige Kulisse.",
+      "individuality": "Für andere Branchen andere Räume und Verbindungen wählen; eine Fabrik, ein Energiefluss oder eine Versorgungskette braucht keinen identischen Logistikcampus."
+    },
+    {
+      "name": "Feste Erklärung macht bewegte Orientierung möglich",
+      "evidence": "Die kleine Fläche unten links bleibt von Lager bis Büros am selben Bildschirmort, während die Welt darunter wandert.",
+      "transfer": "Eine stabile DOM-Ebene mit Kapitelname, knappem Nutzen, Fortschritt und direktem Ziel begleitet den Szenenwechsel. Inhaltliche Textwechsel wären eine sinnvolle Erweiterung, sind im Clip aber nicht sicher belegt.",
+      "individuality": "Orientierung kann links als Rail, oben als Routenleiste oder unterhalb als Begründung erscheinen. Position und Form aus Platzbedarf ableiten, keine Karte exakt kopieren."
+    },
+    {
+      "name": "Farbe benennt Funktion über den Raum hinweg",
+      "evidence": "Rote Lkw, Flugzeuge, Krane, Türen und Fassadenteile bleiben über die verschiedenen Orte markant; Natur/Boden sind leiser.",
+      "transfer": "Eine Akzentfarbe für aktive fachliche Elemente reservieren, Umgebungsgeometrie zurücknehmen. So bleibt ein Geschäftsprozess auch im Überblick lesbar.",
+      "individuality": "Palette und aktive Funktionsklasse sektorspezifisch bestimmen; nicht pauschal alles klickbare rot machen oder Emons-Farbverteilung duplizieren."
+    },
+    {
+      "name": "Eine Erlebnisbühne braucht einen sichtbaren Ausgang",
+      "evidence": "6,333–7,25 s schiebt sich die ganze Welt nach oben und gibt einem weißen Dokumentabschnitt Platz.",
+      "transfer": "Die geführte Tour endet nach wenigen aussagekräftigen Knoten. Vertiefung, Leistungsdetails und Kontakt folgen in einem gewöhnlichen zugänglichen Dokument.",
+      "individuality": "Die Welt kann auch als kurze optionale Übersicht vor einem direkten Leistungsindex dienen; sie muss nicht die gesamte Webseite dominieren."
+    }
+  ],
+  "scene_contracts": [
+    {
+      "id": "C3-S1",
+      "name": "Ruhiger Systemüberblick mit wenigen bewegten Trägern",
+      "Bezug": "0–2,25 s",
+      "Trigger": "Weltbereich sichtbar und Basispaket geladen; semantische Erklärung und Direktlinks sind schon vorhanden.",
+      "Start": "Ein Hauptknoten, stabile Orientierung, überschaubare Zahl markierter Akteure.",
+      "Mitte": "Nur kleine zweckgebundene Ambientbewegungen, etwa ein Fahrzeug entlang einer definierten Route; keine permanente Kameraumlaufbahn.",
+      "Ende": "Nutzer wählt nächsten Knoten oder scrollt in klar begrenzte Tour. Ein „Leistungen direkt ansehen“-Ziel bleibt sichtbar.",
+      "Timing": "Vorschlag: Ambientbewegung langsam über 8–16 s und begrenzt wiederholen; keine Zeitpflicht vor Navigation. Werte sind eigene Produktionsvorschläge.",
+      "Cleanup": "Offscreen-Loops und Audio falls vorhanden stoppen; bei ausgeblendetem Tab Rendering pausieren; Assets nicht sichtbarer Teilwelten zurückstellen.",
+      "Abnahme": "Das Standbild erklärt das System; Markierungen sind auch ohne Farbe unterscheidbar; Übersicht und Direktlinks lassen sich per Tastatur bedienen."
+    },
+    {
+      "id": "C3-S2",
+      "name": "Leistungsknoten über gemeinsame Raumlogik verbinden",
+      "Bezug": "2,25–6,333 s",
+      "Trigger": "Knotenauswahl oder klar definierter lokaler Scrollfortschritt setzt targetNode; jeder Knoten besitzt einen direkten Link/Anker.",
+      "Start": "Aktueller Knoten mit stabiler Beschriftung und überprüfbarem Leistungsversprechen.",
+      "Mitte": "Kameraäquivalent fährt auf kontrolliertem Weg zum nächsten Knoten; wichtiger Horizont/Projektionswinkel bleibt konsistent. Navigation und Text verbleiben als eigenständige Ebene.",
+      "Ende": "Zielknoten ruhig im Bild, passender Text und Aktion vollständig lesbar. Unterwegsbilder sind nicht der einzige Zugang zu einem Angebot.",
+      "Timing": "Vorschlag: 600–1100 ms pro expliziter Knotenfahrt oder 0,7–1,1 Viewporthöhen mit 50–65 % Haltebereich. Maximal 4–6 Kernknoten vor dem Ausstieg; Zahl nach Inhalt wählen.",
+      "Cleanup": "Unterbrochene Fahrt auf neuen Zielzustand überführen, nicht auf alte Ausgangspose springen; alte Knotenassets entladen, Observer/Listener entfernen, Fortschritt und Fokus erhalten.",
+      "Abnahme": "Schnelle Sprungnavigation, Resize und Rückwärtslauf zeigen korrekte Knoten/Labels. Keine Schrift in der Welttextur als einzige Information; Scroll-Eingaben werden außerhalb der Tour nicht abgefangen."
+    },
+    {
+      "id": "C3-S3",
+      "name": "Tour an echten Leistungsinhalt übergeben",
+      "Bezug": "6,333–7,933 s",
+      "Trigger": "Letzter Knoten erreicht oder „Tour überspringen“ gewählt.",
+      "Start": "Ruhiger finaler Weltzustand mit erreichbarer nächster Inhaltsüberschrift.",
+      "Mitte": "Gesamte Bühne verlässt den Viewport im normalen Dokumentfluss; ein anderes Kompositionsprinzip übernimmt, z. B. großes Objektbild mit klarer Leistungsüberschrift.",
+      "Ende": "Normale Inhaltsspalten, Listen oder Vergleichsflächen; keine fortgesetzte Kamerabindung.",
+      "Timing": "Vorschlag: Übergabe über 0,5–1 Viewporthöhe; anschließender Inhalt ohne künstliche Haltestrecke.",
+      "Cleanup": "Pin-/Wheel-Logik vollständig freigeben; Szene einfrieren oder pausieren; Layoutplatz und Ankerpositionen korrekt erhalten.",
+      "Abnahme": "Direkter Anker zum Leistungsabschnitt funktioniert beim Erstaufruf; Tab-Navigation erreicht alle Angebote; auch fehlendes Szenenasset hinterlässt keine große leere Fläche."
+    }
+  ],
+  "asset_preparation": [
+    "Zuerst Knoten-/Beziehungsplan aus realen Leistungen erstellen. Jeder Ort erhält Nutzerfrage, Aussage, CTA und einfache Silhouette; reine Attraktionen ohne fachlichen Zweck entfernen.",
+    "Eigenständige Architektur-/Systemwelt in einem konsistenten Maßstab, Licht, Projektion und Materialstil erstellen. Modulare Gebäude, Fahrzeuge, Vegetation und Wege helfen; bei gleichem Blick auf Übergabeposen achten.",
+    "Außen-/Innenansichten bewusst planen: Ein Cutaway benötigt erkennbaren Zusammenhang und darf eine fiktive Leistungsfähigkeit nicht als reale Standortansicht ausgeben.",
+    "Umsetzungsweg offen wählen: echtzeitfähige reduzierte 3D-Welt, vorgerenderte Kamerafahrten mit Postern oder eine 2D-isometrische Karte. Modell-/Texturkompression, Instanzen und Level-of-Detail sind mögliche Optimierungen, keine festgestellten Quellenmerkmale.",
+    "Beschriftungen, Navigation und Aktionen als HTML/SVG außerhalb schwerer Bildassets liefern. Pro Knoten ein statisches Poster, einen mobilen Fokus-Ausschnitt und kurze Alternativbeschreibung vorbereiten.",
+    "Weltpakete in sinnvolle Ladegruppen teilen; Anfangsknoten vor tiefen Detailknoten priorisieren. Originaldateien, Lizenzen, Scale/Pivot, Kameraübergaben und Rendervarianten im Assetmanifest dokumentieren."
+  ],
+  "fallbacks": {
+    "Desktop": "Große Weltfläche mit begrenzter Textbreite auf eigener Ebene; freie Bereiche der Welt für Text reservieren. Tour optional und direkt steuerbar; alle Leistungen zusätzlich im normalen Dokument auffindbar.",
+    "Mobil": "Keine winzige Gesamtkarte unter einer darüberliegenden Textkarte. Stattdessen ein fokussierter Knotenausschnitt, beschriftete Schrittwahl und Erklärung darunter; alternative statische Route mit vertikalen Abschnitten. Umgebung auf die jeweilige Leistung reduzieren.",
+    "Reduzierte Bewegung": "Keine Raumfahrt oder Fahrzeugloops. Statische Weltübersicht mit direkten Knotenlinks oder einzelne Poster; beim Wechsel sofortiger Ausschnitt-/Textwechsel. Die Reihenfolge und Verknüpfung bleiben im Text sichtbar.",
+    "Schwache Geräte oder Ladefehler": "Posterkarte plus vollständiger Leistungsindex; 3D-/Video-Aktivierung optional. Offscreen-Tour pausieren, weniger Ambientakteure, überschaubare Texturen. Scheitert die Bühne, direkt den regulären Inhaltsabschnitt anzeigen."
+  },
+  "sector_adaptations": [
+    {
+      "sector": "Energieversorgung / Netzinfrastruktur",
+      "composition": "Breite regionale Karte als horizontales Flussbild; schmale Erläuterungsleiste oben; danach reale Kennzahlen über volle Breite.",
+      "motion_and_purpose": "Von Erzeugung über Speicher/Netz zu Verbrauch wechseln. Farbe markiert Energieflüsse und Systemzustände; keine Logistikspielzeugwelt nötig."
+    },
+    {
+      "sector": "Industrie / Auftragsfertigung",
+      "composition": "Längsschnitt einer Produktionshalle mit seitlicher Kapitelrail, später Detailaufnahmen und Spezifikationstabelle.",
+      "motion_and_purpose": "Materialeingang, Bearbeitung, Prüfung und Versand als zusammenhängender Prozess; Cutaway erklärt Funktion, nicht Gebäudegröße."
+    },
+    {
+      "sector": "Hochschule / Forschungscampus",
+      "composition": "Ruhige Vogelperspektive mit offenen Ortsmarken, darunter editorial wechselnde Mensch-/Projektporträts.",
+      "motion_and_purpose": "Orte führen zu realen Forschungsfeldern und Ansprechpartnern. Nutzer können gezielt springen, ohne eine Pflichtreise zu absolvieren."
+    },
+    {
+      "sector": "Gesundheits-/Versorgungsorganisation",
+      "composition": "Abstrakte serviceorientierte Wegkarte mit großen lesbaren Stationen, gefolgt von einer nüchternen Termin-/Kontaktseite.",
+      "motion_and_purpose": "Weg durch Leistungen verständlich machen; reale Angebote und direkte Kontaktwege priorisieren. Keine kleinen Menschen-/Gebäudemodelle als Ersatz für wichtige Informationen."
+    },
+    {
+      "sector": "Digitale Plattform / Cloud-Service",
+      "composition": "Schichtenmodell als vertikaler räumlicher Schnitt, feste Textspalte rechts; anschließend Vergleichsmatrix und Dokumentationszugang.",
+      "motion_and_purpose": "Datenquelle→Verarbeitung→Nutzung als Knotenfolge. Die Weltlogik erklärt technische Beziehungen, ohne einen fiktiven physischen Campus nachzuahmen."
+    }
+  ],
+  "risks": [
+    "Emons-Logo, rote Fahrzeuge, cremeweißer Logistikcampus, mintfarbene Bäume und gleiche Hafen-/Flughafen-/Büroreihenfolge zusammen zu übernehmen wäre starke gestalterische Imitation. Systemprinzip und Knotenlogik brauchen eine eigene Ausdrucksform.",
+    "Eine attraktive Modellwelt kann fachlich falsche Standorte, Kapazitäten oder Transportverbindungen suggerieren. Als abstrahierte Darstellung kennzeichnen und Inhalte mit echten Angeboten abgleichen.",
+    "In 7,933 s wird viel Raum durchfahren. Diese Geschwindigkeit ist keine geeignete Nutzungsnorm; die Original-Eingaben und mögliche Aufnahmebearbeitung sind unbekannt.",
+    "Weltgeometrie kann mobile Lesbarkeit, Tastaturführung und Performance belasten. Der vollständige Leistungsinhalt darf nicht von einem Canvas oder einer Kamerafahrt abhängen.",
+    "Weiterführende Leistungsdetails und Interaktionen sind im Clip nicht überprüft. Aus der sichtbaren Navigation folgen keine bestätigten Filter-, Tracking- oder Buchungsfunktionen."
+  ],
+  "masterprompt_rules": [
+    "Die zentrale Methode als räumliche Informationsarchitektur definieren: Welche 4–6 fachlichen Knoten gibt es, welche Beziehungen werden verständlich, wohin führt jeder Knoten?",
+    "Für jeden Knoten Bildausschnitt, ruhigen Zustand, unabhängigen Text, CTA und Anker angeben. Abfolge aus Nutzeraufgabe ableiten, nicht aus Modellattraktivität.",
+    "Eine stabile Orientierungsebene und einen klaren Ausstieg spezifizieren. Spätere Sektionen verwenden eigene Kompositionen statt weiterer Weltfahrten.",
+    "Einen ausdrücklichen alternativen Gesamtaufbau ohne Tour anbieten. Die Methode muss auch mit statischer Karte und starkem Leistungsindex funktionieren.",
+    "Technischen Pfad erst nach Asset- und Performancebudget wählen. Aus der 3D-Wirkung keine bestimmte Engine oder KI-Autorschaft ableiten."
+  ],
+  "engine_method": {
+    "method_id": "spatial_service_map",
+    "method": "Ein fachlich geordnetes Netzwerk von Leistungsknoten wird durch konsistente räumliche Ansichten verbunden. Eine unabhängige, stabile Erklärungsebene und direkte Ziele halten Orientierung; eine begrenzte Tour endet ausdrücklich im normalen Dokumentfluss.",
+    "alternative_compositions": [
+      {
+        "name": "Routenkarte und Leistungsdossier",
+        "sections": [
+          "Ruhige Gesamtkarte mit direkt anwählbaren Knoten",
+          "Fokussierter Knotenausschnitt mit Erklärung darunter",
+          "Reale Leistungsbelege als breite Bild-/Datenstrecke",
+          "Kompakter Leistungsindex",
+          "Anfrage mit vorausgewählter Leistung"
+        ],
+        "distinctive_logic": "Die Karte ist ein optionales Navigationsinstrument; keine obligatorische Kamerareise."
+      },
+      {
+        "name": "Prozessschnitt mit redaktioneller Vertiefung",
+        "sections": [
+          "Großer räumlicher Längsschnitt und vertikale Kapitelrail",
+          "Zwei gezielte Innen-/Außenansichten",
+          "Menschen-/Projektporträts als asymmetrische Bildstrecke",
+          "Sachliche Service-/Standortmatrix",
+          "Direkte Kontaktoption"
+        ],
+        "distinctive_logic": "Räumlicher Schnitt erklärt Zusammenhänge, danach bewusst echte Fotografien und Tabellen statt weiterer Miniaturwelt."
+      }
+    ]
+  },
+  "source_sha256": "55fe1b5e997d226de10971b894642dbfb38a5b409792d531ebbba7f3bd6edfac",
+  "original_filename": "-388175669482362820.MP4",
+  "engine_style_id": "isometric-network",
+  "engine_method_id": "isometric-network-scale",
+  "evidence_publication": "Zeitachsen und Sichtungsnotizen werden veröffentlicht. Originalclips und extrahierte Belegbilder bleiben außerhalb des Repositorys."
+}

@@ -1,0 +1,108 @@
+{
+  "reviewedDate": "2026-09-15",
+  "newlyReanalysedOriginals": 9,
+  "previouslyDocumentedVideos": 7,
+  "totalIndividuallyDocumentedVideos": 16,
+  "remainingOlderOriginalsNotReanalysed": 14,
+  "videos": [
+    {
+      "file": "-8919957103071095100(1).MP4",
+      "originalFile": "-8919957103071095100.MP4",
+      "sha256": "be90010769e0e8192f144c557ce1cb1d63c78321c52c274f9ebf66700e838943",
+      "durationSeconds": 10.833333,
+      "styleId": "experience-specification",
+      "methodId": "experience-to-specification",
+      "timelineIntervals": 8,
+      "proposedScenes": 3,
+      "study": "reuploads-2026-09-15/experience-specification.md"
+    },
+    {
+      "file": "-7801457148905485753(1).MP4",
+      "originalFile": "-7801457148905485753.MP4",
+      "sha256": "4a84a8c7bc147fd371a11e763d8896d29dfc019868a7c2954fcd762b39685926",
+      "durationSeconds": 10.6,
+      "styleId": "cargo-relay",
+      "methodId": "cargo-handoff-continuity",
+      "timelineIntervals": 11,
+      "proposedScenes": 3,
+      "study": "reuploads-2026-09-15/cargo-relay.md"
+    },
+    {
+      "file": "-6215933416139985581(1).MP4",
+      "originalFile": "-6215933416139985581.MP4",
+      "sha256": "1849fa22c0d0c6d6a3b8441801ea23b3550431b8f164f221dd0710892daa20e6",
+      "durationSeconds": 19.7,
+      "styleId": "return-stage",
+      "methodId": "return-stage-worlds",
+      "timelineIntervals": 10,
+      "proposedScenes": 3,
+      "study": "reuploads-2026-09-15/return-stage.md"
+    },
+    {
+      "file": "-4186847397357342673(1).MP4",
+      "originalFile": "-4186847397357342673.MP4",
+      "sha256": "536f59f8a490357c4f6053ee2eb3e9d630aa6c3f63622213d3075d5d19ff80e5",
+      "durationSeconds": 21.0,
+      "styleId": "ensemble-catalog",
+      "methodId": "occlusion-to-ensemble",
+      "timelineIntervals": 9,
+      "proposedScenes": 4,
+      "study": "reuploads-2026-09-15/ensemble-catalog.md"
+    },
+    {
+      "file": "-2080693491323830558(1).MP4",
+      "originalFile": "-2080693491323830558.MP4",
+      "sha256": "45e3da0591bfd167c9c2ef86b5b2e165bff5081cc0f918cf83c6780e26c14d32",
+      "durationSeconds": 11.5,
+      "styleId": "documentary-blueprint",
+      "methodId": "documentary-wireframe-rhythm",
+      "timelineIntervals": 10,
+      "proposedScenes": 5,
+      "study": "reuploads-2026-09-15/documentary-blueprint.md"
+    },
+    {
+      "file": "-1979294151548389942(2).MP4",
+      "originalFile": "-1979294151548389942.MP4",
+      "sha256": "a63aa2c3abdc2c4dd496629243c2cecea8223744b062f51e03d01989cbcc07fb",
+      "durationSeconds": 13.266667,
+      "styleId": "ritual-booking",
+      "methodId": "threshold-to-booking",
+      "timelineIntervals": 11,
+      "proposedScenes": 5,
+      "study": "reuploads-2026-09-15/ritual-booking.md"
+    },
+    {
+      "file": "-1360803790880632830(1).MP4",
+      "originalFile": "-1360803790880632830.MP4",
+      "sha256": "d84fb4925ddc0ecf01945b440f1d7c7c99e457d6cf379d9c03ac52e8a4d6e513",
+      "durationSeconds": 18.133333,
+      "styleId": "painterly-chapters",
+      "methodId": "painterly-medium-bridge",
+      "timelineIntervals": 14,
+      "proposedScenes": 5,
+      "study": "reuploads-2026-09-15/painterly-chapters.md"
+    },
+    {
+      "file": "-393015269072123485(1).MP4",
+      "originalFile": "-393015269072123485.MP4",
+      "sha256": "1744891b12dabe0d875ab84897c204bd6317de9bb613ddd26fe4978e2c2fb221",
+      "durationSeconds": 14.9,
+      "styleId": "ingredient-orbit",
+      "methodId": "ingredient-carousel-continuity",
+      "timelineIntervals": 12,
+      "proposedScenes": 3,
+      "study": "reuploads-2026-09-15/ingredient-orbit.md"
+    },
+    {
+      "file": "-388175669482362820(1).MP4",
+      "originalFile": "-388175669482362820.MP4",
+      "sha256": "55fe1b5e997d226de10971b894642dbfb38a5b409792d531ebbba7f3bd6edfac",
+      "durationSeconds": 7.933333,
+      "styleId": "isometric-network",
+      "methodId": "isometric-network-scale",
+      "timelineIntervals": 10,
+      "proposedScenes": 3,
+      "study": "reuploads-2026-09-15/isometric-network.md"
+    }
+  ]
+}
