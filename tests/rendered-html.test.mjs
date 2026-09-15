@@ -87,7 +87,7 @@ test("keeps important notes first and provides a separate durable team chat", as
   assert.ok(workspace.indexOf("Team-Zentrale") < workspace.indexOf("Live-Arbeitsboard"));
   assert.match(workspace, /Wichtige Notiz senden/);
   assert.match(workspace, /Team-Chat/);
-  assert.match(workspace, /Chat-Nachricht/);
+  assert.match(workspace, /TeamChatPanel/);
   assert.match(app, /requestJson<\{ messages: TeamChatMessage\[\] \}>\("\/api\/chat"\)/);
   assert.match(app, /createTeamChatMessage/);
   assert.match(chatRoute, /limit\(150\)/);

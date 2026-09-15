@@ -69,6 +69,7 @@ import { PricingStudio } from "@/components/wwb/pricing-studio";
 import { QuickMenu } from "@/components/wwb/quick-menu";
 import { RadarPanel } from "@/components/wwb/radar-panel";
 import { RegionalList } from "@/components/wwb/regional-list";
+import { TeamChatBubble } from "@/components/wwb/team-chat-bubble";
 import { TeamWorkspace } from "@/components/wwb/team-workspace-v2";
 import { WorkflowCockpit } from "@/components/wwb/workflow-cockpit";
 import {
@@ -1440,6 +1441,7 @@ export function WebWorkBalanceApp({ currentUser }: { currentUser: AppUser }) {
       <ManualLeadDialog open={manualLeadOpen} onOpenChange={setManualLeadOpen} center={center} onCreate={async (business, priority) => { await saveLead(business, priority); setView("leads"); }} />
       <QuickMenu open={quickMenuOpen} onOpenChange={setQuickMenuOpen} leads={leads} onNavigate={navigate} onNewLead={() => setManualLeadOpen(true)} onLoadStarter={() => void loadStarterLeads()} onPassport={() => setPassportOpen(true)} onOpenLead={openDetails} />
       <DetailSheet open={detailOpen} onOpenChange={setDetailOpen} business={selectedBusiness} lead={selectedLead} prices={prices} currentUser={activeUser} onSaveLead={async (business, priority) => { await saveLead(business, priority); }} onPatchLead={patchLead} onClaimLead={claimLead} onOpenTeamNote={openTeamNote} onAddTask={addTask} />
+      <TeamChatBubble key={activeUser.id} currentUser={activeUser} messages={teamChatMessages} live={teamSyncReady} hidden={quickMenuOpen || detailOpen || passportOpen || manualLeadOpen || teamInboxOpen} onSend={createTeamChatMessage} onDelete={deleteTeamChatMessage} />
       <Toaster position="top-center" richColors closeButton />
     </main>
   );

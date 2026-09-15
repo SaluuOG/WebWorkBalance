@@ -6,7 +6,7 @@ Stand: 14. September 2026. Engine-Kennung: `wwb-motion-3`.
 
 Die vorhandenen 27 Gestaltungsmethoden bleiben in `lib/masterprompt-engine.ts` erhalten. Sieben neue, tatsächlich lokal gesichtete MP4-Dateien ergänzen eigene Stilwelten: technisches Fashion-Dossier, surreale Kapitelreise, monumentaler Hero, Villa-Editorial, Fahrzeug-Showroom, Sorten-Inszenierung und Campaign-Commerce. Die beobachteten Sequenzen und Zeitbereiche stehen in `video-studies-2026-09-14.md` und in der zugehörigen JSON-Datei. Die Originalvideos werden nicht im öffentlichen Repository weitergegeben.
 
-Die früher hinterlegten Referenzprinzipien wurden übernommen. Ältere Originalvideos lagen bei dieser Überarbeitung nicht erneut vor; eine lückenlose neue Einzelanalyse aller früher gesendeten Clips wird daher nicht behauptet. Beobachtete Bildwirkung belegt weder den ursprünglichen Software-Stack noch WebGL, Mobilverhalten oder ein funktionierendes Backend. Wo daraus technische Verfahren abgeleitet werden, sind sie Umsetzungsvorschläge.
+Die früher hinterlegten Referenzprinzipien wurden übernommen. Die Metadaten aller 23 älteren Originalvideos wurden am 15. September wiedergefunden. Die Wiederherstellung der Videodateien scheiterte jedoch an HTTP 502 (zwei Sammelversuche und ein Einzelversuch); eine lückenlose neue Einzelanalyse aller früher gesendeten Clips wird daher nicht behauptet. Beobachtete Bildwirkung belegt weder den ursprünglichen Software-Stack noch WebGL, Mobilverhalten oder ein funktionierendes Backend. Wo daraus technische Verfahren abgeleitet werden, sind sie Umsetzungsvorschläge.
 
 ## Individuelle Firmenkonzepte
 

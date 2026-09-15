@@ -25,6 +25,7 @@ Live-App: [webworkbalance.jj6ng7vwzq.chatgpt.site](https://webworkbalance.jj6ng7
 - Optionales individuelles Website-Spiel als Quiz, Memory oder kleine Challenge im Produktionsprompt
 - Professionelle Erstkontakt-Vorlagen für Telefon, E-Mail und WhatsApp mit WWB-Team-Abschluss
 - Team-Pinnwand, Start-Hinweis für ungelesene Notizen, separater Live-Chat und Arbeitsboard
+- Schwebende Chat-Bubble mit ungelesenen Nachrichten, direktem Schreiben und erhaltenem Entwurf beim Schließen
 - Preisliste, Angebotskalkulator, Tagescockpit, Schnellmenü und installierbare mobile PWA
 
 ## Radar-Ausfallschutz

@@ -126,7 +126,7 @@ body > main,
 .wwb-app-shell {
   min-height: 100svh;
   min-height: 100dvh;
-  padding-bottom: calc(7rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(11rem + env(safe-area-inset-bottom, 0px));
   overflow-x: hidden;
   overflow-x: clip;
 }
@@ -185,6 +185,17 @@ body > main,
 }
 .wwb-detail-sheet {
   height: 100svh;
+  height: 100dvh;
+  max-height: 100dvh;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.wwb-chat-bubble {
+  right: calc(1rem + env(safe-area-inset-right, 0px));
+  bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+.wwb-chat-sheet {
+  top: 0;
+  bottom: auto;
   height: 100dvh;
   max-height: 100dvh;
   padding-bottom: env(safe-area-inset-bottom, 0px);

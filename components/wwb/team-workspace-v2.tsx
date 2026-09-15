@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -27,6 +27,7 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
+import { TeamChatPanel } from "./team-chat-panel";
 import type { AppUser, StoredLead, TeamChatMessage, TeamNote, TeamNoteKind } from "@/lib/webworkbalance";
 
 const noteKinds: Array<{ value: TeamNoteKind; icon: typeof MessageSquareText; color: string }> = [
@@ -98,10 +99,8 @@ export function TeamWorkspace({
   const [filter, setFilter] = useState<"all" | TeamNoteKind>("all");
   const [communicationTab, setCommunicationTab] = useState<"notes" | "chat">("notes");
   const [chatBody, setChatBody] = useState("");
-  const [chatSaving, setChatSaving] = useState(false);
   const [teamName, setTeamName] = useState(currentUser.name);
   const [nameSaving, setNameSaving] = useState(false);
-  const chatEndRef = useRef<HTMLDivElement>(null);
 
   const openLeads = leads.filter((lead) => !["Auftrag gewonnen", "Abgelehnt"].includes(lead.status));
   const assignedLeads = leads.filter((lead) => lead.claimedById && lead.status !== "Abgelehnt");
@@ -125,10 +124,6 @@ export function TeamWorkspace({
       .sort((a, b) => Number(b.id === currentUser.id) - Number(a.id === currentUser.id) || a.name.localeCompare(b.name, "de"));
   }, [currentUser.id, leads]);
 
-  useEffect(() => {
-    if (communicationTab === "chat") chatEndRef.current?.scrollIntoView({ block: "nearest" });
-  }, [communicationTab, messages]);
-
   async function submitNote(event: FormEvent) {
     event.preventDefault();
     if (!body.trim()) return;
@@ -143,20 +138,6 @@ export function TeamWorkspace({
       // The parent shows the error; the draft stays available for another attempt.
     } finally {
       setSaving(false);
-    }
-  }
-
-  async function submitChat(event: FormEvent) {
-    event.preventDefault();
-    if (!chatBody.trim()) return;
-    setChatSaving(true);
-    try {
-      await onCreateChatMessage(chatBody.trim());
-      setChatBody("");
-    } catch {
-      // The parent shows the error; the draft stays available for another attempt.
-    } finally {
-      setChatSaving(false);
     }
   }
 
@@ -226,24 +207,7 @@ export function TeamWorkspace({
           <TabsContent value="chat" className="mt-4">
             <section className="overflow-hidden rounded-2xl border border-[#52d6a0]/14 bg-black/10">
               <div className="flex items-center justify-between gap-3 border-b border-white/[.07] px-4 py-3 sm:px-5"><div><h3 className="flex items-center gap-2 font-semibold"><MessagesSquare className="size-5 text-[#75e5b7]" /> Team-Chat</h3><p className="mt-1 text-sm text-muted-foreground">Normale Gespräche bleiben getrennt von euren Arbeitsnotizen.</p></div><Badge variant="outline" className="shrink-0 border-[#52d6a0]/20 text-[#75e5b7]">Live</Badge></div>
-              <div className="h-[230px] space-y-3 overflow-y-auto px-3 py-4 scrollbar-thin sm:h-[390px] sm:px-5">
-                {messages.map((message) => {
-                  const mine = message.authorId === currentUser.id;
-                  return <div key={message.id} className={`flex ${mine ? "justify-end" : "justify-start"}`}>
-                    <article className={`max-w-[88%] rounded-2xl px-4 py-3 sm:max-w-[72%] ${mine ? "rounded-br-md bg-[#d7b56d] text-[#080b0f]" : "rounded-bl-md border border-white/[.08] bg-white/[.055]"}`}>
-                      <div className={`flex flex-wrap items-center gap-2 text-xs ${mine ? "text-[#080b0f]/65" : "text-muted-foreground"}`}><strong className={mine ? "text-[#080b0f]" : "text-[#9fc1ff]"}>{mine ? "Du" : message.authorName}</strong><span>{relativeTime(message.createdAt)}</span></div>
-                      <p className="mt-1.5 whitespace-pre-wrap break-words text-[15px] leading-6">{message.body}</p>
-                      {mine && <button type="button" onClick={() => void onDeleteChatMessage(message)} className="mt-1.5 text-[11px] text-[#080b0f]/55 underline-offset-2 hover:underline" aria-label="Chat-Nachricht löschen">Löschen</button>}
-                    </article>
-                  </div>;
-                })}
-                {!messages.length && <div className="flex h-full min-h-64 flex-col items-center justify-center px-6 text-center"><MessageCircle className="size-8 text-[#75e5b7]" /><h4 className="mt-3 font-semibold">Startet euren Team-Chat</h4><p className="mt-1 max-w-sm text-sm leading-6 text-muted-foreground">Für kurze Absprachen, Fragen und alles, was keine wichtige Arbeitsnotiz sein muss.</p></div>}
-                <div ref={chatEndRef} />
-              </div>
-              <form onSubmit={submitChat} className="flex items-end gap-2 border-t border-white/[.07] bg-white/[.018] p-3 sm:p-4">
-                <Textarea value={chatBody} onChange={(event) => setChatBody(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); event.currentTarget.form?.requestSubmit(); } }} rows={2} maxLength={2000} aria-label="Chat-Nachricht" placeholder="Nachricht an das Team …" className="min-h-11 resize-none border-white/10 bg-black/15" />
-                <Button type="submit" className="h-11 shrink-0 bg-[#52d6a0] text-[#07120d] hover:bg-[#75e5b7]" disabled={chatSaving || !chatBody.trim()}><Send className="mr-0 size-4 sm:mr-2" /><span className="hidden sm:inline">{chatSaving ? "Sendet …" : "Senden"}</span></Button>
-              </form>
+              <TeamChatPanel currentUser={currentUser} messages={messages} onSend={onCreateChatMessage} onDelete={onDeleteChatMessage} draft={chatBody} onDraftChange={setChatBody} />
             </section>
           </TabsContent>
         </Tabs>
